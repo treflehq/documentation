@@ -1,11 +1,11 @@
 module.exports = {
   title: 'Trefle documentation',
   tagline: 'Get started using the Trefle REST API',
-  url: 'https://trefle.io',
+  url: 'https://docs.trefle.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
-  organizationName: 'trefle', // Usually your GitHub org/user name.
-  projectName: 'trefle', // Usually your repo name.
+  organizationName: 'treflehq', // Usually your GitHub org/user name.
+  projectName: 'documentation', // Usually your repo name.
   themeConfig: {
     disableDarkMode: true,
     // announcementBar: {
@@ -37,7 +37,7 @@ module.exports = {
         },
         {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/treflehq/documentation',
           label: 'GitHub',
           position: 'right',
         },
@@ -111,15 +111,18 @@ module.exports = {
           // It is recommended to set document id as docs home page (`docs/` path).
           homePageId: 'getting-started',
           sidebarPath: require.resolve('./sidebars.js'),
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
+
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/treflehq/documentation/edit/master/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+            'https://github.com/treflehq/documentation/edit/master/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

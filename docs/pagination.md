@@ -56,9 +56,6 @@ const fetch = require('node-fetch');
 
 You now got the second page of the plants.
 
-<details>
-<summary>Show response</summary>
-
 
 ```json
 {
@@ -123,5 +120,3 @@ You now got the second page of the plants.
         "total": 417293
     }}
 ```
-
-</details>

@@ -63,3 +63,7 @@ span.token.number {
   background-color: initial;
   color: #a2a2a2;
 }
+
+table th, table td {
+    border: inherit;
+}
