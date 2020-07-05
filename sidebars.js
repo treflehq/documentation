@@ -4,8 +4,10 @@ module.exports = {
       'getting-started',
       'pagination',
       'filtering',
-      'doc3'
+      'ranges',
     ],
-    Features: ['mdx'],
+    Examples: [
+      'snippets'
+    ],
   },
 };

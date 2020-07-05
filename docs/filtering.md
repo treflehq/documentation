@@ -10,7 +10,7 @@ As you may have seen, there is a lot of plants here. In order to find what you'r
 
 Let's query only plants with the "Beach Strawberry" common name:.
 
-https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&common_name=beach%20strawberry
+https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[common_name]=beach%20strawberry
 
 
 <Tabs
@@ -26,7 +26,7 @@ https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&common_name=beach%20stra
 
 Open your browser and navigate to
 
-[`https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&common_name=beach%20strawberry`](https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&common_name=beach%20strawberry)
+[`https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[common_name]=beach%20strawberry`](https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[common_name]=beach%20strawberry)
 
 </TabItem>
 <TabItem value="curl">
@@ -34,7 +34,7 @@ Open your browser and navigate to
 In your terminal:
 
 ```bash
-curl 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&common_name=beach%20strawberry'
+curl 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[common_name]=beach%20strawberry'
 ```
 
 </TabItem>
@@ -44,7 +44,7 @@ curl 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&common_name=beach%
 const fetch = require('node-fetch');
 
 (async () => {
-  const response = await fetch('https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&common_name=beach%20strawberry');
+  const response = await fetch('https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[common_name]=beach%20strawberry');
   const json = await response.json();
   console.log(json);
 })();
@@ -68,6 +68,7 @@ And we got:
             "family_common_name": "Rose family",
             "genus_id": 2585,
             "id": 131974,
+            "image_url": null,
             "links": {
                 "genus": "/api/v1/genus/fragaria",
                 "self": "/api/v1/plants/fragaria-chiloensis",
@@ -78,14 +79,13 @@ And we got:
             "scientific_name": "Fragaria chiloensis",
             "slug": "fragaria-chiloensis",
             "vegetable": false,
-            "vegetable_category": null,
             "year": 1768
         }
     ],
     "links": {
-        "first": "/api/v1/plants?common_name=beach+strawberry&page=1",
-        "last": "/api/v1/plants?common_name=beach+strawberry&page=1",
-        "self": "/api/v1/plants?common_name=beach+strawberry"
+        "first": "/api/v1/plants?filter%5Bcommon_name%5D=beach+strawberry&page=1",
+        "last": "/api/v1/plants?filter%5Bcommon_name%5D=beach+strawberry&page=1",
+        "self": "/api/v1/plants?filter%5Bcommon_name%5D=beach+strawberry"
     },
     "meta": {
         "total": 1

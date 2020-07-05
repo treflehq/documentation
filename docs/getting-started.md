@@ -6,6 +6,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
+### Introduction
+
+This is the Trefle API documentation. The Trefle API aims to deliver all plants informations under an accessible interface.
+
+All API access is over HTTPS, and accessed from https://trefle.io. All data is sent and received as JSON.
+
 ### What You Need
 
 In order to make queries, you'll need to create an account and get your personal access token first.
@@ -161,3 +167,48 @@ It return a big JSON response like this:
     }
 }
 ```
+
+### The Trefle structure
+
+Before going further, we need to know a bit how data is organized in the trefle API.
+
+The whole API structure is defined by the following classification:
+
+```text
+Kingdom
+  -> Subkingdom
+    -> Division
+      -> Division class
+        -> Division order
+          -> Family
+            -> Genus
+              -> Plant
+                -> Species
+```
+
+For example, the [balsam fir](https://en.wikipedia.org/wiki/Abies_balsamea) hierarchy is:
+
+```text
+Kingdom -> Plantae – (Plants)
+Subkingdom -> Tracheobionta – (Vascular plants)
+Division -> Coniferophyta – (Conifers)
+Class -> Pinopsida
+Order -> Pinales
+Family -> Pinaceae – (Pine family)
+Genus -> Abies
+Plant -> Abies balsamea
+Species -> Abies balsamea
+```
+
+### Plant and Species
+
+For commodity reasons, we added a `Plant` level between Genus and Species. A plant is the main species of a species, without all the forms, varieties, subspecies etc...
+
+For each plant, we have one main species and several other "sub" species (which can be subspecies, varieties, hybrids, cultivars etc...).
+
+For example, our [balsam fir](https://en.wikipedia.org/wiki/Abies_balsamea) have:
+
+- One species (which is our "plant"): `Abies balsamea`
+- One sub-species: `Abies balsamea ssp. lasiocarpa`
+- Two varieties: `Abies balsamea var. phanerolepis` and `Abies balsamea var. balsamea`
+
