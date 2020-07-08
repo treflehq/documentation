@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Trefle documentation Blog</title>
+        <link>https://docs.trefle.io/blog</link>
+        <description>Trefle documentation Blog</description>
+        <lastBuildDate>Wed, 15 Jul 2020 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <copyright>Copyright © 2020 Trefle.</copyright>
+        <item>
+            <title><![CDATA[1.6.0]]></title>
+            <link>https://docs.trefle.io/blog/1-6-0-released</link>
+            <guid>1-6-0-released</guid>
+            <pubDate>Wed, 15 Jul 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[This major release of Trefle brings a lot of new exciting features:]]></description>
+        </item>
+    </channel>
+</rss>
