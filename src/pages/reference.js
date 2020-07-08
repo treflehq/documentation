@@ -16,7 +16,7 @@ function Home() {
       description="Description will go into a meta tag in <head />">
       <main>
         <RedocStandalone
-          specUrl="http://localhost:3232/swagger/v1/swagger.yaml"
+          specUrl={siteConfig.swagger || "https://mgmt.trefle.io/swagger/v1/swagger.yaml"}
           options={{
             scrollYOffset: ".navbar.navbar--light.navbar--fixed-top",
             theme: {

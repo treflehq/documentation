@@ -1,5 +1,6 @@
 module.exports = {
   title: 'Trefle documentation',
+  // swagger: 'http://localhost:3232/swagger/v1/swagger.yaml',
   tagline: 'Get started using the Trefle REST API',
   url: 'https://docs.trefle.io',
   baseUrl: '/',
