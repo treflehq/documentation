@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   title: 'Trefle documentation',
   // swagger: 'http://localhost:3232/swagger/v1/swagger.yaml',
@@ -121,6 +123,10 @@ module.exports = {
         },
         blog: {
           showReadingTime: true,
+          feedOptions: {
+            type: 'all',
+            copyright: `Copyright © ${new Date().getFullYear()} Trefle.`,
+          },
           // Please change this to your repo.
           editUrl:
             'https://github.com/treflehq/documentation/edit/master/blog/',
@@ -130,5 +136,8 @@ module.exports = {
         },
       },
     ],
+  ],
+  plugins: [
+    [path.resolve(__dirname, 'plugins/plugin-token-fetcher/'), {}],
   ],
 };

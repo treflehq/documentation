@@ -39,7 +39,7 @@ const features = [
 
 function Feature({link, title, description}) {
   return (
-    <Link to={useBaseUrl(link) } className={clsx('col col--4', styles.feature)}>
+    <Link to={useBaseUrl(link) } className={clsx(styles.feature)}>
       <h3>{title}</h3>
       <p>{description}</p>
     </Link>
@@ -53,7 +53,7 @@ function Home() {
     <Layout
       title={`${siteConfig.title}`}
       description="Getting started with the Trefle API">
-      <header className={clsx('hero hero--primary', styles.heroBanner)}>
+      <header className={clsx('hero', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
@@ -75,9 +75,14 @@ function Home() {
           <section className={styles.features}>
             <div className="container">
               <div className="row">
-                {features.map((props, idx) => (
-                  <Feature key={idx} {...props} />
-                ))}
+                <div className="col">
+                  {features.map((props, idx) => (
+                    <Feature key={idx} {...props} />
+                  ))}
+                </div>
+                <div className="col">
+                  <Feature key={'changelogs'} title="Releases" link="/tags/releases" />
+                </div>
               </div>
             </div>
           </section>
