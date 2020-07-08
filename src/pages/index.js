@@ -8,28 +8,26 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: <>Easy to Use</>,
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    title: <>Get started</>,
+    link: '/docs',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Discover the Trefle API basis, and get up and running step by step.
       </>
     ),
   },
   {
-    title: <>Focus on What Matters</>,
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    title: <>Reference</>,
+    link: '/reference',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        In depth reference of Trefle API endpoints, parameters and data structure.
       </>
     ),
   },
   {
-    title: <>Powered by React</>,
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    title: <>Examples and samples</>,
+    link: '/docs/snippets',
     description: (
       <>
         Extend or customize your website layout by reusing React. Docusaurus can
@@ -39,18 +37,12 @@ const features = [
   },
 ];
 
-function Feature({imageUrl, title, description}) {
-  const imgUrl = useBaseUrl(imageUrl);
+function Feature({link, title, description}) {
   return (
-    <div className={clsx('col col--4', styles.feature)}>
-      {imgUrl && (
-        <div className="text--center">
-          <img className={styles.featureImage} src={imgUrl} alt={title} />
-        </div>
-      )}
+    <Link to={useBaseUrl(link) } className={clsx('col col--4', styles.feature)}>
       <h3>{title}</h3>
       <p>{description}</p>
-    </div>
+    </Link>
   );
 }
 
@@ -59,8 +51,8 @@ function Home() {
   const {siteConfig = {}} = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description="Getting started with the Trefle API">
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
@@ -70,6 +62,7 @@ function Home() {
               className={clsx(
                 'button button--outline button--secondary button--lg',
                 styles.getStarted,
+                styles.bigButton,
               )}
               to={useBaseUrl('docs/')}>
               Get Started
