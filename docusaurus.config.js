@@ -10,6 +10,9 @@ module.exports = {
   organizationName: 'treflehq', // Usually your GitHub org/user name.
   projectName: 'documentation', // Usually your repo name.
   themeConfig: {
+    prism: {
+      additionalLanguages: ['ruby'],
+    },
     disableDarkMode: true,
     // announcementBar: {
     //   id: 'support_us', // Any value that will identify this message.
