@@ -13,6 +13,12 @@ module.exports = {
     prism: {
       additionalLanguages: ['ruby'],
     },
+    algolia: {
+      apiKey: '70f8bce4d8dbe34fdddaa7c207a7ccc6',
+      indexName: 'trefle',
+      // appId: 'app-id', // Optional, if you run the DocSearch crawler on your own
+      // algoliaOptions: {}, // Optional, if provided by Algolia
+    },
     disableDarkMode: true,
     // announcementBar: {
     //   id: 'support_us', // Any value that will identify this message.

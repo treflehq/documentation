@@ -67,3 +67,8 @@ span.token.number {
 table th, table td {
     border: inherit;
 }
+
+:root {
+  --ifm-color-success: #e8efe5;
+  --ifm-alert-color: #333;
+}

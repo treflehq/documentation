@@ -13,6 +13,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Examples',
+      collapsed: false,
       items: [
         'snippets'
       ]

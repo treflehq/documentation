@@ -21,8 +21,8 @@ const MultiLanguageSnippet = ({
   const searchParams = qs(qparams);
 
   const values = [
-    { label: 'Browser', value: 'browser' },
     { label: 'CURL', value: 'curl' },
+    { label: 'Browser', value: 'browser' },
     { label: 'NodeJS', value: 'node' },
     { label: 'Python', value: 'python' },
     { label: 'Ruby', value: 'ruby' },
