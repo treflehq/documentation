@@ -13,11 +13,11 @@ export default (function () {
   // })
 
   return {
-    onRouteUpdate({ location, ...other }) {
-      console.log("[ftcher] onRouteUpdate !", { location, other });
-      const mw = document.querySelector('.main-wrapper')
-      mw.innerHTML = mw.innerHTML.replace(/YOUR_TREFLE_TOKEN/g, 'xxx-yyy-zzz')
+    // onRouteUpdate({ location, ...other }) {
+    //   console.log("[ftcher] onRouteUpdate !", { location, other });
+    //   const mw = document.querySelector('.main-wrapper')
+    //   mw.innerHTML = mw.innerHTML.replace(/YOUR_TREFLE_TOKEN/g, 'xxx-yyy-zzz')
 
-    },
+    // },
   };
 })();

@@ -146,7 +146,7 @@ module.exports = {
       },
     ],
   ],
-  plugins: [
-    [path.resolve(__dirname, 'plugins/plugin-token-fetcher/'), {}],
-  ],
+  // plugins: [
+  //   [path.resolve(__dirname, 'plugins/plugin-token-fetcher/'), {}],
+  // ],
 };

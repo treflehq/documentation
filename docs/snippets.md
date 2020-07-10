@@ -63,3 +63,10 @@ The `node`, `ruby` and `python` snippets require third-party libraries:
 
 <MultiLanguageSnippet endpoint="/api/v1/species" query={{order: {year: "asc"}}}/>
 
+
+<br />
+
+### Only edible plants
+
+<MultiLanguageSnippet endpoint="/api/v1/plants" query={{filter_not: {edible_part: "null"}}}/>
+

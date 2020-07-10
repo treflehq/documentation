@@ -7,7 +7,7 @@ module.exports = {
         'getting-started',
         'pagination',
         'filtering',
-        'ranges',
+        'sorting',
       ],
     },
     {
