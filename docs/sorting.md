@@ -13,6 +13,8 @@ Sometimes, we also need to specify a particular order for sorting the results.
 We can sort on a value with the `order[FIELD]=asc|desc...` parameter.
 :::
 
+### Basic sorting
+
 Let's sort plants by year, in a **ascending** order:
 
 https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&order[year]=asc
@@ -100,7 +102,38 @@ And we got:
 ```
 
 
+### Multiple sorting
 
+You can add secondary sortings by chaining other sort params:
+
+Let's sort plants by year, in a **ascending** order, then by scientific_name, in **descending** order:
+
+```
+https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&order[year]=asc&order[scientific_name]=desc
+```
+
+
+### Excluding null values
+
+Sometimes, sorting on a value that can be null will show the null first.
+For example, if we want to get the tallest trees, we will have trees with `null` maxmimum height first:
+
+```bash
+# Get all plants
+# -> with tree ligneous type (filter[ligneous_type]=tree)
+# -> ordered by maximum height descending (highest first) (order[maximum_height_cm]=desc)
+curl "https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[ligneous_type]=tree&order[maximum_height_cm]=desc"
+```
+
+To avoid that, we can exclude null values ([see Filtering](filtering#exclude-null-values)):
+
+```bash
+# Get all plants
+# -> with tree ligneous type (filter[ligneous_type]=tree)
+# -> ordered by maximum height descending (highest first) (order[maximum_height_cm]=desc)
+# -> and without plants having a null maximum height (filter_not[maximum_height_cm]=null)
+curl "https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[ligneous_type]=tree&order[maximum_height_cm]=desc&&filter_not[maximum_height_cm]=null"
+```
 
 
 

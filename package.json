@@ -20,6 +20,8 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "redoc": "^2.0.0-rc.31",
+    "remark-jargon": "^2.6.0",
+    "remark-openapi": "^0.1.1",
     "styled-components": "^5.1.1"
   },
   "browserslist": {

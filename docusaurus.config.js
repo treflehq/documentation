@@ -1,8 +1,13 @@
 const path = require('path');
+const remarkJargon = require('remark-jargon');
+const remarkOpenAPI = require('remark-openapi');
+var jargon = require('./jargon.js')
 
 module.exports = {
   title: 'Trefle documentation',
-  // swagger: 'http://localhost:3232/swagger/v1/swagger.yaml',
+  customFields: {
+    // swagger: 'http://localhost:3232/swagger/v1/swagger.yaml',
+  },
   tagline: 'Get started using the Trefle REST API',
   url: 'https://docs.trefle.io',
   baseUrl: '/',
@@ -126,6 +131,10 @@ module.exports = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
 
+          // remarkPlugins: [
+          //   [remarkJargon, { jargon }],
+          //   remarkOpenAPI
+          // ],
           // Please change this to your repo.
           editUrl:
             'https://github.com/treflehq/documentation/edit/master/',

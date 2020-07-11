@@ -12,6 +12,15 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Advanced',
+      collapsed: false,
+      items: [
+        'advanced/plants-fields',
+        'advanced/distributions',
+      ]
+    },
+    {
+      type: 'category',
       label: 'Examples',
       collapsed: false,
       items: [

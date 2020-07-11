@@ -9,14 +9,15 @@ import { RedocStandalone } from 'redoc';
 
 function Home() {
   const context = useDocusaurusContext();
-  const {siteConfig = {}} = context;
+  const { siteConfig = { customFields: {} } } = context;
+  console.log({ siteConfig })
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />">
       <main>
         <RedocStandalone
-          specUrl={siteConfig.swagger || "https://mgmt.trefle.io/swagger/v1/swagger.yaml"}
+          specUrl={siteConfig.customFields.swagger || "https://mgmt.trefle.io/swagger/v1/swagger.yaml"}
           options={{
             scrollYOffset: ".navbar.navbar--light.navbar--fixed-top",
             theme: {
