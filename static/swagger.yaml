@@ -122,7 +122,7 @@ paths:
                       links:
                         self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-11T21:08:58.319Z'
+                      last_modified: '2020-07-12T01:57:24.457Z'
         '401':
           description: Invalid credentials
           content:
@@ -264,7 +264,7 @@ paths:
                         links:
                           self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-11T21:08:58.336Z'
+                      last_modified: '2020-07-12T01:57:24.475Z'
         '401':
           description: Invalid credentials
           content:
@@ -572,7 +572,7 @@ paths:
                           links:
                             self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-11T21:08:58.353Z'
+                      last_modified: '2020-07-12T01:57:24.494Z'
         '401':
           description: Invalid credentials
           content:
@@ -976,7 +976,7 @@ paths:
                             links:
                               self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-11T21:08:58.398Z'
+                      last_modified: '2020-07-12T01:57:24.543Z'
         '401':
           description: Invalid credentials
           content:
@@ -1788,7 +1788,7 @@ paths:
                               links:
                                 self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-11T21:08:58.438Z'
+                      last_modified: '2020-07-12T01:57:24.612Z'
         '401':
           description: Invalid credentials
           content:
@@ -2242,7 +2242,7 @@ paths:
                                 links:
                                   self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-11T21:08:58.730Z'
+                      last_modified: '2020-07-12T01:57:24.930Z'
         '401':
           description: Invalid credentials
           content:
@@ -2514,7 +2514,7 @@ paths:
                           division_order: "/api/v1/division_orders/pinales"
                           genus: "/api/v1/families/pinaceae/genus"
                     meta:
-                      last_modified: '2020-07-11T21:08:58.752Z'
+                      last_modified: '2020-07-12T01:57:24.951Z'
         '401':
           description: Invalid credentials
           content:
@@ -2927,10 +2927,6 @@ paths:
                         - id: 337309
                           name: Ribes coeleste
                           author: Jancz.
-                          synonym_of:
-                            link: "/api/v1/species/697964"
-                            type: Species
-                            id: 697964
                           sources: []
                         sources:
                         - last_update: '2020-06-24T16:21:41.000Z'
@@ -3046,7 +3042,7 @@ paths:
                           by the Royal Botanic Gardens, Kew. Published on the Internet;
                           http://www.plantsoftheworldonline.org/ Retrieved 2020-06-24
                     meta:
-                      last_modified: '2020-07-11T21:08:58.853Z'
+                      last_modified: '2020-07-12T01:57:25.049Z'
         '401':
           description: Invalid credentials
           content:
@@ -4055,7 +4051,7 @@ paths:
                       images_count: 0
                       sources_count: 1
                       synonyms_count: 0
-                      last_modified: '2020-07-11T21:08:59.046Z'
+                      last_modified: '2020-07-12T01:57:25.229Z'
         '401':
           description: Invalid credentials
           content:
@@ -4109,12 +4105,12 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The flower color is red
-                      created_at: '2020-07-11T21:09:05.012Z'
-                      updated_at: '2020-07-11T21:09:05.014Z'
+                      created_at: '2020-07-12T01:57:31.142Z'
+                      updated_at: '2020-07-12T01:57:31.144Z'
                       correction: 
                       changes: 
                     meta:
-                      last_modified: '2020-07-11T21:09:05.014Z'
+                      last_modified: '2020-07-12T01:57:31.144Z'
         '401':
           description: Invalid credentials
           content:
@@ -4456,7 +4452,7 @@ paths:
                         plants: "/api/v1/distributions/northern-provinces/plants"
                         species: "/api/v1/distributions/northern-provinces/species"
                     meta:
-                      last_modified: '2020-07-11T21:08:57.220Z'
+                      last_modified: '2020-07-12T01:57:23.093Z'
         '401':
           description: Invalid credentials
           content:
@@ -4525,8 +4521,8 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The height is wrong, it's way smaller
-                      created_at: '2020-07-11T21:09:05.168Z'
-                      updated_at: '2020-07-11T21:09:05.168Z'
+                      created_at: '2020-07-12T01:57:31.295Z'
+                      updated_at: '2020-07-12T01:57:31.295Z'
                       correction:
                         scientific_name: Arctostaphylos uva-ursi ssp. coloradensis
                         maximum_height_value: 7
@@ -4541,8 +4537,8 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: Is the author okay ?
-                      created_at: '2020-07-11T21:09:05.177Z'
-                      updated_at: '2020-07-11T21:09:05.177Z'
+                      created_at: '2020-07-12T01:57:31.305Z'
+                      updated_at: '2020-07-12T01:57:31.305Z'
                       correction: 
                       changes: 
                     links:
@@ -4604,15 +4600,15 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The height is wrong, it's way smaller
-                      created_at: '2020-07-11T21:09:05.253Z'
-                      updated_at: '2020-07-11T21:09:05.253Z'
+                      created_at: '2020-07-12T01:57:31.381Z'
+                      updated_at: '2020-07-12T01:57:31.381Z'
                       correction:
                         scientific_name: Arctostaphylos uva-ursi ssp. coloradensis
                         maximum_height_value: 7
                         maximum_height_unit: cm
                       changes: 
                     meta:
-                      last_modified: '2020-07-11T21:09:05.253Z'
+                      last_modified: '2020-07-12T01:57:31.381Z'
         '401':
           description: Invalid credentials
           content:
@@ -4666,8 +4662,8 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: This tree can grows up to 68 meters
-                      created_at: '2020-07-11T21:09:05.593Z'
-                      updated_at: '2020-07-11T21:09:05.593Z'
+                      created_at: '2020-07-12T01:57:31.717Z'
+                      updated_at: '2020-07-12T01:57:31.717Z'
                       correction:
                         maximum_height_value: 6800
                         maximum_height_unit: cm
@@ -4677,7 +4673,7 @@ paths:
                         - 5000
                         - 6800
                     meta:
-                      last_modified: '2020-07-11T21:09:05.593Z'
+                      last_modified: '2020-07-12T01:57:31.717Z'
         '422':
           description: Invalid parameters
           content:
@@ -5074,6 +5070,10 @@ components:
         genus:
           type: string
           description: The scientific name of the species genus
+        image_url:
+          type: string
+          nullable: true
+          description: A main image url of the species
         links:
           type: object
           properties:
@@ -5091,6 +5091,31 @@ components:
           - genus
           - plant
           description: API endpoints to related resources
+        duration:
+          type: array
+          nullable: true
+          items:
+            type: string
+            nullable: true
+            enum:
+            - annual
+            - biennial
+            - perennial
+            - 
+            description: |
+              The plant duration(s), which can be:
+              - Annual: plants that live, reproduce, and die in one growing season.
+              - Biennial: plants that need two growing seasons to complete their life cycle, normally completing vegetative growth the first year and flowering the second year.
+              - Perennial: plants that live for more than two years, with the shoot system dying back to soil level each year.
+          description: |
+            The plant duration(s), which can be:
+            - Annual: plants that live, reproduce, and die in one growing season.
+            - Biennial: plants that need two growing seasons to complete their life cycle, normally completing vegetative growth the first year and flowering the second year.
+            - Perennial: plants that live for more than two years, with the shoot system dying back to soil level each year.
+        observations:
+          type: string
+          nullable: true
+          description: Some habit observations on the species
         images:
           type: object
           properties:
@@ -5203,6 +5228,7 @@ components:
             items:
               type: string
               nullable: true
+              description: TODO
           description: Common names of the species per language
         distribution:
           type: object
@@ -5211,6 +5237,7 @@ components:
             items:
               type: string
               nullable: true
+              description: TODO
           description: Distribution of the species per establishment
         flower:
           type: object
@@ -5236,9 +5263,14 @@ components:
                 - grey
                 - black
                 - 
+                description: The flower color(s)
+              description: The flower color(s)
             conspicuous:
               type: boolean
               nullable: true
+              description: Is the flower visible ?
+          description: Flower related fields (the reproductive structure found in
+            flowering plants)
         foliage:
           type: object
           properties:
@@ -5250,6 +5282,7 @@ components:
               - medium
               - coarse
               - 
+              description: The general texture of the plant’s foliage
             color:
               type: array
               nullable: true
@@ -5271,9 +5304,13 @@ components:
                 - grey
                 - black
                 - 
+                description: The leaves color(s)
+              description: The leaves color(s)
             leaf_retention:
               type: boolean
               nullable: true
+              description: Does the leaves stay all year long ?
+          description: Foliage (or leaves) related fields
         fruit_or_seed:
           type: object
           properties:
@@ -5302,14 +5339,18 @@ components:
                 - grey
                 - black
                 - 
+                description: The fruit color(s)
+              description: The fruit color(s)
             shape:
               type: string
               nullable: true
+              description: Fruit shape
             seed_persistence:
               type: boolean
               nullable: true
               description: Are the fruit or seed generally recognized as being persistent
                 on the plant?
+          description: Fruit or seed related fields
         specifications:
           type: object
           properties:
@@ -5323,45 +5364,84 @@ components:
               - tree
               - parasite
               - 
+              description: The ligneous type of the woody plant
             growth_form:
               type: string
               nullable: true
+              description: The primary growth form on the landscape in relation to
+                soil stabilization on slopes and streamsides? Each plant species is
+                assigned the single growth form that most enhances its ability to
+                stabilize soil
             growth_habit:
               type: string
               nullable: true
+              description: The general appearance, growth form, or architecture of
+                the plant
             growth_rate:
               type: string
               nullable: true
+              description: The relative growth speed of the plant
             average_height:
               type: object
               properties:
                 cm:
                   type: integer
                   nullable: true
+                  description: The average height of the species, in centimeters
+              description: The average height of the species, in centimeters
             maximum_height:
               type: object
               properties:
                 cm:
                   type: integer
                   nullable: true
+                  description: The maximum height of the species, in centimeters
+              description: The maximum height of the species, in centimeters
             nitrogen_fixation:
               type: string
               nullable: true
+              description: Capability to fix nitrogen in monoculture
             shape_and_orientation:
               type: string
               nullable: true
+              description: The predominant shape of the species
             toxicity:
               type: string
               nullable: true
+              enum:
+              - none
+              - low
+              - medium
+              - high
+              - 
+              description: Relative toxicity of the species for humans or animals
+          description: Species's main characteristics
         growth:
           type: object
           properties:
+            days_to_harvest:
+              type: number
+              nullable: true
+              description: The average numbers of days required to from planting to
+                harvest
+            description:
+              type: string
+              nullable: true
+              description: A description on how the plant usually grows
+            sowing:
+              type: string
+              nullable: true
+              description: A description on how to sow the plant
             ph_maximum:
               type: number
               nullable: true
+              description: The maximum acceptable soil pH (of the top 30 centimeters
+                of soil) for the plant
             ph_minimum:
               type: number
               nullable: true
+              description: The minimum acceptable soil pH (of the top 30 centimeters
+                of soil) for the plant
             light:
               type: integer
               nullable: true
@@ -5392,6 +5472,10 @@ components:
                 - nov
                 - dec
                 - 
+                description: The most active growth months of the species (usually
+                  all year round for perennial plants)
+              description: The most active growth months of the species (usually all
+                year round for perennial plants)
             bloom_months:
               type: array
               nullable: true
@@ -5412,6 +5496,8 @@ components:
                 - nov
                 - dec
                 - 
+                description: The months the species usually blooms
+              description: The months the species usually blooms
             fruit_months:
               type: array
               nullable: true
@@ -5432,42 +5518,83 @@ components:
                 - nov
                 - dec
                 - 
+                description: The months the species usually produces fruits
+              description: The months the species usually produces fruits
+            row_spacing:
+              type: object
+              properties:
+                cm:
+                  type: number
+                  nullable: true
+                  description: The minimum spacing between each rows of plants, in
+                    centimeters
+              description: The minimum spacing between each rows of plants, in centimeters
+            spread:
+              type: object
+              properties:
+                cm:
+                  type: number
+                  nullable: true
+                  description: The average spreading of the plant, in centimeters
+              description: The average spreading of the plant, in centimeters
             minimum_precipitation:
               type: object
               properties:
                 mm:
                   type: number
                   nullable: true
+                  description: Minimum precipitation per year, in milimeters per year
+              description: Minimum precipitation per year, in milimeters per year
             maximum_precipitation:
               type: object
               properties:
                 mm:
                   type: number
                   nullable: true
+                  description: Maximum precipitation per year, in milimeters per year
+              description: Maximum precipitation per year, in milimeters per year
             minimum_root_depth:
               type: object
               properties:
                 cm:
                   type: number
                   nullable: true
+                  description: Minimum depth of soil required for the species, in
+                    centimeters. Plants that do not have roots such as rootless aquatic
+                    plants have 0
+              description: Minimum depth of soil required for the species, in centimeters.
+                Plants that do not have roots such as rootless aquatic plants have
+                0
             minimum_temperature:
               type: object
               properties:
                 deg_f:
                   type: number
                   nullable: true
+                  description: The minimum tolerable temperature for the species.
+                    In fahrenheit degrees
                 deg_c:
                   type: number
                   nullable: true
+                  description: The minimum tolerable temperature for the species.
+                    In celsius degrees
+              description: The minimum tolerable temperature for the species. In celsius
+                or fahrenheit degrees
             maximum_temperature:
               type: object
               properties:
                 deg_f:
                   type: number
                   nullable: true
+                  description: The maximum tolerable temperature for the species.
+                    In fahrenheit degrees
                 deg_c:
                   type: number
                   nullable: true
+                  description: The maximum tolerable temperature for the species.
+                    In celsius degrees
+              description: The maximum tolerable temperature for the species. In celsius
+                or fahrenheit degrees
             soil_nutriments:
               type: integer
               nullable: true
@@ -5488,6 +5615,7 @@ components:
               nullable: true
               description: Required humidity of the soil, on a scale from 0 (xerophile)
                 to 10 (subaquatic)
+          description: Growing of farming related fields
         synonyms:
           type: array
           items:
@@ -5495,12 +5623,38 @@ components:
             properties:
               id:
                 type: integer
+                description: An unique identifier
               name:
                 type: string
+                description: The scientific name of the symonym
               author:
                 type: string
                 nullable: true
+                description: The author of the symonym
           description: The symonyms scientific names and authors
+        sources:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: An unique identifier from the source
+              name:
+                type: string
+                description: The name of the source
+              citation:
+                type: string
+                description: How to cite the source
+              url:
+                type: string
+                description: The link on the source website, or the publication reference
+              last_update:
+                type: string
+                description: The last time the source was checked
+          description: The symonyms scientific names and authors
+        extras:
+          description: ''
       required:
       - id
       - scientific_name
@@ -5574,6 +5728,10 @@ components:
         genus:
           type: string
           description: The scientific name of the species genus
+        image_url:
+          type: string
+          nullable: true
+          description: A main image url of the species
         links:
           type: object
           properties:
@@ -5596,6 +5754,7 @@ components:
           items:
             type: string
             nullable: true
+            description: TODO
           description: The symonyms scientific names
       required:
       - id
