@@ -69,6 +69,7 @@ table th, table td {
 }
 
 :root {
-  --ifm-color-success: #e8efe5;
+  --ifm-color-success: #e8f5e3;
+  --ifm-color-info: #ddf7ff;
   --ifm-alert-color: #333;
 }

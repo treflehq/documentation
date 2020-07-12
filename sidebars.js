@@ -4,10 +4,11 @@ module.exports = {
       type: 'category',
       label: 'Guides',
       items: [
-        'getting-started',
-        'pagination',
-        'filtering',
-        'sorting',
+        'guides/getting-started',
+        'guides/pagination',
+        'guides/filtering',
+        'guides/sorting',
+        'guides/searching',
       ],
     },
     {
@@ -16,6 +17,7 @@ module.exports = {
       collapsed: false,
       items: [
         'advanced/plants-fields',
+        'advanced/client-side-apps',
         'advanced/distributions',
       ]
     },
@@ -24,7 +26,7 @@ module.exports = {
       label: 'Examples',
       collapsed: false,
       items: [
-        'snippets'
+        'examples/snippets'
       ]
     },
     {

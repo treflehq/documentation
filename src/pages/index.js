@@ -8,30 +8,38 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: <>Get started</>,
-    link: '/docs',
+    title: <>Guides</>,
+    link: '/docs/guides/getting-started',
     description: (
       <>
-        Discover the Trefle API basis, and get up and running step by step.
+        Discover how to get started with the Trefle API basis, step by step.
       </>
     ),
   },
   {
-    title: <>Reference</>,
-    link: '/reference',
+    title: <>Advanced topics</>,
+    link: '/docs/advanced/plants-fields',
     description: (
       <>
-        In depth reference of Trefle API endpoints, parameters and data structure.
+        Understand trefle schemas and specifications in depth.
       </>
     ),
   },
   {
     title: <>Examples and samples</>,
-    link: '/docs/snippets',
+    link: '/docs/examples/snippets',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        See sample queries and code snippets.
+      </>
+    ),
+  },
+  {
+    title: <>API Reference</>,
+    link: '/reference',
+    description: (
+      <>
+        In depth reference of Trefle API endpoints, parameters and data structure.
       </>
     ),
   },
@@ -46,9 +54,10 @@ function Feature({link, title, description}) {
   );
 }
 
-function Home() {
+function Home(props) {
   const context = useDocusaurusContext();
   const {siteConfig = {}} = context;
+  console.log({ props, context })
   return (
     <Layout
       title={`${siteConfig.title}`}
@@ -64,7 +73,7 @@ function Home() {
                 styles.getStarted,
                 styles.bigButton,
               )}
-              to={useBaseUrl('docs/')}>
+              to={useBaseUrl('docs/guides/getting-started')}>
               Get Started
             </Link>
           </div>

@@ -122,7 +122,7 @@ paths:
                       links:
                         self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-12T01:57:24.457Z'
+                      last_modified: '2020-07-12T12:16:54.540Z'
         '401':
           description: Invalid credentials
           content:
@@ -264,7 +264,7 @@ paths:
                         links:
                           self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-12T01:57:24.475Z'
+                      last_modified: '2020-07-12T12:16:54.558Z'
         '401':
           description: Invalid credentials
           content:
@@ -572,7 +572,7 @@ paths:
                           links:
                             self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-12T01:57:24.494Z'
+                      last_modified: '2020-07-12T12:16:54.576Z'
         '401':
           description: Invalid credentials
           content:
@@ -976,7 +976,7 @@ paths:
                             links:
                               self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-12T01:57:24.543Z'
+                      last_modified: '2020-07-12T12:16:54.626Z'
         '401':
           description: Invalid credentials
           content:
@@ -1788,7 +1788,7 @@ paths:
                               links:
                                 self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-12T01:57:24.612Z'
+                      last_modified: '2020-07-12T12:16:54.673Z'
         '401':
           description: Invalid credentials
           content:
@@ -1814,6 +1814,26 @@ paths:
         description: The page to fetch
         schema:
           type: number
+      - name: filter
+        in: query
+        required: false
+        type: object
+        description: Filter on values
+        schema:
+          "$ref": "#/components/schemas/filters_families"
+      - name: sort
+        in: query
+        required: false
+        type: object
+        description: Sort on values
+        schema:
+          "$ref": "#/components/schemas/sorts_families"
+      - name: q
+        in: query
+        required: false
+        description: Search for family names matching the given query
+        schema:
+          type: string
       responses:
         '200':
           description: Success
@@ -2242,7 +2262,7 @@ paths:
                                 links:
                                   self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-12T01:57:24.930Z'
+                      last_modified: '2020-07-12T12:16:54.998Z'
         '401':
           description: Invalid credentials
           content:
@@ -2260,22 +2280,24 @@ paths:
       description: List genus
       operationId: listGenus
       parameters:
-      - name: name
+      - name: filter
         in: query
         required: false
-        description: Filter by name
+        type: object
+        description: Filter on values
         schema:
-          type: string
-      - name: slug
+          "$ref": "#/components/schemas/filters_genus"
+      - name: sort
         in: query
         required: false
-        description: Filter by slug
+        type: object
+        description: Sort on values
         schema:
-          type: string
-      - name: family_id
+          "$ref": "#/components/schemas/sorts_genus"
+      - name: q
         in: query
         required: false
-        description: Filter by family_id
+        description: Search for genus names matching the given query
         schema:
           type: string
       - name: page
@@ -2514,7 +2536,7 @@ paths:
                           division_order: "/api/v1/division_orders/pinales"
                           genus: "/api/v1/families/pinaceae/genus"
                     meta:
-                      last_modified: '2020-07-12T01:57:24.951Z'
+                      last_modified: '2020-07-12T12:16:55.021Z'
         '401':
           description: Invalid credentials
           content:
@@ -3042,7 +3064,7 @@ paths:
                           by the Royal Botanic Gardens, Kew. Published on the Internet;
                           http://www.plantsoftheworldonline.org/ Retrieved 2020-06-24
                     meta:
-                      last_modified: '2020-07-12T01:57:25.049Z'
+                      last_modified: '2020-07-12T12:16:55.135Z'
         '401':
           description: Invalid credentials
           content:
@@ -4051,7 +4073,7 @@ paths:
                       images_count: 0
                       sources_count: 1
                       synonyms_count: 0
-                      last_modified: '2020-07-12T01:57:25.229Z'
+                      last_modified: '2020-07-12T12:16:55.350Z'
         '401':
           description: Invalid credentials
           content:
@@ -4105,12 +4127,12 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The flower color is red
-                      created_at: '2020-07-12T01:57:31.142Z'
-                      updated_at: '2020-07-12T01:57:31.144Z'
+                      created_at: '2020-07-12T12:17:02.856Z'
+                      updated_at: '2020-07-12T12:17:02.859Z'
                       correction: 
                       changes: 
                     meta:
-                      last_modified: '2020-07-12T01:57:31.144Z'
+                      last_modified: '2020-07-12T12:17:02.859Z'
         '401':
           description: Invalid credentials
           content:
@@ -4452,7 +4474,7 @@ paths:
                         plants: "/api/v1/distributions/northern-provinces/plants"
                         species: "/api/v1/distributions/northern-provinces/species"
                     meta:
-                      last_modified: '2020-07-12T01:57:23.093Z'
+                      last_modified: '2020-07-12T12:16:53.283Z'
         '401':
           description: Invalid credentials
           content:
@@ -4462,6 +4484,80 @@ paths:
                   value:
                     error: true
                     messages: Invalid access token
+  "/api/auth/claim":
+    post:
+      summary: Request a client-side token
+      tags:
+      - Auth
+      description: 'If you need to perform client-side requests, you will have to
+        request a client-side token from you backend, and get a JWT token from this
+        API call in return. This token will be usable on the client side. This call
+        need your secret access token, the url of the website the client side requests
+        will come from and optionally the client IP address.
+
+        '
+      operationId: claimClientSideToken
+      security:
+      - token: []
+      parameters: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  expiration:
+                    type: string
+                    example: 07-13-2020 13:41
+                    description: The expiration time of the token. After this time,
+                      you'll have to request a token again
+                  token:
+                    type: string
+                    example: eyJhbGciOiJIUzI1NaJ9.eyJ1c2VyX2lkIjoxMDYsIe9yaWdpbiI6Imh0dHA6Ly9wb2NhbGhvc3Q6MzIzMyIsImlwIjoiOjoxIiwiZXhwIjoxNTk0NjQwNTEzfQ.TyqKyKxwsnn7TZsLAfS8OTmTUPk87CSXlk6a2wQU9co
+                    description: The client-side access token, that you'll use instead
+                      of your access token in the `token` parameter
+              examples:
+                returns-a-200-response:
+                  value:
+                    token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNCwib3JpZ2luIjoiaHR0cDovL2xvY2FsaG9zdDoxMjM0IiwiaXAiOiI6OjEiLCJleHAiOjE1OTQ2NDI2MjN9.u9PBdrvyJjc9lYl5EEB_yW1IbswyQPNW7WIDi_kB274
+                    expiration: 07-13-2020 14:17
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              examples:
+                returns-a-401-response:
+                  value:
+                    error: true
+                    messages: Invalid access token
+        '422':
+          description: Missing parameters
+          content:
+            application/json:
+              examples:
+                returns-a-422-response:
+                  value:
+                    error: true
+                    message: 'param is missing or the value is empty: origin'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                origin:
+                  type: string
+                  example: https://example.com
+                  description: The website url the API requests will come from
+                ip:
+                  type: string
+                  nullable: true
+                  example: 12.23.34.45
+                  description: The client IP
+              required:
+              - origin
   "/api/v1/corrections":
     get:
       summary: Searches corrections
@@ -4515,14 +4611,14 @@ paths:
                     - id: 2
                       record_type: Species
                       record_id: 106648
-                      user_id: 24
+                      user_id: 26
                       warning_type: 
                       change_status: pending
                       change_type: update
                       accepted_by: 
                       notes: The height is wrong, it's way smaller
-                      created_at: '2020-07-12T01:57:31.295Z'
-                      updated_at: '2020-07-12T01:57:31.295Z'
+                      created_at: '2020-07-12T12:17:03.121Z'
+                      updated_at: '2020-07-12T12:17:03.121Z'
                       correction:
                         scientific_name: Arctostaphylos uva-ursi ssp. coloradensis
                         maximum_height_value: 7
@@ -4531,14 +4627,14 @@ paths:
                     - id: 3
                       record_type: Species
                       record_id: 697964
-                      user_id: 25
+                      user_id: 27
                       warning_type: 
                       change_status: pending
                       change_type: update
                       accepted_by: 
                       notes: Is the author okay ?
-                      created_at: '2020-07-12T01:57:31.305Z'
-                      updated_at: '2020-07-12T01:57:31.305Z'
+                      created_at: '2020-07-12T12:17:03.133Z'
+                      updated_at: '2020-07-12T12:17:03.133Z'
                       correction: 
                       changes: 
                     links:
@@ -4594,21 +4690,21 @@ paths:
                       id: 6
                       record_type: Species
                       record_id: 106648
-                      user_id: 29
+                      user_id: 31
                       warning_type: 
                       change_status: pending
                       change_type: update
                       accepted_by: 
                       notes: The height is wrong, it's way smaller
-                      created_at: '2020-07-12T01:57:31.381Z'
-                      updated_at: '2020-07-12T01:57:31.381Z'
+                      created_at: '2020-07-12T12:17:03.220Z'
+                      updated_at: '2020-07-12T12:17:03.220Z'
                       correction:
                         scientific_name: Arctostaphylos uva-ursi ssp. coloradensis
                         maximum_height_value: 7
                         maximum_height_unit: cm
                       changes: 
                     meta:
-                      last_modified: '2020-07-12T01:57:31.381Z'
+                      last_modified: '2020-07-12T12:17:03.220Z'
         '401':
           description: Invalid credentials
           content:
@@ -4656,14 +4752,14 @@ paths:
                       id: 12
                       record_type: Species
                       record_id: 1164724
-                      user_id: 36
+                      user_id: 38
                       warning_type: 
                       change_status: pending
                       change_type: update
                       accepted_by: 
                       notes: This tree can grows up to 68 meters
-                      created_at: '2020-07-12T01:57:31.717Z'
-                      updated_at: '2020-07-12T01:57:31.717Z'
+                      created_at: '2020-07-12T12:17:03.610Z'
+                      updated_at: '2020-07-12T12:17:03.610Z'
                       correction:
                         maximum_height_value: 6800
                         maximum_height_unit: cm
@@ -4673,7 +4769,7 @@ paths:
                         - 5000
                         - 6800
                     meta:
-                      last_modified: '2020-07-12T01:57:31.717Z'
+                      last_modified: '2020-07-12T12:17:03.610Z'
         '422':
           description: Invalid parameters
           content:
@@ -6274,6 +6370,22 @@ components:
           example: 
       required:
       - scientific_name
+    filters_families:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+    filters_genus:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        family_id:
+          type: string
     filters_plants:
       type: object
       properties:
@@ -6480,6 +6592,22 @@ components:
         vegetable:
           type: string
         year:
+          type: string
+    sorts_families:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+    sorts_genus:
+      type: object
+      properties:
+        name:
+          type: string
+        slug:
+          type: string
+        family_id:
           type: string
     sorts_plants:
       type: object
