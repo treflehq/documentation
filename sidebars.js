@@ -3,6 +3,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Guides',
+      collapsed: false,
       items: [
         'guides/getting-started',
         'guides/pagination',
@@ -18,6 +19,7 @@ module.exports = {
       items: [
         'advanced/plants-fields',
         'advanced/client-side-apps',
+        'advanced/complete-data',
         'advanced/distributions',
       ]
     },
