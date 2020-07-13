@@ -10,6 +10,7 @@ module.exports = {
         'guides/filtering',
         'guides/sorting',
         'guides/searching',
+        'guides/reporting-errors',
       ],
     },
     {

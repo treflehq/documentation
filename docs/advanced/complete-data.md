@@ -15,6 +15,10 @@ In the correction, you'll send:
 
 Once your correction is submitted, it will be validated by a peer, and then applied to the database.
 
+:::tip Report an error
+You can also simply report an error in the data, without correcting it. [Read more in this guide](/docs/guides/reporting-errors)
+:::
+
 ### Things to know
 
 - Almost all the fields can be corrected, but relations such as `distributions` or `synonyms` can't be corrected yet.
