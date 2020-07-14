@@ -9,6 +9,7 @@ const MultiLanguageSnippet = ({
   endpoint,
   method = 'GET',
   query = {},
+  body = {},
   ...props
 }) => {
 

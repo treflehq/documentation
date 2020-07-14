@@ -166,4 +166,3 @@ The only difference is that `/species` API calls will return matching species, s
   endpoint="/api/v1/distributions"
   query={{ range: {species_count: ',10'} }}
 />
-
