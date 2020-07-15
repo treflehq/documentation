@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 Sometimes, we also need to specify a particular order for sorting the results.
 
 :::tip In short
-We can sort on a value with the `order[FIELD]=asc|desc...` parameter.
+You can order results by a specific value with the `order[FIELD]=asc|desc...` parameter.
 :::
 
 ### Basic sorting
@@ -104,7 +104,7 @@ And we got:
 
 ### Multiple sorting
 
-You can add secondary sortings by chaining other sort params:
+You can also add secondary sortings by chaining another `order` parameter:
 
 Let's sort plants by year, in a **ascending** order, then by scientific_name, in **descending** order:
 
@@ -115,7 +115,7 @@ https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&order[year]=asc&order[sc
 
 ### Excluding null values
 
-Sometimes, sorting on a value that can be null will show the null first.
+Sorting on a value that is possibly null will show the entries with null values first.
 For example, if we want to get the tallest trees, we will have trees with `null` maxmimum height first:
 
 ```bash
@@ -125,7 +125,7 @@ For example, if we want to get the tallest trees, we will have trees with `null`
 curl "https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[ligneous_type]=tree&order[maximum_height_cm]=desc"
 ```
 
-To avoid that, we can exclude null values ([see Filtering](filtering#exclude-null-values)):
+To avoid that, you can exclude null values ([see Filtering](filtering#exclude-null-values)):
 
 ```bash
 # Get all plants
