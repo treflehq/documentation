@@ -1,18 +1,18 @@
 ---
 id: searching
-title: Searching
+title: Searching trough species
 sidebar_label: Searching
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-You can use the `q` parameter to search trough species, plants, genus and families.
+You can use the `q` parameter on the `v1/plants/search` endpoint to search trough plants, and on the `v1/species/search` endpoint to search trough species.
 
 Let's search for cocounut plants:
 
 ```
-https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&q=coconut
+https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut
 ```
 
 <Tabs
@@ -28,7 +28,7 @@ https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&q=coconut
 
 Open your browser and navigate to
 
-[`https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&q=coconut`](https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&q=coconut)
+[`https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut`](https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut)
 
 </TabItem>
 <TabItem value="curl">
@@ -36,7 +36,7 @@ Open your browser and navigate to
 In your terminal:
 
 ```bash
-curl 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&q=coconut'
+curl 'https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut'
 ```
 
 </TabItem>
@@ -46,7 +46,7 @@ curl 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&q=coconut'
 const fetch = require('node-fetch');
 
 (async () => {
-  const response = await fetch('https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&q=coconut');
+  const response = await fetch('https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut');
   const json = await response.json();
   console.log(json);
 })();
@@ -210,9 +210,9 @@ And we got:
         }
     ],
     "links": {
-        "first": "/api/v1/plants?page=1&q=coconut",
-        "last": "/api/v1/plants?page=1&q=coconut",
-        "self": "/api/v1/plants?q=coconut"
+        "first": "/api/v1/plants/search?page=1&q=coconut",
+        "last": "/api/v1/plants/search?page=1&q=coconut",
+        "self": "/api/v1/plants/search?q=coconut"
     },
     "meta": {
         "total": 5
