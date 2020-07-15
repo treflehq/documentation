@@ -24,6 +24,11 @@ module.exports = {
       // appId: 'app-id', // Optional, if you run the DocSearch crawler on your own
       // algoliaOptions: {}, // Optional, if provided by Algolia
     },
+    googleAnalytics: {
+      trackingID: 'UA-105084612-2',
+      // Optional fields.
+      anonymizeIP: true, // Should IPs be anonymized?
+    },
     disableDarkMode: true,
     // announcementBar: {
     //   id: 'support_us', // Any value that will identify this message.
