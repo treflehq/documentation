@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.1
 info:
-  title: Trefle API v1
+  title: Trefle API
   version: 1.6.0
 paths:
   "/api/v1/kingdoms":
