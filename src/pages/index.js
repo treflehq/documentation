@@ -90,7 +90,7 @@ function Home(props) {
                   ))}
                 </div>
                 <div className="col">
-                  <Feature key={'changelogs'} title="Releases" link="/tags/releases" />
+                  <Feature key={'changelogs'} title="Releases" link="/blog/tags/releases" />
                 </div>
               </div>
             </div>

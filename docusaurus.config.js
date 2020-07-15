@@ -6,7 +6,7 @@ var jargon = require('./jargon.js')
 module.exports = {
   title: 'Trefle documentation',
   customFields: {
-    swagger: 'http://localhost:3232/swagger/v1/swagger.yaml',
+    swagger: '/swagger.yaml',
   },
   tagline: 'Get started using the Trefle REST API',
   url: 'https://docs.trefle.io',
