@@ -1,7 +1,7 @@
-const path = require('path');
-const remarkJargon = require('remark-jargon');
-const remarkOpenAPI = require('remark-openapi');
-var jargon = require('./jargon.js')
+// const path = require('path');
+// const remarkJargon = require('remark-jargon');
+// const remarkOpenAPI = require('remark-openapi');
+// var jargon = require('./jargon.js')
 
 module.exports = {
   title: 'Trefle documentation',
@@ -12,8 +12,8 @@ module.exports = {
   url: 'https://docs.trefle.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
-  organizationName: 'treflehq', // Usually your GitHub org/user name.
-  projectName: 'documentation', // Usually your repo name.
+  organizationName: 'treflehq',
+  projectName: 'documentation',
   themeConfig: {
     prism: {
       additionalLanguages: ['ruby'],
@@ -21,22 +21,12 @@ module.exports = {
     algolia: {
       apiKey: '70f8bce4d8dbe34fdddaa7c207a7ccc6',
       indexName: 'trefle',
-      // appId: 'app-id', // Optional, if you run the DocSearch crawler on your own
-      // algoliaOptions: {}, // Optional, if provided by Algolia
     },
     googleAnalytics: {
       trackingID: 'UA-105084612-2',
-      // Optional fields.
       anonymizeIP: true, // Should IPs be anonymized?
     },
     disableDarkMode: true,
-    // announcementBar: {
-    //   id: 'support_us', // Any value that will identify this message.
-    //   content:
-    //     'We are looking to revamp our docs, please fill <a target="_blank" rel="noopener noreferrer" href="#">this survey</a>',
-    //   backgroundColor: '#fafbfc', // Defaults to `#fff`.
-    //   textColor: '#091E42', // Defaults to `#000`.
-    // },
     navbar: {
       title: 'Trefle documentation',
       hideOnScroll: true,
