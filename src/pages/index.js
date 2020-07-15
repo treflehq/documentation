@@ -8,7 +8,8 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: <>Guides</>,
+    icon: <><i className="uil uil-rocket"></i></>,
+    title: <>Get started</>,
     link: '/docs/guides/getting-started',
     description: (
       <>
@@ -17,6 +18,7 @@ const features = [
     ),
   },
   {
+    icon: <><i className="uil uil-flask-potion"></i></>,
     title: <>Advanced topics</>,
     link: '/docs/advanced/plants-fields',
     description: (
@@ -26,6 +28,7 @@ const features = [
     ),
   },
   {
+    icon: <><i className="uil uil-brackets-curly"></i></>,
     title: <>Examples and samples</>,
     link: '/docs/examples/snippets',
     description: (
@@ -35,6 +38,7 @@ const features = [
     ),
   },
   {
+    icon: <><i className="uil uil-book-alt"></i></>,
     title: <>API Reference</>,
     link: '/reference',
     description: (
@@ -45,11 +49,16 @@ const features = [
   },
 ];
 
-function Feature({link, title, description}) {
+function Feature({link, title, icon, description}) {
   return (
     <Link to={useBaseUrl(link) } className={clsx(styles.feature)}>
-      <h3>{title}</h3>
-      <p>{description}</p>
+      <aside className={clsx(styles.featureAside)}>
+        {icon}
+      </aside>
+      <main className={clsx(styles.featureMain)}>
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </main>
     </Link>
   );
 }
@@ -67,35 +76,51 @@ function Home(props) {
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
           <div className={styles.buttons}>
+            
             <Link
               className={clsx(
-                'button button--outline button--secondary button--lg',
+                'button button--primary button--lg',
                 styles.getStarted,
                 styles.bigButton,
               )}
               to={useBaseUrl('docs/guides/getting-started')}>
               Get Started
             </Link>
+            <Link
+              className={clsx(
+                'button button--secondary button--lg',
+                styles.getStarted,
+                styles.bigButton,
+              )}
+              to={useBaseUrl('reference')}>
+              API reference
+            </Link>
           </div>
         </div>
       </header>
       <main>
-        {features && features.length > 0 && (
-          <section className={styles.features}>
-            <div className="container">
-              <div className="row">
-                <div className="col">
-                  {features.map((props, idx) => (
-                    <Feature key={idx} {...props} />
-                  ))}
-                </div>
-                <div className="col">
-                  <Feature key={'changelogs'} title="Releases" link="/blog/tags/releases" />
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
+        <div className="container">
+          {features && features.length > 0 && (
+            <section className={styles.features}>
+              {features.map((props, idx) => (
+                <Feature key={idx} {...props} />
+              ))}
+            </section>
+          )}
+        </div>
+
+        <div className="container">
+        <footer>
+          <Link
+            className={clsx()}
+            to={'https://trefle.io'}>
+
+            <i className="uil uil-angle-left"></i>
+              Back to Trefle website
+            </Link>
+
+        </footer>
+        </div>
       </main>
     </Layout>
   );

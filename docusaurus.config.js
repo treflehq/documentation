@@ -150,6 +150,9 @@ module.exports = {
       },
     ],
   ],
+  stylesheets: [
+    'https://unicons.iconscout.com/release/v2.1.9/css/unicons.css',
+  ],
   // plugins: [
   //   [path.resolve(__dirname, 'plugins/plugin-token-fetcher/'), {}],
   // ],
