@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.1
 info:
-  title: Trefle API
+  title: Trefle API v1
   version: 1.6.0
 paths:
   "/api/v1/kingdoms":
@@ -122,7 +122,7 @@ paths:
                       links:
                         self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-15T15:22:12.020Z'
+                      last_modified: '2020-07-21T14:43:38.953Z'
         '401':
           description: Invalid credentials
           content:
@@ -264,7 +264,7 @@ paths:
                         links:
                           self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-15T15:22:12.034Z'
+                      last_modified: '2020-07-21T14:43:38.968Z'
         '401':
           description: Invalid credentials
           content:
@@ -572,7 +572,7 @@ paths:
                           links:
                             self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-15T15:22:12.051Z'
+                      last_modified: '2020-07-21T14:43:38.985Z'
         '401':
           description: Invalid credentials
           content:
@@ -976,7 +976,7 @@ paths:
                             links:
                               self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-15T15:22:12.088Z'
+                      last_modified: '2020-07-21T14:43:39.037Z'
         '401':
           description: Invalid credentials
           content:
@@ -1788,7 +1788,7 @@ paths:
                               links:
                                 self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-15T15:22:12.124Z'
+                      last_modified: '2020-07-21T14:43:39.087Z'
         '401':
           description: Invalid credentials
           content:
@@ -2256,7 +2256,7 @@ paths:
                                 links:
                                   self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-07-15T15:22:12.338Z'
+                      last_modified: '2020-07-21T14:43:39.324Z'
         '401':
           description: Invalid credentials
           content:
@@ -2524,7 +2524,7 @@ paths:
                           division_order: "/api/v1/division_orders/pinales"
                           genus: "/api/v1/families/pinaceae/genus"
                     meta:
-                      last_modified: '2020-07-15T15:22:12.354Z'
+                      last_modified: '2020-07-21T14:43:39.343Z'
         '401':
           description: Invalid credentials
           content:
@@ -2550,21 +2550,28 @@ paths:
         type: object
         description: Filter on values
         schema:
-          "$ref": "#/components/schemas/filters_plants"
+          "$ref": "#/components/schemas/filters_species"
+      - name: filter_not
+        in: query
+        required: false
+        type: object
+        description: Exclude results matching null values
+        schema:
+          "$ref": "#/components/schemas/filters_not_species"
       - name: sort
         in: query
         required: false
         type: object
         description: Sort on values
         schema:
-          "$ref": "#/components/schemas/sorts_plants"
+          "$ref": "#/components/schemas/sorts_species"
       - name: range
         in: query
         required: false
         type: object
         description: Range on values
         schema:
-          "$ref": "#/components/schemas/ranges_plants"
+          "$ref": "#/components/schemas/ranges_species"
       - name: page
         in: query
         required: false
@@ -3046,7 +3053,7 @@ paths:
                           by the Royal Botanic Gardens, Kew. Published on the Internet;
                           http://www.plantsoftheworldonline.org/ Retrieved 2020-06-24
                     meta:
-                      last_modified: '2020-07-15T15:22:12.437Z'
+                      last_modified: '2020-07-21T14:43:39.468Z'
         '401':
           description: Invalid credentials
           content:
@@ -3058,10 +3065,12 @@ paths:
                     messages: Invalid access token
   "/api/v1/plants/search":
     get:
-      summary: Search a plants
+      summary: Search for a plant
       tags:
       - Plants
-      description: Search a plants
+      description: |-
+        Search for a plant with the given scientific name, common name, synonym name etc...
+        **Caution:** Setting a filter, a sort or a range on this endpoint will make it significantly slower. If you need a quick response (For a search input, for example), make sure you're only using the `q` parameter.
       operationId: searchPlants
       parameters:
       - name: q
@@ -3076,6 +3085,27 @@ paths:
         description: The page to fetch
         schema:
           type: number
+      - name: filter
+        in: query
+        required: false
+        type: object
+        description: Filter on values
+        schema:
+          "$ref": "#/components/schemas/filters_plants"
+      - name: sort
+        in: query
+        required: false
+        type: object
+        description: Sort on values
+        schema:
+          "$ref": "#/components/schemas/sorts_plants"
+      - name: range
+        in: query
+        required: false
+        type: object
+        description: Range on values
+        schema:
+          "$ref": "#/components/schemas/ranges_plants"
       security:
       - token: []
       responses:
@@ -3120,9 +3150,9 @@ paths:
                   value:
                     data: []
                     links:
-                      self: "/api/v1/plants?q=cocos"
-                      first: "/api/v1/plants?page=1&q=cocos"
-                      last: "/api/v1/plants?page=1&q=cocos"
+                      self: "/api/v1/plants/search?q=cocos"
+                      first: "/api/v1/plants/search?page=1&q=cocos"
+                      last: "/api/v1/plants/search?page=1&q=cocos"
                     meta:
                       total: 0
   "/api/v1/plants/{id}/report":
@@ -3169,12 +3199,12 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The flower color is red
-                      created_at: '2020-07-15T15:22:17.100Z'
-                      updated_at: '2020-07-15T15:22:17.102Z'
+                      created_at: '2020-07-21T14:43:45.290Z'
+                      updated_at: '2020-07-21T14:43:45.293Z'
                       correction: 
                       changes: 
                     meta:
-                      last_modified: '2020-07-15T15:22:17.102Z'
+                      last_modified: '2020-07-21T14:43:45.293Z'
         '401':
           description: Invalid credentials
           content:
@@ -3216,21 +3246,28 @@ paths:
         type: object
         description: Filter on values
         schema:
-          "$ref": "#/components/schemas/filters_plants"
+          "$ref": "#/components/schemas/filters_species"
+      - name: filter_not
+        in: query
+        required: false
+        type: object
+        description: Exclude results matching null values
+        schema:
+          "$ref": "#/components/schemas/filters_not_species"
       - name: sort
         in: query
         required: false
         type: object
         description: Sort on values
         schema:
-          "$ref": "#/components/schemas/sorts_plants"
+          "$ref": "#/components/schemas/sorts_species"
       - name: range
         in: query
         required: false
         type: object
         description: Range on values
         schema:
-          "$ref": "#/components/schemas/ranges_plants"
+          "$ref": "#/components/schemas/ranges_species"
       - name: page
         in: query
         required: false
@@ -3392,21 +3429,28 @@ paths:
         type: object
         description: Filter on values
         schema:
-          "$ref": "#/components/schemas/filters_plants"
+          "$ref": "#/components/schemas/filters_species"
+      - name: filter_not
+        in: query
+        required: false
+        type: object
+        description: Exclude results matching null values
+        schema:
+          "$ref": "#/components/schemas/filters_not_species"
       - name: sort
         in: query
         required: false
         type: object
         description: Sort on values
         schema:
-          "$ref": "#/components/schemas/sorts_plants"
+          "$ref": "#/components/schemas/sorts_species"
       - name: range
         in: query
         required: false
         type: object
         description: Range on values
         schema:
-          "$ref": "#/components/schemas/ranges_plants"
+          "$ref": "#/components/schemas/ranges_species"
       - name: page
         in: query
         required: false
@@ -4175,7 +4219,7 @@ paths:
                       images_count: 0
                       sources_count: 1
                       synonyms_count: 0
-                      last_modified: '2020-07-15T15:22:12.583Z'
+                      last_modified: '2020-07-21T14:43:39.592Z'
         '401':
           description: Invalid credentials
           content:
@@ -4187,10 +4231,12 @@ paths:
                     messages: Invalid access token
   "/api/v1/species/search":
     get:
-      summary: Search a species
+      summary: Search for a species
       tags:
       - Species
-      description: Search a species
+      description: |-
+        Search for a species with the given scientific name, common name, synonym name etc...
+        **Caution:** Setting a filter, a sort or a range on this endpoint will make it significantly slower. If you need a quick response (For a search input, for example), make sure you're only using the `q` parameter.
       operationId: searchSpecies
       parameters:
       - name: q
@@ -4205,6 +4251,27 @@ paths:
         description: The page to fetch
         schema:
           type: number
+      - name: filter
+        in: query
+        required: false
+        type: object
+        description: Filter on values
+        schema:
+          "$ref": "#/components/schemas/filters_plants"
+      - name: sort
+        in: query
+        required: false
+        type: object
+        description: Sort on values
+        schema:
+          "$ref": "#/components/schemas/sorts_plants"
+      - name: range
+        in: query
+        required: false
+        type: object
+        description: Range on values
+        schema:
+          "$ref": "#/components/schemas/ranges_plants"
       security:
       - token: []
       responses:
@@ -4249,9 +4316,9 @@ paths:
                   value:
                     data: []
                     links:
-                      self: "/api/v1/species?q=cocos"
-                      first: "/api/v1/species?page=1&q=cocos"
-                      last: "/api/v1/species?page=1&q=cocos"
+                      self: "/api/v1/species/search?q=cocos"
+                      first: "/api/v1/species/search?page=1&q=cocos"
+                      last: "/api/v1/species/search?page=1&q=cocos"
                     meta:
                       total: 0
   "/api/v1/species/{id}/report":
@@ -4298,12 +4365,12 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The flower color is red
-                      created_at: '2020-07-15T15:22:17.394Z'
-                      updated_at: '2020-07-15T15:22:17.396Z'
+                      created_at: '2020-07-21T14:43:45.634Z'
+                      updated_at: '2020-07-21T14:43:45.636Z'
                       correction: 
                       changes: 
                     meta:
-                      last_modified: '2020-07-15T15:22:17.396Z'
+                      last_modified: '2020-07-21T14:43:45.636Z'
         '401':
           description: Invalid credentials
           content:
@@ -4645,7 +4712,7 @@ paths:
                         plants: "/api/v1/distributions/northern-provinces/plants"
                         species: "/api/v1/distributions/northern-provinces/species"
                     meta:
-                      last_modified: '2020-07-15T15:22:11.178Z'
+                      last_modified: '2020-07-21T14:43:37.996Z'
         '401':
           description: Invalid credentials
           content:
@@ -4692,8 +4759,8 @@ paths:
               examples:
                 returns-a-200-response:
                   value:
-                    token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOCwib3JpZ2luIjoiaHR0cDovL2xvY2FsaG9zdDoxMjM0IiwiaXAiOiI6OjEiLCJleHBpcmUiOiIyMDIwLTA3LTE2IDE3OjIyOjE3ICswMjAwIiwiZXhwIjoxNTk0OTEyOTM3fQ.WvtVg9XXWz_Tpu8Rhcv687q2Ghrsah73I28Cr-uqWs4
-                    expiration: 07-16-2020 17:22
+                    token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOCwib3JpZ2luIjoiaHR0cDovL2xvY2FsaG9zdDoxMjM0IiwiaXAiOiI6OjEiLCJleHBpcmUiOiIyMDIwLTA3LTIyIDE2OjQzOjQ1ICswMjAwIiwiZXhwIjoxNTk1NDI5MDI1fQ.AMA8XNZUYmyP7_Gcu4AEuWVp1wh8mVbWOCyt8jrzcrU
+                    expiration: 07-22-2020 16:43
         '401':
           description: Invalid credentials
           content:
@@ -4788,8 +4855,8 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The height is wrong, it's way smaller
-                      created_at: '2020-07-15T15:22:17.567Z'
-                      updated_at: '2020-07-15T15:22:17.567Z'
+                      created_at: '2020-07-21T14:43:45.810Z'
+                      updated_at: '2020-07-21T14:43:45.810Z'
                       correction:
                         scientific_name: Arctostaphylos uva-ursi ssp. coloradensis
                         maximum_height_value: 7
@@ -4804,8 +4871,8 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: Is the author okay ?
-                      created_at: '2020-07-15T15:22:17.576Z'
-                      updated_at: '2020-07-15T15:22:17.576Z'
+                      created_at: '2020-07-21T14:43:45.818Z'
+                      updated_at: '2020-07-21T14:43:45.818Z'
                       correction: 
                       changes: 
                     links:
@@ -4867,15 +4934,15 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The height is wrong, it's way smaller
-                      created_at: '2020-07-15T15:22:17.636Z'
-                      updated_at: '2020-07-15T15:22:17.636Z'
+                      created_at: '2020-07-21T14:43:45.882Z'
+                      updated_at: '2020-07-21T14:43:45.882Z'
                       correction:
                         scientific_name: Arctostaphylos uva-ursi ssp. coloradensis
                         maximum_height_value: 7
                         maximum_height_unit: cm
                       changes: 
                     meta:
-                      last_modified: '2020-07-15T15:22:17.636Z'
+                      last_modified: '2020-07-21T14:43:45.882Z'
         '401':
           description: Invalid credentials
           content:
@@ -4931,8 +4998,8 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: This tree can grows up to 68 meters
-                      created_at: '2020-07-15T15:22:17.752Z'
-                      updated_at: '2020-07-15T15:22:17.752Z'
+                      created_at: '2020-07-21T14:43:46.006Z'
+                      updated_at: '2020-07-21T14:43:46.006Z'
                       correction:
                         maximum_height_value: 6800
                         maximum_height_unit: cm
@@ -4942,7 +5009,7 @@ paths:
                         - 5000
                         - 6800
                     meta:
-                      last_modified: '2020-07-15T15:22:17.752Z'
+                      last_modified: '2020-07-21T14:43:46.006Z'
         '422':
           description: Invalid parameters
           content:
@@ -6714,6 +6781,8 @@ components:
     filters_not_species:
       type: object
       properties:
+        image_url:
+          type: string
         author:
           type: string
         average_height_cm:
