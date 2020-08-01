@@ -22,4 +22,4 @@ A complete list of zones is [available on Wikipedia](https://en.wikipedia.org/wi
 
 ### Mapping zones to a map
 
-Trefle does not provides coordinates for the species distribution zones yet. In the meantime, you can found GeoJSON files for each zones [on the TDWG Github repository](https://github.com/tdwg/wgsrpd/tree/master/geojson).
+Trefle does not provides coordinates for the species distribution zones yet. In the meantime, you can find GeoJSON files for each zones [on the TDWG Github repository](https://github.com/tdwg/wgsrpd/tree/master/geojson).
