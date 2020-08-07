@@ -168,6 +168,10 @@ It return a big JSON response like this:
 }
 ```
 
+### Rate limiting
+
+In order to allow all users to use the API in good conditions, **a limit of 120 requests per minute is applied**. If this limit is a limiting factor for your application (and you have valid reasons), feel free to contact us.
+
 ### The Trefle structure
 
 Before going further, we need to know a bit how data is organized in the trefle API.
