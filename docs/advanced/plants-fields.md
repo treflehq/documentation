@@ -31,7 +31,7 @@ This documentation is way lighter than the reference, and do not show all the fi
 | **duration** (array of strings) | The plant duration(s), which can be:<br />- Annual: plants that live, reproduce, and die in one growing season.<br />- Biennial: plants that need two growing seasons to complete their life cycle, normally completing vegetative growth the first year and flowering the second year.<br />- Perennial: plants that live for more than two years, with the shoot system dying back to soil level each year.<br />                                                                                                                                     |
 | **observations** (string)       | Some habit observations on the species                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **common_names** (object)       | Common names of the species per language                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **distribution** (object)       | Distribution of the species per establishment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **distribution** (object)       | (Deprecated) Distribution of the species per establishment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **synonyms** (array of objects) | The symonyms scientific names and authors                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | **sources** (array of objects)  | The symonyms scientific names and authors                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | **extras** ()                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -57,6 +57,19 @@ API endpoints to related resources
 | **fruit** (array of objects)  | Image(s) of the species fruit  |
 | **bark** (array of objects)   | Image(s) of the species bark   |
 | **other** (array of objects)  | Image(s) of the species other  |
+
+### distributions
+
+
+Distribution of the species per establishment
+
+| field                             | description                                               |
+|-----------------------------------|-----------------------------------------------------------|
+| **native** (array of objects)     | Zones the species is native from                          |
+| **introduced** (array of objects) | Zones the species has been introduced                     |
+| **doubtful** (array of objects)   | Zones the species presence is doubtful                    |
+| **absent** (array of objects)     | Zones the species is absent and has been wrongly recorded |
+| **extinct** (array of objects)    | Zones the species is extinct                              |
 
 ### flower
 
