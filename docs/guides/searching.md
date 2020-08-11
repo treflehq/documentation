@@ -1,13 +1,13 @@
 ---
 id: searching
-title: Searching trough species
+title: Searching through species
 sidebar_label: Searching
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-You can use the `q` parameter on the `v1/plants/search` endpoint to search trough plants, and on the `v1/species/search` endpoint to search trough species.
+You can use the `q` parameter on the `v1/plants/search` endpoint to search through plants, and on the `v1/species/search` endpoint to search through species.
 
 Let's search for cocounut plants:
 
@@ -56,7 +56,7 @@ const fetch = require('node-fetch');
 </Tabs>
 
 
-And we got:
+And we get:
 
 ```json
 {
