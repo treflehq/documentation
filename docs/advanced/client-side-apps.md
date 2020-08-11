@@ -7,14 +7,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-The access token you get from [your account page](https://trefle.io/profile) allow you to makes queries on the Trefle API, but you token needs to be kept secret, so **you can't make queries from the browser as the user on your website will see the access token**, and could use it for his personal uses.
+The access token you get from [your account page](https://trefle.io/profile) allow you to makes queries on the Trefle API, but your token needs to be kept secret, so **you can't make queries from the browser as the user on your website will see the access token**, and could use it for their personal needs. Additionally this is not a good practice in developing software.
 
 ![client workflow](/img/client-scheme.png)
 
-If you need to perform client-side requests, you will have to request a client-side token from you backend, and get a JWT token in return. This token will be usable on the client side. This call need you secret access token, and the url of the website the client side requests will come from.
+If you need to perform client-side requests you will have to request a client-side token from your own backend and get a JWT token in return. This token will be usable on the client side. This call needs your secret access token and the url of the website that the client side requests will come from.
 
 :::info
-As this is a **POST** request, it can't be done directly from the browser.
+Because this is a **POST** request it can't be done directly from the browser.
 :::
 
 
@@ -64,7 +64,7 @@ const params = {
 </Tabs>
 
 
-And we got:
+And we get:
 
 ```json
 {
