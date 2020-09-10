@@ -133,7 +133,7 @@ The only difference is that `/species` API calls will return matching species, s
 
 ### Get search for coconut species
 
-<MultiLanguageSnippet endpoint="/api/v1/species" query={{q: "coconut"}}/>
+<MultiLanguageSnippet endpoint="/api/v1/species/search" query={{q: "coconut"}}/>
 
 
 <br />
