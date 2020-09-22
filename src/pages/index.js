@@ -73,8 +73,8 @@ function Home(props) {
       description="Getting started with the Trefle API">
       <header className={clsx('hero', styles.heroBanner)}>
         <div className="container">
-          <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <h1 className={styles.heroTitle}>{siteConfig.title}</h1>
+          <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
           <div className={styles.buttons}>
             
             <Link
