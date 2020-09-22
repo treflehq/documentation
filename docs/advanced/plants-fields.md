@@ -30,8 +30,8 @@ This documentation is way lighter than the reference, and do not show all the fi
 | **image_url** (string)             | A main image url of the species                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | **duration** (array of strings)    | The plant duration(s), which can be:<br />- Annual: plants that live, reproduce, and die in one growing season.<br />- Biennial: plants that need two growing seasons to complete their life cycle, normally completing vegetative growth the first year and flowering the second year.<br />- Perennial: plants that live for more than two years, with the shoot system dying back to soil level each year.<br />                                                                                                                                     |
 | **edible_part** (array of strings) | The plant edible part(s), if any.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **edible** (boolean)               | Is the species edible ?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **vegetable** (boolean)            | Is the species a vegetable ?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **edible** (boolean)               | Is the species edible?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **vegetable** (boolean)            | Is the species a vegetable?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **observations** (string)          | Some habit observations on the species                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **common_names** (object)          | Common names of the species per language                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **distribution** (object)          | (Deprecated) Distribution of the species per establishment                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -79,10 +79,10 @@ Distribution of the species per establishment
 
 Flower related fields (the reproductive structure found in flowering plants)
 
-| field                        | description             |
-|------------------------------|-------------------------|
-| **color** (array of strings) | The flower color(s)     |
-| **conspicuous** (boolean)    | Is the flower visible ? |
+| field                        | description            |
+|------------------------------|------------------------|
+| **color** (array of strings) | The flower color(s)    |
+| **conspicuous** (boolean)    | Is the flower visible? |
 
 ### foliage
 
@@ -93,7 +93,7 @@ Foliage (or leaves) related fields
 |------------------------------|-----------------------------------------------------------------------------------------|
 | **texture** (string)         | The general texture of the plant’s foliage<br />Can be: `fine`, `medium`, and `coarse`. |
 | **color** (array of strings) | The leaves color(s)                                                                     |
-| **leaf_retention** (boolean) | Does the leaves stay all year long ?                                                    |
+| **leaf_retention** (boolean) | Does the leaves stay all year long?                                                     |
 
 ### fruit_or_seed
 
@@ -102,7 +102,7 @@ Fruit or seed related fields
 
 | field                          | description                                                                  |
 |--------------------------------|------------------------------------------------------------------------------|
-| **conspicuous** (boolean)      | Is the fruit visible ?                                                       |
+| **conspicuous** (boolean)      | Is the fruit visible?                                                        |
 | **color** (array of strings)   | The fruit color(s)                                                           |
 | **shape** (string)             | Fruit shape                                                                  |
 | **seed_persistence** (boolean) | Are the fruit or seed generally recognized as being persistent on the plant? |
