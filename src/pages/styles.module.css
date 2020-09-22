@@ -5,11 +5,21 @@
  * and scoped locally.
  */
 
-.heroBanner {
+ /* Hero */
+
+ .heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+.heroTitle {
+  font-size: 3rem;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
 }
 
 @media screen and (max-width: 966px) {
@@ -18,19 +28,27 @@
   }
 }
 
-.buttons a {
-  margin: auto 1em;
-}
+/* //// */
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
+  flex-wrap: wrap;
 }
 
 .bigButton {
   color: #fff;
+  max-width: 200px;
+  flex: 1 1 auto;
+  margin: 1em;
+  display: inline-block;
+  transition: opacity .20s;
+}
+
+.bigButton:hover {
+  opacity: .75;
 }
 
 .features {
@@ -94,4 +112,45 @@
 .featureImage {
   height: 200px;
   width: 200px;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 480px) {
+
+  /* Hero */
+
+  .heroTitle {
+    font-size: 2rem;
+    word-wrap: normal;
+    text-align: left;
+  }
+
+  .heroBanner {
+    padding: 0;
+  }
+
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  /* Features grid */
+
+  .features {
+    grid-template-columns: repeat(1, 1fr);
+    padding-top: 1.5em;
+  }
+
+  .features .feature {
+    align-items: flex-start;
+  }
+
+  .features .feature h3 {
+    text-align: left;
+  }
+
+  .features .featureAside > i {
+    display: inherit;
+  }
+
 }

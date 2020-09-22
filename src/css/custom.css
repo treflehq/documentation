@@ -4,75 +4,92 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700');
+ @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,500,700');
 
-
+ /**
+  * Suggested responsive breakpoints:
+  *
+  * Small: 480px
+  * Medium: 768px
+  * Large: 992px
+  * Extra large: 1200px (Why is this still considered "extra large" in 2020? 🤔)
+ */
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2d7b0f;
-  --ifm-color-primary-dark: #1e5409;
-  --ifm-color-primary-darker: #1e5409;
-  --ifm-color-primary-darkest: #1e5409;
-  --ifm-color-primary-light: #44a71e;
-  --ifm-color-primary-lighter: #51bd28;
-  --ifm-color-primary-lightest: #78d654;
-  --ifm-code-font-size: 95%;
-  --fa-primary-color: #2d7b0f;
+ --ifm-color-primary: #2d7b0f;
+ --ifm-color-primary-dark: #1e5409;
+ --ifm-color-primary-darker: #1e5409;
+ --ifm-color-primary-darkest: #1e5409;
+ --ifm-color-primary-light: #44a71e;
+ --ifm-color-primary-lighter: #51bd28;
+ --ifm-color-primary-lightest: #78d654;
+ --ifm-code-font-size: 95%;
+ --fa-primary-color: #2d7b0f;
+
 }
 
 * {
-  -webkit-font-smoothing: antialiased;
-  -webkit-overflow-scrolling: touch;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  -webkit-text-size-adjust: none;
-  -webkit-touch-callout: none;
-  box-sizing: border-box;
+ -webkit-font-smoothing: antialiased;
+ -webkit-overflow-scrolling: touch;
+ -webkit-tap-highlight-color: rgba(0,0,0,0);
+ -webkit-text-size-adjust: none;
+ -webkit-touch-callout: none;
+ box-sizing: border-box;
 }
+
+html {
+ min-width: 100vw;
+}
+
 body {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  color: #363636;
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 15px;
-  letter-spacing: 0;
-  margin: 0;
-  overflow-x: hidden;
+ -moz-osx-font-smoothing: grayscale;
+ -webkit-font-smoothing: antialiased;
+ color: #363636;
+ font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+ font-size: 15px;
+ letter-spacing: 0;
+ margin: 0;
+ overflow-x: hidden;
+}
+
+.main-wrapper {
+ padding: 1em;
 }
 
 h1, h2, h3 {
-  font-family: 'Roboto Mono', monospace;
+ font-family: 'Roboto Mono', monospace;
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgb(72, 77, 91);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
+ background-color: rgb(72, 77, 91);
+ display: block;
+ margin: 0 calc(-1 * var(--ifm-pre-padding));
+ padding: 0 var(--ifm-pre-padding);
 }
 
 span.token.number {
-  font-size: inherit;
-  background: inherit;
-  height: inherit;
-  width: inherit;
-  margin: inherit;
-  padding: inherit;
-  border-radius: inherit;
-  display: initial;
+ font-size: inherit;
+ background: inherit;
+ height: inherit;
+ width: inherit;
+ margin: inherit;
+ padding: inherit;
+ border-radius: inherit;
+ display: initial;
 }
 
 .redoc-json code {
-  background-color: initial;
-  color: #a2a2a2;
+ background-color: initial;
+ color: #a2a2a2;
 }
 
 table th, table td {
-    border: inherit;
+   border: inherit;
 }
 
 :root {
-  --ifm-color-success: #e8f5e3;
-  --ifm-color-info: #ddf7ff;
-  --ifm-alert-color: #333;
+ --ifm-color-success: #e8f5e3;
+ --ifm-color-info: #ddf7ff;
+ --ifm-alert-color: #333;
 }
