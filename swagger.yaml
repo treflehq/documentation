@@ -122,7 +122,7 @@ paths:
                       links:
                         self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-09-28T10:54:54.797Z'
+                      last_modified: '2020-10-01T13:35:58.848Z'
         '401':
           description: Invalid credentials
           content:
@@ -264,7 +264,7 @@ paths:
                         links:
                           self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-09-28T10:54:54.811Z'
+                      last_modified: '2020-10-01T13:35:58.863Z'
         '401':
           description: Invalid credentials
           content:
@@ -572,7 +572,7 @@ paths:
                           links:
                             self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-09-28T10:54:54.824Z'
+                      last_modified: '2020-10-01T13:35:58.880Z'
         '401':
           description: Invalid credentials
           content:
@@ -976,7 +976,7 @@ paths:
                             links:
                               self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-09-28T10:54:54.858Z'
+                      last_modified: '2020-10-01T13:35:58.918Z'
         '401':
           description: Invalid credentials
           content:
@@ -1788,7 +1788,7 @@ paths:
                               links:
                                 self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-09-28T10:54:54.914Z'
+                      last_modified: '2020-10-01T13:35:58.958Z'
         '401':
           description: Invalid credentials
           content:
@@ -1817,14 +1817,12 @@ paths:
       - name: filter
         in: query
         required: false
-        type: object
         description: Filter on values
         schema:
           "$ref": "#/components/schemas/filters_families"
       - name: order
         in: query
         required: false
-        type: object
         description: Sort on values
         schema:
           "$ref": "#/components/schemas/sorts_families"
@@ -2214,7 +2212,7 @@ paths:
                                 links:
                                   self: "/api/v1/kingdoms/plantae"
                     meta:
-                      last_modified: '2020-09-28T10:54:55.148Z'
+                      last_modified: '2020-10-01T13:35:59.211Z'
         '401':
           description: Invalid credentials
           content:
@@ -2235,14 +2233,12 @@ paths:
       - name: filter
         in: query
         required: false
-        type: object
         description: Filter on values
         schema:
           "$ref": "#/components/schemas/filters_genus"
       - name: order
         in: query
         required: false
-        type: object
         description: Sort on values
         schema:
           "$ref": "#/components/schemas/sorts_genus"
@@ -2465,7 +2461,7 @@ paths:
                           division_order: "/api/v1/division_orders/pinales"
                           genus: "/api/v1/families/pinaceae/genus"
                     meta:
-                      last_modified: '2020-09-28T10:54:55.559Z'
+                      last_modified: '2020-10-01T13:35:59.647Z'
         '401':
           description: Invalid credentials
           content:
@@ -2488,28 +2484,24 @@ paths:
       - name: filter
         in: query
         required: false
-        type: object
         description: Filter on values
         schema:
           "$ref": "#/components/schemas/filters_species"
       - name: filter_not
         in: query
         required: false
-        type: object
         description: Exclude results matching null values
         schema:
           "$ref": "#/components/schemas/filters_not_species"
       - name: order
         in: query
         required: false
-        type: object
         description: Sort on values
         schema:
           "$ref": "#/components/schemas/sorts_species"
       - name: range
         in: query
         required: false
-        type: object
         description: Range on values
         schema:
           "$ref": "#/components/schemas/ranges_species"
@@ -3055,7 +3047,7 @@ paths:
                         url: https://www.gbif.org/species/4234505
                         citation: 
                     meta:
-                      last_modified: '2020-09-28T10:54:55.450Z'
+                      last_modified: '2020-10-01T13:35:59.535Z'
         '401':
           description: Invalid credentials
           content:
@@ -3089,28 +3081,24 @@ paths:
       - name: filter
         in: query
         required: false
-        type: object
         description: Filter on values
         schema:
           "$ref": "#/components/schemas/filters_plants"
       - name: filter_not
         in: query
         required: false
-        type: object
         description: Exclude results matching null values
         schema:
           "$ref": "#/components/schemas/filters_not_species"
       - name: order
         in: query
         required: false
-        type: object
         description: Sort on values
         schema:
           "$ref": "#/components/schemas/sorts_plants"
       - name: range
         in: query
         required: false
-        type: object
         description: Range on values
         schema:
           "$ref": "#/components/schemas/ranges_plants"
@@ -3207,12 +3195,12 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The flower color is red
-                      created_at: '2020-09-28T10:55:02.711Z'
-                      updated_at: '2020-09-28T10:55:02.713Z'
+                      created_at: '2020-10-01T13:36:06.713Z'
+                      updated_at: '2020-10-01T13:36:06.715Z'
                       correction: 
                       changes: 
                     meta:
-                      last_modified: '2020-09-28T10:55:02.713Z'
+                      last_modified: '2020-10-01T13:36:06.715Z'
         '401':
           description: Invalid credentials
           content:
@@ -3251,28 +3239,24 @@ paths:
       - name: filter
         in: query
         required: false
-        type: object
         description: Filter on values
         schema:
           "$ref": "#/components/schemas/filters_species"
       - name: filter_not
         in: query
         required: false
-        type: object
         description: Exclude results matching null values
         schema:
           "$ref": "#/components/schemas/filters_not_species"
       - name: order
         in: query
         required: false
-        type: object
         description: Sort on values
         schema:
           "$ref": "#/components/schemas/sorts_species"
       - name: range
         in: query
         required: false
-        type: object
         description: Range on values
         schema:
           "$ref": "#/components/schemas/ranges_species"
@@ -3552,28 +3536,24 @@ paths:
       - name: filter
         in: query
         required: false
-        type: object
         description: Filter on values
         schema:
           "$ref": "#/components/schemas/filters_species"
       - name: filter_not
         in: query
         required: false
-        type: object
         description: Exclude results matching null values
         schema:
           "$ref": "#/components/schemas/filters_not_species"
       - name: order
         in: query
         required: false
-        type: object
         description: Sort on values
         schema:
           "$ref": "#/components/schemas/sorts_species"
       - name: range
         in: query
         required: false
-        type: object
         description: Range on values
         schema:
           "$ref": "#/components/schemas/ranges_species"
@@ -3671,28 +3651,24 @@ paths:
       - name: filter
         in: query
         required: false
-        type: object
         description: Filter on values
         schema:
           "$ref": "#/components/schemas/filters_species"
       - name: filter_not
         in: query
         required: false
-        type: object
         description: Exclude results matching null values
         schema:
           "$ref": "#/components/schemas/filters_not_species"
       - name: order
         in: query
         required: false
-        type: object
         description: Sort on values
         schema:
           "$ref": "#/components/schemas/sorts_species"
       - name: range
         in: query
         required: false
-        type: object
         description: Range on values
         schema:
           "$ref": "#/components/schemas/ranges_species"
@@ -5604,7 +5580,7 @@ paths:
                       images_count: 37
                       sources_count: 5
                       synonyms_count: 13
-                      last_modified: '2020-09-28T10:54:55.577Z'
+                      last_modified: '2020-10-01T13:35:59.670Z'
         '401':
           description: Invalid credentials
           content:
@@ -5638,28 +5614,24 @@ paths:
       - name: filter
         in: query
         required: false
-        type: object
         description: Filter on values
         schema:
           "$ref": "#/components/schemas/filters_species"
       - name: filter_not
         in: query
         required: false
-        type: object
         description: Exclude results matching null values
         schema:
           "$ref": "#/components/schemas/filters_not_species"
       - name: order
         in: query
         required: false
-        type: object
         description: Sort on values
         schema:
           "$ref": "#/components/schemas/sorts_species"
       - name: range
         in: query
         required: false
-        type: object
         description: Range on values
         schema:
           "$ref": "#/components/schemas/ranges_species"
@@ -5756,12 +5728,12 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The flower color is red
-                      created_at: '2020-09-28T10:55:03.186Z'
-                      updated_at: '2020-09-28T10:55:03.188Z'
+                      created_at: '2020-10-01T13:36:07.191Z'
+                      updated_at: '2020-10-01T13:36:07.192Z'
                       correction: 
                       changes: 
                     meta:
-                      last_modified: '2020-09-28T10:55:03.188Z'
+                      last_modified: '2020-10-01T13:36:07.192Z'
         '401':
           description: Invalid credentials
           content:
@@ -6487,7 +6459,7 @@ paths:
                           plants: "/api/v1/distributions/14/plants"
                           species: "/api/v1/distributions/14/species"
                     meta:
-                      last_modified: '2020-09-28T10:54:53.082Z'
+                      last_modified: '2020-10-01T13:35:56.981Z'
         '401':
           description: Invalid credentials
           content:
@@ -6534,8 +6506,8 @@ paths:
               examples:
                 returns-a-200-response:
                   value:
-                    token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOCwib3JpZ2luIjoiaHR0cDovL2xvY2FsaG9zdDoxMjM0IiwiaXAiOiI6OjEiLCJleHBpcmUiOiIyMDIwLTA5LTI5IDEyOjU1OjAzICswMjAwIiwiZXhwIjoxNjAxMzc2OTAzfQ.JTBHP4kmpbCvlJ99VOt7CEWT7WKm4czW5FeeQwRa9Kc
-                    expiration: '09-29-2020 12:55'
+                    token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOCwib3JpZ2luIjoiaHR0cDovL2xvY2FsaG9zdDoxMjM0IiwiaXAiOiI6OjEiLCJleHBpcmUiOiIyMDIwLTEwLTAyIDE1OjM2OjA3ICswMjAwIiwiZXhwIjoxNjAxNjQ1NzY3fQ.6_cIunJf3MqL3K02ab8933nD94WnpZtMWkPrkhpOSLc
+                    expiration: 10-02-2020 15:36
         '401':
           description: Invalid credentials
           content:
@@ -6630,8 +6602,8 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: Is the author okay ?
-                      created_at: '2020-09-28T10:55:03.458Z'
-                      updated_at: '2020-09-28T10:55:03.458Z'
+                      created_at: '2020-10-01T13:36:07.448Z'
+                      updated_at: '2020-10-01T13:36:07.448Z'
                       correction: 
                       changes: 
                     - id: 3
@@ -6643,8 +6615,8 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The height is wrong, it's way smaller
-                      created_at: '2020-09-28T10:55:03.449Z'
-                      updated_at: '2020-09-28T10:55:03.449Z'
+                      created_at: '2020-10-01T13:36:07.440Z'
+                      updated_at: '2020-10-01T13:36:07.440Z'
                       correction:
                         scientific_name: Carex praegracilis
                         maximum_height_value: 30
@@ -6709,15 +6681,15 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: The height is wrong, it's way smaller
-                      created_at: '2020-09-28T10:55:03.529Z'
-                      updated_at: '2020-09-28T10:55:03.529Z'
+                      created_at: '2020-10-01T13:36:07.510Z'
+                      updated_at: '2020-10-01T13:36:07.510Z'
                       correction:
                         scientific_name: Carex praegracilis
                         maximum_height_value: 30
                         maximum_height_unit: cm
                       changes: 
                     meta:
-                      last_modified: '2020-09-28T10:55:03.529Z'
+                      last_modified: '2020-10-01T13:36:07.510Z'
         '401':
           description: Invalid credentials
           content:
@@ -6773,8 +6745,8 @@ paths:
                       change_type: update
                       accepted_by: 
                       notes: This tree can grows up to 68 meters
-                      created_at: '2020-09-28T10:55:03.689Z'
-                      updated_at: '2020-09-28T10:55:03.689Z'
+                      created_at: '2020-10-01T13:36:07.678Z'
+                      updated_at: '2020-10-01T13:36:07.678Z'
                       correction:
                         maximum_height_value: 6800
                         maximum_height_unit: cm
@@ -6784,7 +6756,7 @@ paths:
                         - 5000
                         - 6800
                     meta:
-                      last_modified: '2020-09-28T10:55:03.689Z'
+                      last_modified: '2020-10-01T13:36:07.678Z'
         '422':
           description: Invalid parameters
           content:
