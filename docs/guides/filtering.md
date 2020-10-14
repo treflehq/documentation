@@ -389,7 +389,7 @@ And we got:
 
 ### Exclude null values
 
-Sometimes we need to exclude results with null or empty values. For that, we can use the `filter_not[ATTRIBUTE]` parameter, which will exclude from the response all entries where `ATTRIBUTE` is `null`.
+Sometimes we need to exclude results with null or empty values. For that, we can use the `filter_not[ATTRIBUTE]=null` parameter, which will exclude from the response all entries where `ATTRIBUTE` is `null`.
 
 For example, if we want all edible plants, we can either:
 
