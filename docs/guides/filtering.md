@@ -402,5 +402,5 @@ https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[edible_part]=root
 - **Exclude all plants without edible parts:**
 
 ```http
-https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter_not[edible_part]
+https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter_not[edible_part]=null
 ```
