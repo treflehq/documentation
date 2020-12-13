@@ -389,7 +389,7 @@ And we got:
 
 ### Exclude null values
 
-Sometimes we need to exclude results with null or empty values. For that, we can use the `filter_not[ATTRIBUTE]` parameter, which will exclude from the response all entries where `ATTRIBUTE` is `null`.
+Sometimes we need to exclude results with null or empty values. For that, we can use the `filter_not[ATTRIBUTE]=null` parameter, which will exclude from the response all entries where `ATTRIBUTE` is `null`.
 
 For example, if we want all edible plants, we can either:
 
@@ -402,5 +402,5 @@ https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[edible_part]=root
 - **Exclude all plants without edible parts:**
 
 ```http
-https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter_not[edible_part]
+https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter_not[edible_part]=null
 ```

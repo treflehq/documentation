@@ -76,5 +76,5 @@ And we get:
 You can then use this token directly from the browser. It can't be used from another origin, will expire and only works for your website.
 
 :::tip About the user IP
-Putting the user remote IP in the claim API call is optionnal, but it provides an additional security layer. We don't keep or store this information.
+Putting the user remote IP in the claim API call is optional, but it provides an additional security layer. We don't keep or store this information.
 :::
