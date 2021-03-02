@@ -7,7 +7,7 @@
         <lastBuildDate>Wed, 15 Jul 2020 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
-        <copyright>Copyright © 2020 Trefle.</copyright>
+        <copyright>Copyright © 2021 Trefle.</copyright>
         <item>
             <title><![CDATA[1.6.0]]></title>
             <link>https://docs.trefle.io/blog/1-6-0-released</link>
