@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktrefle_docs=self.webpackChunktrefle_docs||[]).push([[457],{2379:function(e){e.exports=JSON.parse('{"label":"releases","permalink":"/blog/tags/releases","allTagsPath":"/blog/tags","count":1}')}}]);
