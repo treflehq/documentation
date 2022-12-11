@@ -18,15 +18,13 @@ module.exports = {
     prism: {
       additionalLanguages: ['ruby'],
     },
-    algolia: {
-      apiKey: '70f8bce4d8dbe34fdddaa7c207a7ccc6',
-      indexName: 'trefle',
+    // algolia: {
+    //   apiKey: '70f8bce4d8dbe34fdddaa7c207a7ccc6',
+    //   indexName: 'trefle',
+    // },
+    colorMode: {
+      disableSwitch: true,
     },
-    googleAnalytics: {
-      trackingID: 'UA-105084612-2',
-      anonymizeIP: true, // Should IPs be anonymized?
-    },
-    disableDarkMode: true,
     navbar: {
       title: 'Trefle documentation',
       hideOnScroll: true,
@@ -34,7 +32,7 @@ module.exports = {
         alt: 'Trefle documentation',
         src: 'img/logo.svg',
       },
-      links: [
+      items: [
         {
           to: 'docs/guides/getting-started',
           activeBasePath: 'docs',
@@ -65,55 +63,6 @@ module.exports = {
         },
       ],
     },
-    // footer: {
-    //   style: 'dark',
-    //   links: [
-    //     {
-    //       title: 'Docs',
-    //       items: [
-    //         {
-    //           label: 'Style Guide',
-    //           to: 'docs/',
-    //         },
-    //         {
-    //           label: 'Second Doc',
-    //           to: 'docs/doc2/',
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       title: 'Community',
-    //       items: [
-    //         {
-    //           label: 'Stack Overflow',
-    //           href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-    //         },
-    //         {
-    //           label: 'Discord',
-    //           href: 'https://discordapp.com/invite/docusaurus',
-    //         },
-    //         {
-    //           label: 'Twitter',
-    //           href: 'https://twitter.com/docusaurus',
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       title: 'More',
-    //       items: [
-    //         {
-    //           label: 'Blog',
-    //           to: 'blog',
-    //         },
-    //         {
-    //           label: 'GitHub',
-    //           href: 'https://github.com/facebook/docusaurus',
-    //         },
-    //       ],
-    //     },
-    //   ],
-    //   copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
-    // },
   },
   presets: [
     [
@@ -121,16 +70,10 @@ module.exports = {
       {
         docs: {
           // It is recommended to set document id as docs home page (`docs/` path).
-          homePageId: 'getting-started',
+          // homePageId: 'getting-started',
           sidebarPath: require.resolve('./sidebars.js'),
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
-
-          // remarkPlugins: [
-          //   [remarkJargon, { jargon }],
-          //   remarkOpenAPI
-          // ],
-          // Please change this to your repo.
           editUrl:
             'https://github.com/treflehq/documentation/edit/master/',
         },
@@ -147,6 +90,10 @@ module.exports = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        googleAnalytics: {
+          trackingID: 'UA-105084612-2',
+          anonymizeIP: true,
+        }
       },
     ],
   ],

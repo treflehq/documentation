@@ -1,4 +1,4 @@
-# The Trefle REST API & website
+# The Trefle Documentation
 
 [🌎 Website](https://trefle.io)  •  [🚀 Getting started](https://docs.trefle.io)  •  [📖 API Documentation](https://docs.trefle.io/reference)  •  [💡 Ideas and features](https://github.com/orgs/treflehq/projects/3)  •  [🐛 Issues](https://github.com/orgs/treflehq/projects/2)
 
