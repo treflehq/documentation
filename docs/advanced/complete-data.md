@@ -28,7 +28,7 @@ You can also simply report an error in the data, without correcting it. [Read mo
 
 ### Submitting a correction
 
-Sumbitting a correction is done by doing a `POST` request on the `/api/v1/corrections/species/{species_id}` endpoint. [See in the reference](/reference/#operation/createCorrection).
+Submitting a correction is done by doing a `POST` request on the `/api/v1/corrections/species/{species_id}` endpoint. [See in the reference](/reference/#operation/createCorrection).
 
 Let's say we want to correct the maximum height of the `Abies Alba` species, because we found out that the largest measured tree was 68 m tall.
 

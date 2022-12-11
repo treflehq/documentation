@@ -14,14 +14,21 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'treflehq',
   projectName: 'documentation',
+  // themes: ['@docusaurus/theme-search-algolia'],
   themeConfig: {
     prism: {
       additionalLanguages: ['ruby'],
     },
-    // algolia: {
-    //   apiKey: '70f8bce4d8dbe34fdddaa7c207a7ccc6',
-    //   indexName: 'trefle',
-    // },
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'O1KF1XSVP7',
+
+      // Public API key: it is safe to commit it
+      apiKey: '2b61f11494ff46769eaa32e321c46831',
+
+      indexName: 'trefle',
+
+    },
     colorMode: {
       disableSwitch: true,
     },
