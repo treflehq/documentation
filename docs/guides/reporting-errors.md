@@ -26,7 +26,7 @@ The payload we will send will be like:
 
 <Tabs
   groupId="supports"
-  defaultValue="browser"
+  defaultValue="curl"
   values={[
     {label: 'CURL', value: 'curl'},
     {label: 'NodeJS', value: 'node'},

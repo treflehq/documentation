@@ -85,7 +85,7 @@ The only difference is that `/species` API calls will return matching species, s
 
 ### Get plants in Antartica
 
-> See [Distributions](advanced/distributions) to learn more about distributions zones.
+> See [Distributions](/docs/advanced/distributions) to learn more about distributions zones.
 
 
 <MultiLanguageSnippet
@@ -152,7 +152,7 @@ The only difference is that `/species` API calls will return matching species, s
 
 ## Zones & Distributions
 
-> See [Distributions](advanced/distributions) to learn more about distributions zones.
+> See [Distributions](/docs/advanced/distributions) to learn more about distributions zones.
 
 ### Get all countries / zones
 

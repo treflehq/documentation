@@ -20,7 +20,7 @@ Because this is a **POST** request it can't be done directly from the browser.
 
 <Tabs
   groupId="supports"
-  defaultValue="browser"
+  defaultValue="curl"
   values={[
     {label: 'CURL', value: 'curl'},
     {label: 'NodeJS', value: 'node'},
