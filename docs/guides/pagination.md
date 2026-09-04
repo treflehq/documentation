@@ -6,7 +6,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-When you query a collection (ex: `/api/v1/plants`), you'll notice that you have only 30 items returned.
+When you query a collection (ex: `/api/v1/plants`), you'll notice that you have only 20 items returned.
 
 That's because results are paginated. You have links for the next page in the `links` attribute of the JSON response.
 
@@ -107,7 +107,7 @@ You now got the second page of the plants.
                 "Altensteinia rosei"
             ],
             "year": 1922
-        },  // ... 28 more items
+        },  // ... 18 more items
     ],
     "links": {
         "first": "/api/v1/species?page=1",
@@ -119,4 +119,16 @@ You now got the second page of the plants.
     "meta": {
         "total": 417293
     }}
+```
+
+## Changing the page size
+
+Collection endpoints such as `/api/v1/plants` and `/api/v1/species` always return
+20 items per page. The page size is fixed and there is no parameter to change it.
+
+The search endpoints are the exception: `/api/v1/plants/search` and
+`/api/v1/species/search` accept a `limit` parameter, which also defaults to 20.
+
+```bash
+curl -g 'https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut&limit=5'
 ```
