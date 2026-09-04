@@ -170,7 +170,17 @@ It return a big JSON response like this:
 
 ### Rate limiting
 
-In order to allow all users to use the API in good conditions, **a limit of 120 requests per minute is applied**. If this limit is a limiting factor for your application (and you have valid reasons), feel free to contact us.
+In order to allow all users to use the API in good conditions, **a limit of 60 requests per minute is applied** (sponsors get a higher limit). If this limit is a limiting factor for your application (and you have valid reasons), feel free to contact us.
+
+Every `/api` response carries three headers so you can self-regulate before hitting the limit:
+
+| Header | Meaning |
+| --- | --- |
+| `RateLimit-Limit` | The number of requests allowed in the current window. |
+| `RateLimit-Remaining` | The number of requests you have left in the current window. |
+| `RateLimit-Reset` | A unix timestamp for when the current window resets. |
+
+Once you run out, further requests get a `429 Too Many Requests` response (with the same three headers, `RateLimit-Remaining` at `0`) until the window resets.
 
 ### The Trefle structure
 
