@@ -19,6 +19,12 @@ We can filter on one or several values, with the `filter[FIELD]=value1,value2,va
 `--globoff`) to turn globbing off, as in the examples below.
 :::
 
+:::note The field you filter on may not be in the response
+Lists return a light version of each record, so `filter[edible]=true` works even
+though `edible` is not part of the list payload. See
+[List responses only carry a subset of the fields](/docs/advanced/plants-fields#list-responses-only-carry-a-subset-of-the-fields).
+:::
+
 ### Filter on a single value
 
 Let's query only plants with the "Beach Strawberry" common name:.

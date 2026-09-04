@@ -9,6 +9,36 @@ When you query a species (or a plant), you will have a lot of fields to dig into
 This documentation is way lighter than the reference, and do not show all the fields. If you have any doubt, please check the [reference](/reference).
 :::
 
+## List responses only carry a subset of the fields
+
+Collection endpoints (`/api/v1/plants`, `/api/v1/species`, their `/search`
+variants, and nested lists such as `/api/v1/genus/:id/plants`) return a **light**
+version of each record, so a page of results stays small. Only these fields are
+included:
+
+`id`, `common_name`, `slug`, `scientific_name`, `year`, `bibliography`,
+`author`, `status`, `rank`, `family`, `family_common_name`, `genus`,
+`genus_id`, `image_url`, `synonyms`, `links`
+
+Every other field (`edible`, `edible_part`, `vegetable`, `duration`,
+`observations`, `common_names`, `distribution`, `growth`, `specifications`,
+`images`, `sources`…) is only present on the detail endpoints, one record at a
+time:
+
+```bash
+# a list: light payload, no `edible` field
+curl -g 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[edible]=true'
+
+# one record: full payload, `edible` included
+curl 'https://trefle.io/api/v1/plants/beach-strawberry?token=YOUR_TREFLE_TOKEN'
+```
+
+:::note You can still filter and sort on the missing fields
+Filtering, ordering and ranges are applied in the database, not on the
+serialized response. `filter[edible]=true` works on a list even though `edible`
+is not part of that list's payload. Follow the record's `links.self` to read
+the value back.
+:::
 
 ## Species
 
