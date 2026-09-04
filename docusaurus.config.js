@@ -1,7 +1,4 @@
 // const path = require('path');
-// const remarkJargon = require('remark-jargon');
-// const remarkOpenAPI = require('remark-openapi');
-// var jargon = require('./jargon.js')
 
 module.exports = {
   title: 'Trefle documentation',
