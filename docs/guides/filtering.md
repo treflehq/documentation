@@ -20,7 +20,7 @@ We can filter on one or several values, with the `filter[FIELD]=value1,value2,va
 :::
 
 :::note The field you filter on may not be in the response
-Lists return a light version of each record, so `filter[edible]=true` works even
+Lists return a light version of each record, so `filter[edible]=true` works on `/species` even
 though `edible` is not part of the list payload. See
 [List responses only carry a subset of the fields](/docs/advanced/plants-fields#list-responses-only-carry-a-subset-of-the-fields).
 :::

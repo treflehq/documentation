@@ -13,31 +13,35 @@ This documentation is way lighter than the reference, and do not show all the fi
 
 Collection endpoints (`/api/v1/plants`, `/api/v1/species`, their `/search`
 variants, and nested lists such as `/api/v1/genus/:id/plants`) return a **light**
-version of each record, so a page of results stays small. Only these fields are
-included:
+version of each record, so a page of results stays small. The two lists don't
+carry exactly the same subset:
 
-`id`, `common_name`, `slug`, `scientific_name`, `year`, `bibliography`,
-`author`, `status`, `rank`, `family`, `family_common_name`, `genus`,
-`genus_id`, `image_url`, `synonyms`, `links`
+- **Species lists**: `id`, `common_name`, `slug`, `scientific_name`, `year`,
+  `bibliography`, `author`, `status`, `rank`, `family`, `family_common_name`,
+  `genus`, `genus_id`, `image_url`, `synonyms`, `links`
+- **Plants lists**: `id`, `common_name`, `slug`, `scientific_name`, `year`,
+  `bibliography`, `author`, `family_common_name`, `genus_id`,
+  `main_species_id`, `vegetable`, `observations`, `image_url`, `links`
 
-Every other field (`edible`, `edible_part`, `vegetable`, `duration`,
-`observations`, `common_names`, `distribution`, `growth`, `specifications`,
-`images`, `sources`…) is only present on the detail endpoints, one record at a
-time:
+Every other field (`edible`, `edible_part`, `duration`, `common_names`,
+`distribution`, `growth`, `specifications`, `images`, `sources`…) is only
+present on the detail endpoints, one record at a time:
 
 ```bash
 # a list: light payload, no `edible` field
-curl -g 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[edible]=true'
+curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[edible]=true'
 
 # one record: full payload, `edible` included
-curl 'https://trefle.io/api/v1/plants/beach-strawberry?token=YOUR_TREFLE_TOKEN'
+curl 'https://trefle.io/api/v1/species/fragaria-chiloensis?token=YOUR_TREFLE_TOKEN'
 ```
 
 :::note You can still filter and sort on the missing fields
 Filtering, ordering and ranges are applied in the database, not on the
-serialized response. `filter[edible]=true` works on a list even though `edible`
-is not part of that list's payload. Follow the record's `links.self` to read
-the value back.
+serialized response. `filter[edible]=true` works on a species list even though
+`edible` is not part of that list's payload. Follow the record's `links.self`
+to read the value back. Each endpoint validates its own filter keys (an unknown
+key returns a `400` listing the valid ones), so a filter accepted by `/species`
+is not necessarily accepted by `/plants`.
 :::
 
 ## Species
