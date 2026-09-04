@@ -2,12 +2,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://docs.trefle.io/blog</id>
     <title>Trefle documentation Blog</title>
-    <updated>2026-08-20T00:00:00.000Z</updated>
+    <updated>2026-09-04T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://docs.trefle.io/blog"/>
     <subtitle>Trefle documentation Blog</subtitle>
     <icon>https://docs.trefle.io/img/favicon.ico</icon>
     <rights>Copyright © 2026 Trefle.</rights>
+    <entry>
+        <title type="html"><![CDATA[2.1.0: CORS, and where the data comes from]]></title>
+        <id>2-1-0-released</id>
+        <link href="https://docs.trefle.io/blog/2-1-0-released"/>
+        <updated>2026-09-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Version 2.1.0 is in production. It delivers the most requested feature in Trefle's history — CORS — and starts a longer journey: making every value in the database traceable to its source.]]></summary>
+        <content type="html"><![CDATA[<p>Version 2.1.0 is in production. It delivers the most requested feature in Trefle's history — CORS — and starts a longer journey: making every value in the database traceable to its source.</p><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="cors-is-enabled">CORS is enabled<a class="hash-link" href="#cors-is-enabled" title="Direct link to heading">​</a></h2><p>You can now call the API directly from a browser. No more proxy backend just to forward requests: grab a token, <code>fetch</code> from your frontend, done. This closes the oldest open request on the tracker (<a href="https://github.com/treflehq/trefle-api/issues/91" target="_blank" rel="noopener noreferrer">#91</a>, and more recently <a href="https://github.com/treflehq/trefle-api/issues/211" target="_blank" rel="noopener noreferrer">#211</a>).</p><p>The usual caveat applies: a token shipped in client-side code is visible to anyone who opens the developer tools. For public demos and prototypes that trade-off is often fine; for production apps, keep quota-sensitive usage behind your own backend.</p><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="where-does-that-number-come-from">Where does that number come from?<a class="hash-link" href="#where-does-that-number-come-from" title="Direct link to heading">​</a></h2><p>Trefle aggregates botanical data from many sources — GBIF, POWO, the USDA, Baseflor, Wikipedia and others. Historically, when two sources disagreed, the last one crawled silently won. That is not good enough for a dataset people build real applications on, so 2.1.0 lays new foundations:</p><ul><li><strong>Provenance is now recorded.</strong> Every value ingested from now on is stored as a <em>fact</em>: which source claims it, what the value is, and how it was established. A new endpoint exposes the trail: <code>GET /api/v1/species/{id}/facts</code>. It starts mostly empty and fills up as the pipeline runs.</li><li><strong>Sources are ranked.</strong> A curated botanical database can no longer be overwritten by a Wikipedia infobox. When sources disagree, the strongest one wins the displayed value — and the disagreement stays visible instead of being erased.</li><li><strong>Implausible values are rejected.</strong> A plant that is 10 km tall or a pH of 47 now gets refused at ingestion and flagged for review, and inconsistencies like <code>ph_minimum &gt; ph_maximum</code> are hunted continuously by the hourly data checks.</li><li><strong>The completion score is honest now.</strong> The old one counted internal bookkeeping columns and treated legitimate zeros as missing data. The new one measures actual botanical fields, and only those that make sense for the species — a wild oak is no longer "incomplete" for lacking a sowing guide.</li></ul><p>One bug fix worth calling out: on plant payloads, the <code>hybrids</code> and <code>subvarieties</code> lists had been swapped — each was served under the other's key. If your app reads either field, the data is now correct.</p><p>Everything in this release is additive: no existing payload changed shape, and authentication is unchanged.</p><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="whats-next">What's next<a class="hash-link" href="#whats-next" title="Direct link to heading">​</a></h2><p>The provenance system is the groundwork for the actual goal: filling the gaps. Most species in the database have well-documented names but sparse traits, and we can now measure exactly where the gaps are and fill them with sourced, verifiable values — starting with the species you actually look up. Alongside that, the earlier promises still stand: client-controlled page size, more filters, and downloadable dumps once licensing is clarified.</p><p>As always, the <a href="https://github.com/treflehq/trefle-api/issues" target="_blank" rel="noopener noreferrer">issue tracker</a> is the best place to tell us what matters to you.</p>]]></content>
+        <author>
+            <name>André Aubin</name>
+            <uri>https://twitter.com/lambda_2</uri>
+        </author>
+        <category label="releases" term="releases"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2.0.2]]></title>
         <id>2-0-2-released</id>
