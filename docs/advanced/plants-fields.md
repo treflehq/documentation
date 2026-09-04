@@ -170,8 +170,8 @@ Growing of farming related fields
 | **sowing** (string)                  | A description on how to sow the plant                                                                                                |
 | **ph_maximum** (number)              | The maximum acceptable soil pH (of the top 30 centimeters of soil) for the plant                                                     |
 | **ph_minimum** (number)              | The minimum acceptable soil pH (of the top 30 centimeters of soil) for the plant                                                     |
-| **light** (integer)                  | Required amount of light, on a scale from 0 (no light, &lt;= 10 lux) to 10 (very intensive insolation, &gt;= 100 000 lux)                  |
-| **atmospheric_humidity** (integer)   | Required relative humidity in the air, on a scale from 0 (&lt;=10%) to 10 (&gt;= 90%)                                                      |
+| **light** (integer)                  | Amount of light in the species' habitats, on a scale from 0 (no light, &lt;= 10 lux) to 10 (very intensive insolation, &gt;= 100 000 lux). Ecological indicator                  |
+| **atmospheric_humidity** (integer)   | Relative humidity of the air in the species' habitats, on a scale from 0 (&lt;=10%) to 10 (&gt;= 90%). Ecological indicator                                                      |
 | **growth_months** (array of strings) | The most active growth months of the species (usually all year round for perennial plants)                                           |
 | **bloom_months** (array of strings)  | The months the species usually blooms                                                                                                |
 | **fruit_months** (array of strings)  | The months the species usually produces fruits                                                                                       |
@@ -182,10 +182,22 @@ Growing of farming related fields
 | **minimum_root_depth** (object)      | Minimum depth of soil required for the species, in centimeters. Plants that do not have roots such as rootless aquatic plants have 0 |
 | **minimum_temperature** (object)     | The minimum tolerable temperature for the species. In celsius or fahrenheit degrees                                                  |
 | **maximum_temperature** (object)     | The maximum tolerable temperature for the species. In celsius or fahrenheit degrees                                                  |
-| **soil_nutriments** (integer)        | Required quantity of nutriments in the soil, on a scale from 0 (oligotrophic) to 10 (hypereutrophic)                                 |
-| **soil_salinity** (integer)          | Tolerance to salinity, on a scale from 0 (untolerant) to 10 (hyperhaline)                                                            |
-| **soil_texture** (integer)           | Required texture of the soil, on a scale from 0 (clay) to 10 (rock)                                                                  |
-| **soil_humidity** (integer)          | Required humidity of the soil, on a scale from 0 (xerophile) to 10 (subaquatic)                                                      |
+| **soil_nutriments** (integer)        | Nutriment level of the soil in the species' habitats, on a scale from 0 (oligotrophic) to 10 (hypereutrophic). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
+| **soil_salinity** (integer)          | Salinity of the soil in the species' habitats, on a scale from 0 (non-saline) to 10 (hyperhaline). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
+| **soil_texture** (integer)           | Texture of the soil in the species' habitats, on a scale from 0 (clay) to 10 (rock)                                                  |
+| **soil_humidity** (integer)          | Humidity of the soil in the species' habitats, on a scale from 0 (xerophile) to 10 (subaquatic). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
+
+#### Ecological indicator values (light, humidity, soil)
+
+The `light`, `atmospheric_humidity`, `soil_humidity`, `soil_nutriments` and `soil_salinity` fields are **ecological indicator values**, not measurements of what an individual plant tolerates. They come from the French [Baseflor / Catminat](https://www.tela-botanica.org/projets/phytosociologie/) database (Philippe Julve) and follow the Ellenberg-style convention: the number describes **where the species is typically found in the wild** along an environmental gradient, inferred from the habitats it occupies.
+
+This matters when you compare Trefle to other sources:
+
+- The USDA PLANTS database rates *tolerance* in agronomic classes (None / Low / Medium / High) defined by measurable thresholds — for salinity, the electrical conductivity of the soil solution. That is a different question, so the two can legitimately disagree. A coastal species such as *Armeria maritima* scores high as a habitat indicator while USDA rates its cultivated salt tolerance low.
+- These indicators are calibrated for the **temperate European flora**. For species outside that range they are often absent, and when present should be treated with caution.
+- A value of `0` is meaningful (it places the species at the bottom of the gradient), it does not mean "unknown". Missing data is `null`.
+
+If you need to know where a specific value came from, the [provenance endpoint](/docs/advanced/data-provenance) tells you which source supplied it.
 
 ### synonyms[]
 

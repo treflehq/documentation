@@ -19,6 +19,7 @@ module.exports = {
       collapsed: false,
       items: [
         'advanced/plants-fields',
+        'advanced/data-provenance',
         'advanced/client-side-apps',
         'advanced/complete-data',
         'advanced/distributions',
