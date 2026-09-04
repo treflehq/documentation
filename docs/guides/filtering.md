@@ -12,6 +12,13 @@ As you may have seen, there is a lot of plants here. In order to find what you'r
 We can filter on one or several values, with the `filter[FIELD]=value1,value2,value3...` parameter, or on a range of values, with the `range[FIELD]=min,max` parameter.
 :::
 
+:::caution Using curl? Add the `-g` flag
+`curl` treats `[` and `]` as globbing characters and fails with
+`curl: (3) bad range in URL position` on any `filter[…]`, `range[…]` or
+`order[…]` parameter. Quoting the URL does not help: pass `-g` (or
+`--globoff`) to turn globbing off, as in the examples below.
+:::
+
 ### Filter on a single value
 
 Let's query only plants with the "Beach Strawberry" common name:.
@@ -40,7 +47,7 @@ Open your browser and navigate to
 In your terminal:
 
 ```bash
-curl 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[common_name]=beach%20strawberry'
+curl -g 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[common_name]=beach%20strawberry'
 ```
 
 </TabItem>
@@ -140,7 +147,7 @@ Open your browser and navigate to
 In your terminal:
 
 ```bash
-curl 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[edible_part]=roots,leaves'
+curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[edible_part]=roots,leaves'
 ```
 
 </TabItem>
@@ -285,7 +292,7 @@ Open your browser and navigate to
 In your terminal:
 
 ```bash
-curl 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&range[maximum_height_cm]=5,20'
+curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&range[maximum_height_cm]=5,20'
 ```
 
 </TabItem>

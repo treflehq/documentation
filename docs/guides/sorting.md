@@ -13,6 +13,13 @@ Sometimes, we also need to specify a particular order for sorting the results.
 You can order results by a specific value with the `order[FIELD]=asc|desc...` parameter.
 :::
 
+:::caution Using curl? Add the `-g` flag
+`curl` treats `[` and `]` as globbing characters and fails with
+`curl: (3) bad range in URL position` on any `filter[…]`, `range[…]` or
+`order[…]` parameter. Quoting the URL does not help: pass `-g` (or
+`--globoff`) to turn globbing off, as in the examples below.
+:::
+
 ### Basic sorting
 
 Let's sort plants by year, in a **ascending** order:
@@ -41,7 +48,7 @@ Open your browser and navigate to
 In your terminal:
 
 ```bash
-curl 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&order[year]=asc'
+curl -g 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&order[year]=asc'
 ```
 
 </TabItem>
@@ -122,7 +129,7 @@ For example, if we want to get the tallest trees, we will have trees with `null`
 # Get all plants
 # -> with tree ligneous type (filter[ligneous_type]=tree)
 # -> ordered by maximum height descending (highest first) (order[maximum_height_cm]=desc)
-curl "https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[ligneous_type]=tree&order[maximum_height_cm]=desc"
+curl -g "https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[ligneous_type]=tree&order[maximum_height_cm]=desc"
 ```
 
 To avoid that, you can exclude null values ([see Filtering](filtering#exclude-null-values)):
@@ -132,7 +139,7 @@ To avoid that, you can exclude null values ([see Filtering](filtering#exclude-nu
 # -> with tree ligneous type (filter[ligneous_type]=tree)
 # -> ordered by maximum height descending (highest first) (order[maximum_height_cm]=desc)
 # -> and without plants having a null maximum height (filter_not[maximum_height_cm]=null)
-curl "https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[ligneous_type]=tree&order[maximum_height_cm]=desc&&filter_not[maximum_height_cm]=null"
+curl -g "https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[ligneous_type]=tree&order[maximum_height_cm]=desc&&filter_not[maximum_height_cm]=null"
 ```
 
 
