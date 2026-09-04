@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunktrefle_docs=self.webpackChunktrefle_docs||[]).push([[535],{5641:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"2.1.0: CORS, and where the data comes from","permalink":"/blog/2-1-0-released"},{"title":"2.0.2","permalink":"/blog/2-0-2-released"},{"title":"1.6.0","permalink":"/blog/1-6-0-released"}]}')}}]);

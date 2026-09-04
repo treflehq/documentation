@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunktrefle_docs||=[]).push([[8947],{6600(e){e.exports=JSON.parse('{"authors":[{"name":"Andr\xe9 Aubin","title":"Trefle Core Team","url":"https://twitter.com/lambda_2","imageURL":"https://pbs.twimg.com/profile_images/1247213607353540608/i9oN_Gbg_400x400.jpg","key":"lambda2","page":null,"count":3}]}')}}]);
