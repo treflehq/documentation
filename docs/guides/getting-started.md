@@ -216,13 +216,21 @@ Species -> Abies balsamea
 
 ### Plant and Species
 
-For commodity reasons, we added a `Plant` level between Genus and Species. A plant is the main species of a species, without all the forms, varieties, subspecies etc...
+For commodity reasons, we added a `Plant` level between Genus and Species. A plant groups a species together with all of its infraspecific taxa — the subspecies, varieties, forms and hybrids that botanists distinguish below the species level.
 
-For each plant, we have one main species and several other "sub" species (which can be subspecies, varieties, hybrids, cultivars etc...).
+Each plant has one **main species** (the species itself) and, when they exist, several other records below it. Their `rank` field tells you which is which: `species`, `ssp`, `var`, `subvar`, `form` or `hybrid`.
 
-For example, our [balsam fir](https://en.wikipedia.org/wiki/Abies_balsamea) have:
+For example, our [balsam fir](https://en.wikipedia.org/wiki/Abies_balsamea) has:
 
-- One species (which is our "plant"): `Abies balsamea`
-- One sub-species: `Abies balsamea ssp. lasiocarpa`
-- Two varieties: `Abies balsamea var. phanerolepis` and `Abies balsamea var. balsamea`
+- One main species (which is our "plant"): `Abies balsamea`
+- Two varieties: `Abies balsamea var. balsamea` and `Abies balsamea var. phanerolepis`
+
+:::note A note on the vocabulary
+`Plant` is a convenience layer, not a botanical rank. What we call a *plant* is what a botanist calls a **species**, and what we call a *species* is really a **taxon** whose rank is given by the `rank` field — a species or something below it.
+
+Two consequences worth knowing:
+
+- A `plant` and its main `species` describe the same organism under two different endpoints. Use `/plants` when you want one entry per plant, `/species` when you need every taxon.
+- Closely named taxa are not necessarily related in our tree. `Abies lasiocarpa` is an accepted species of its own, not a subspecies of `Abies balsamea`, even though older literature combined them. Follow `links` rather than the name to navigate the hierarchy.
+:::
 

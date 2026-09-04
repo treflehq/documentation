@@ -7,14 +7,20 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-The access token you get from [your account page](https://trefle.io/profile) allow you to makes queries on the Trefle API, but your token needs to be kept secret, so **you can't make queries from the browser as the user on your website will see the access token**, and could use it for their personal needs. Additionally this is not a good practice in developing software.
+Since 2.1.0, the read endpoints of the API answer cross-origin requests, so a browser **can** call them directly. What follows is about which credential you should send.
+
+The access token you get from [your account page](https://trefle.io/profile) needs to be kept secret: anything shipped in client-side code is readable by anyone who opens the developer tools, and a leaked token is used against your quota. For a throwaway prototype or a public demo that trade-off may be acceptable; for anything you maintain, request a **JWT bound to your origin** instead. It is scoped to your website and can be rotated without touching your account token.
 
 ![client workflow](/img/client-scheme.png)
 
-If you need to perform client-side requests you will have to request a client-side token from your own backend and get a JWT token in return. This token will be usable on the client side. This call needs your secret access token and the url of the website that the client side requests will come from.
+The claim call takes your secret access token and the URL of the website the client-side requests will come from, and returns the JWT to use in the browser.
 
-:::info
-Because this is a **POST** request it can't be done directly from the browser.
+:::caution Claim the JWT from your backend, not from the browser
+`POST /api/auth/claim` does accept cross-origin requests, but calling it from the browser would ship your secret access token to the client — which is exactly what the JWT exists to avoid. Make this call server-side.
+:::
+
+:::note What CORS covers
+Read requests (`GET`, `HEAD`) anywhere under `/api`, plus the `POST /api/auth/claim` call above. Write endpoints — submitting corrections or reports — are deliberately left out and still need to go through your own backend. Responses also expose the `RateLimit-Limit`, `RateLimit-Remaining` and `RateLimit-Reset` headers, so client-side code can read its remaining quota.
 :::
 
 
