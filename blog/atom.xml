@@ -9,7 +9,7 @@
     <icon>https://docs.trefle.io/img/favicon.ico</icon>
     <rights>Copyright © 2026 Trefle.</rights>
     <entry>
-        <title type="html"><![CDATA[2.1.0: CORS, and where the data comes from]]></title>
+        <title type="html"><![CDATA[2.1.0]]></title>
         <id>https://docs.trefle.io/blog/2-1-0-released</id>
         <link href="https://docs.trefle.io/blog/2-1-0-released"/>
         <updated>2026-09-04T00:00:00.000Z</updated>
