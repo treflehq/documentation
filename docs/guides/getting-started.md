@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 This is the Trefle API documentation. The Trefle API aims to deliver all plants informations under an accessible interface.
 
-All API access is over HTTPS, and accessed from https://trefle.io. All data is sent and received as JSON.
+All API access is over HTTPS, and accessed from [https://trefle.io](https://trefle.io). All data is sent and received as JSON.
 
 ### What You Need
 
