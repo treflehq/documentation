@@ -5,7 +5,7 @@ title: Data provenance
 
 Trefle aggregates botanical data from many sources — [GBIF](https://www.gbif.org/), [POWO](https://powo.science.kew.org/), the USDA PLANTS database, Baseflor, Wikipedia and others. They do not always agree, and for a while the last source crawled silently won.
 
-Since 2.1.0, every value ingested is recorded as a **fact**: what the value is, which source claims it, and how it was established. This page explains how to read that trail.
+Since 2.1.0, values are recorded as **facts**: what the value is, which source claims it, and how it was established. This page explains how to read that trail, and how conflicting sources are arbitrated.
 
 ## The facts endpoint
 
@@ -36,7 +36,11 @@ curl 'https://trefle.io/api/v1/species/SPECIES_SLUG/facts?token=YOUR_TREFLE_TOKE
 }
 ```
 
-One row per (field, source) claim. A species with no recorded facts returns an empty list — the trail only covers values ingested since the feature shipped, and it fills up as the data pipeline runs.
+One row per (field, source) claim.
+
+:::note The trail is being backfilled
+Provenance recording shipped in 2.1.0, so it only covers values written since then. Accepted community corrections and the automated data checks already go through it; the bulk import pipelines are being migrated onto the same path, source by source. Until that is finished, **most species return an empty list**, and an absent fact means "not recorded yet", not "no source".
+:::
 
 ### evidence_type
 
