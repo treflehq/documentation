@@ -2,29 +2,32 @@
   "name": "trefle-docs",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=20.0"
+  },
   "scripts": {
     "start": "docusaurus start",
     "build": "docusaurus build",
+    "serve": "docusaurus serve",
+    "clear": "docusaurus clear",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0",
-    "@docusaurus/plugin-google-analytics": "^2.2.0",
-    "@docusaurus/preset-classic": "^2.0",
-    "@docusaurus/theme-search-algolia": "^2.2.0",
-    "buffer": "^5.6.0",
-    "clsx": "^1.1.1",
+    "@docusaurus/core": "^3.10.2",
+    "@docusaurus/plugin-google-analytics": "^3.10.2",
+    "@docusaurus/preset-classic": "^3.10.2",
+    "@docusaurus/theme-search-algolia": "^3.10.2",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.1.1",
     "core-js": "^3.6.5",
     "jquery-param": "^1.1.2",
     "mobx": "^6.0.0",
-    "query-string": "^6.13.1",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "redoc": "^2.0",
-    "remark-jargon": "^2.6.0",
-    "remark-openapi": "^0.1.1",
-    "styled-components": "^5.1.1"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "redoc": "^2.5.3",
+    "styled-components": "^6.1.19"
   },
   "browserslist": {
     "production": [
@@ -37,8 +40,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "node-fetch": "^2.6.1"
   }
 }

@@ -170,8 +170,8 @@ Growing of farming related fields
 | **sowing** (string)                  | A description on how to sow the plant                                                                                                |
 | **ph_maximum** (number)              | The maximum acceptable soil pH (of the top 30 centimeters of soil) for the plant                                                     |
 | **ph_minimum** (number)              | The minimum acceptable soil pH (of the top 30 centimeters of soil) for the plant                                                     |
-| **light** (integer)                  | Required amount of light, on a scale from 0 (no light, <= 10 lux) to 10 (very intensive insolation, >= 100 000 lux)                  |
-| **atmospheric_humidity** (integer)   | Required relative humidity in the air, on a scale from 0 (<=10%) to 10 (>= 90%)                                                      |
+| **light** (integer)                  | Required amount of light, on a scale from 0 (no light, &lt;= 10 lux) to 10 (very intensive insolation, &gt;= 100 000 lux)                  |
+| **atmospheric_humidity** (integer)   | Required relative humidity in the air, on a scale from 0 (&lt;=10%) to 10 (&gt;= 90%)                                                      |
 | **growth_months** (array of strings) | The most active growth months of the species (usually all year round for perennial plants)                                           |
 | **bloom_months** (array of strings)  | The months the species usually blooms                                                                                                |
 | **fruit_months** (array of strings)  | The months the species usually produces fruits                                                                                       |
