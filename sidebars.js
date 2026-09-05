@@ -18,6 +18,7 @@ module.exports = {
       label: 'Advanced',
       collapsed: false,
       items: [
+        'advanced/understanding-the-data',
         'advanced/plants-fields',
         'advanced/data-provenance',
         'advanced/client-side-apps',
