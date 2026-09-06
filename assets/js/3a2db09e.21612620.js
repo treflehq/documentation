@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunktrefle_docs||=[]).push([[8121],{8070(e){e.exports=JSON.parse('{"tags":[{"label":"releases","permalink":"/blog/tags/releases","count":4}]}')}}]);
