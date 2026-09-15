@@ -132,3 +132,36 @@ The search endpoints are the exception: `/api/v1/plants/search` and
 ```bash
 curl -g 'https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut&limit=5'
 ```
+
+## How deep you can page
+
+Requests past **page 2,500** return a `400`:
+
+```bash
+curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&page=3000'
+```
+
+```json
+{
+  "error": true,
+  "message": "page must be 2500 or lower. Narrow the results with a filter or range instead of paging deep into the full collection. See https://docs.trefle.io"
+}
+```
+
+At 20 items per page that is a 50,000-row offset. The database has to walk and
+discard every row before that offset, so requests get slower the further you go —
+and there is no depth at which the answer becomes useful again. The limit fails
+fast instead of degrading quietly.
+
+Note that `links.last` on a large collection can point past this limit, as in the
+example above: it is computed from `meta.total` and does not account for the cap.
+
+If you are paging that deep to walk the whole database, narrow the collection
+instead — [filters](/docs/guides/filtering), ranges and
+[search](/docs/guides/searching) all reduce the result set to something you can
+page through:
+
+```bash
+# instead of walking /api/v1/species page by page
+curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[genus]=Abies'
+```
