@@ -170,8 +170,8 @@ Growing of farming related fields
 | **sowing** (string)                  | A description on how to sow the plant                                                                                                |
 | **ph_maximum** (number)              | The maximum acceptable soil pH (of the top 30 centimeters of soil) for the plant                                                     |
 | **ph_minimum** (number)              | The minimum acceptable soil pH (of the top 30 centimeters of soil) for the plant                                                     |
-| **light** (integer)                  | Amount of light in the species' habitats, on a scale from 0 (no light, &lt;= 10 lux) to 10 (very intensive insolation, &gt;= 100 000 lux). Ecological indicator                  |
-| **atmospheric_humidity** (integer)   | Relative humidity of the air in the species' habitats, on a scale from 0 (&lt;=10%) to 10 (&gt;= 90%). Ecological indicator                                                      |
+| **light** (integer)                  | How much light the species' habitats receive, from 1 (deep shade) to 9 (full sun). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) — an Ellenberg class, not a measurement |
+| **atmospheric_humidity** (integer)   | How humid the air is in the species' habitats, from 1 (very dry) to 9 (saturated). [Ecological indicator](#ecological-indicator-values-light-humidity-soil)                      |
 | **growth_months** (array of strings) | The most active growth months of the species (usually all year round for perennial plants)                                           |
 | **bloom_months** (array of strings)  | The months the species usually blooms                                                                                                |
 | **fruit_months** (array of strings)  | The months the species usually produces fruits                                                                                       |
@@ -182,14 +182,43 @@ Growing of farming related fields
 | **minimum_root_depth** (object)      | Minimum depth of soil required for the species, in centimeters. Plants that do not have roots such as rootless aquatic plants have 0 |
 | **minimum_temperature** (object)     | The minimum tolerable temperature for the species. In celsius or fahrenheit degrees                                                  |
 | **maximum_temperature** (object)     | The maximum tolerable temperature for the species. In celsius or fahrenheit degrees                                                  |
-| **soil_nutriments** (integer)        | Nutriment level of the soil in the species' habitats, on a scale from 0 (oligotrophic) to 10 (hypereutrophic). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
-| **soil_salinity** (integer)          | Salinity of the soil in the species' habitats, on a scale from 0 (non-saline) to 10 (hyperhaline). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
+| **soil_nutriments** (integer)        | Nutrient level of the soil in the species' habitats, from 1 (hyperoligotrophic) to 9 (hypereutrophic). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
+| **soil_salinity** (integer)          | Salinity of the soil in the species' habitats, from 0 (absent from saline soils — a real value, not "unknown") to 9 (hyperhaline). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
 | **soil_texture** (integer)           | Texture of the soil in the species' habitats, on a scale from 0 (clay) to 10 (rock)                                                  |
-| **soil_humidity** (integer)          | Humidity of the soil in the species' habitats, on a scale from 0 (xerophile) to 10 (subaquatic). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
+| **soil_humidity** (integer)          | Humidity of the soil in the species' habitats, from 1 (xerophile) to 12 (submerged) — the one indicator with twelve classes. [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
 
 #### Ecological indicator values (light, humidity, soil)
 
-The `light`, `atmospheric_humidity`, `soil_humidity`, `soil_nutriments` and `soil_salinity` fields are **ecological indicator values**, not measurements of what an individual plant tolerates. They come from the French [Baseflor / Catminat](https://www.tela-botanica.org/projets/phytosociologie/) database (Philippe Julve) and follow the Ellenberg-style convention: the number describes **where the species is typically found in the wild** along an environmental gradient, inferred from the habitats it occupies.
+The `light`, `atmospheric_humidity`, `soil_humidity`, `soil_nutriments` and `soil_salinity` fields are **ecological indicator values**, not measurements of what an individual plant tolerates. They come from the French [Baseflor / Catminat](https://www.tela-botanica.org/projets/phytosociologie/) database (Philippe Julve) and follow the Ellenberg convention: the number describes **where the species is typically found in the wild** along an environmental gradient, inferred from the habitats it occupies.
+
+##### The number you receive is the class, unchanged
+
+Each field carries the source's own class number, with no rescaling. Check the range before you plot anything:
+
+| Field | Indicator | Range | 1 (or 0) means | Top of the scale means |
+|---|---|---|---|---|
+| `light` | Ellenberg **L** | 1–9 | deep shade | full sun |
+| `soil_humidity` | Ellenberg **F** | **1–12** | very dry | submerged |
+| `soil_nutriments` | Ellenberg **N** | 1–9 | hyperoligotrophic | hypereutrophic |
+| `soil_salinity` | Ellenberg **S** | **0–9** | absent from saline soils | hyperhaline |
+| `atmospheric_humidity` | Julve **HA** | 1–9 | very dry air | saturated air |
+
+Two ranges catch people out. **Soil humidity runs to 12**, not 9: Ellenberg extended that one scale to cover the aquatic domain, so 10 to 12 describe standing water rather than merely wetter ground. And **salinity starts at 0**, where 0 is a real reading meaning the species is absent from saline soils. Missing is always `null`.
+
+Julve's classes are Ellenberg's. His documentation states that the values are based on those published in Ellenberg et al. (1992) for Germany, progressively adapted to the French flora, and that the valence classes run from 1 to 9 "except for soil moisture, where twelve classes have been retained, following Ellenberg". Same factors, same direction, same widths. No conversion is applied, which is why a value from another Ellenberg-family database compares with ours directly.
+
+> Ellenberg, H., Weber, H.E., Düll, R., Wirth, V., Werner, W. & Paulissen, D. (1992) *Zeigerwerte von Pflanzen in Mitteleuropa*. Scripta Geobotanica 18, 2nd ed. Goltze, Göttingen.
+>
+> Julve, Ph. (1998 ff.) *baseflor. Index botanique, écologique et chorologique de la flore de France*. Programme Catminat.
+
+##### What is deliberately not here
+
+Ellenberg defines two further indicators that Trefle does **not** expose, and their absence is a decision rather than a gap:
+
+- **R, soil reaction.** It ranks acidity on a 1–9 ordinal scale. `ph_minimum` and `ph_maximum` hold pH readings, and mixing a rank into them would leave those fields unable to say which of their numbers were measured. A published table converting R to a pH interval exists; we do not apply it, for the same reason.
+- **T, temperature.** A thermal-climate indicator. `minimum_temperature` and `maximum_temperature` are degrees a plant survives, which is a different question, and no other field means it.
+
+Both are recorded internally as evidence with their sources, and promoted to no field. If a dedicated indicator field is ever added, the values are already there.
 
 This matters when you compare Trefle to other sources:
 
@@ -197,7 +226,7 @@ This matters when you compare Trefle to other sources:
 - These indicators are calibrated for the **temperate European flora**. For species outside that range they are often absent, and when present should be treated with caution.
 - A value of `0` is meaningful (it places the species at the bottom of the gradient), it does not mean "unknown". Missing data is `null`.
 
-If you need to know where a specific value came from, the [provenance endpoint](/docs/advanced/data-provenance) tells you which source supplied it.
+If you need to know where a specific value came from, the [provenance endpoint](/docs/advanced/data-provenance) tells you which source supplied it, and the [sources register](/docs/advanced/data-sources) says what that source is and how to credit it.
 
 ### synonyms[]
 
