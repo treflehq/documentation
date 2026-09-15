@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunktrefle_docs||=[]).push([[3355],{771(e){e.exports=JSON.parse('{"tag":{"label":"releases","permalink":"/blog/tags/releases","allTagsPath":"/blog/tags","count":6,"unlisted":false},"listMetadata":{"permalink":"/blog/tags/releases","page":1,"postsPerPage":10,"totalPages":1,"totalCount":6,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);

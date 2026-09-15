@@ -4,11 +4,53 @@
         <title>Trefle documentation Blog</title>
         <link>https://docs.trefle.io/blog</link>
         <description>Trefle documentation Blog</description>
-        <lastBuildDate>Thu, 10 Sep 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 15 Sep 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>Copyright © 2026 Trefle.</copyright>
+        <item>
+            <title><![CDATA[2.6.0]]></title>
+            <link>https://docs.trefle.io/blog/2-6-0-released</link>
+            <guid>https://docs.trefle.io/blog/2-6-0-released</guid>
+            <pubDate>Tue, 15 Sep 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[The API reference has been describing the API as it stood in December 2020. It now describes the API as it is, and a CI check keeps it that way. This release also carries the performance and hardening work from the last two weeks — including one change to pagination that clients paging very deep need to know about.]]></description>
+            <content:encoded><![CDATA[<p>The API reference has been describing the API as it stood in December 2020. It now describes the API as it is, and a CI check keeps it that way. This release also carries the performance and hardening work from the last two weeks — including one change to pagination that clients paging very deep need to know about.</p>
+<h2 class="anchor anchorTargetHideOnScrollNavbar_vjPI" id="the-reference-is-current-again">The reference is current again<a href="https://docs.trefle.io/blog/2-6-0-released#the-reference-is-current-again" class="hash-link" aria-label="Direct link to The reference is current again" title="Direct link to The reference is current again" translate="no">​</a></h2>
+<p><a class="" href="https://docs.trefle.io/reference">docs.trefle.io/reference</a> was rendering a spec generated on <strong>13 December 2020</strong>, announcing version 1.6.0. Nearly five years of drift.</p>
+<p>The generator was not broken — it was unplugged. It wrote to a directory that did not exist, while the file actually served lived somewhere else. Regenerating updated nothing anyone could see. It also exited with an error even when it succeeded, which is why it had never been wired into CI.</p>
+<p>Fifteen endpoints existed with no entry in the reference at all:</p>
+<ul>
+<li class=""><code>GET /api/v1</code> and <code>GET /api/v1/me</code></li>
+<li class=""><code>GET /api/v1/species/:id/facts</code> — the provenance trail behind every trait value, shipped in 2.5.0 and invisible in the reference ever since</li>
+<li class=""><code>GET /api/v1/species/:id/corrections</code> and <code>GET /api/v1/corrections/mine</code></li>
+<li class="">the ten nested collections: <code>genus/:id/species</code>, <code>families/:id/genus</code>, <code>plants/:id/species</code>, <code>distributions/:id/species</code> and their record endpoints</li>
+</ul>
+<p>All 45 routes the API answers are now documented. <code>sources[].licence</code> and <code>licence_url</code> — the attribution work from 2.5.0 — are in the published schema, as are <code>complete_data</code>, <code>completion_ratio</code> and <code>synonyms[].sources</code>.</p>
+<p>A few things the reference had been getting wrong:</p>
+<ul>
+<li class="">Submitting a correction was documented for one record type; the API accepts <code>species</code>, <code>plant</code> and <code>plants</code>.</li>
+<li class=""><code>edible_part</code> did not list <code>tubers</code> among its accepted values.</li>
+<li class=""><code>soil_texture</code> was documented as an enumeration of French terms. It is an integer scale from 0 (clay) to 10 (rock), and always has been.</li>
+</ul>
+<p>These last two came out of fixing the generator that builds the correction field table, which had been silently dropping every multi-value field — <code>duration</code>, the colours, the months, <code>edible_part</code> — leaving them as empty rows.</p>
+<p>The reference is now regenerated and checked on every push. If the committed spec falls behind the code, CI fails.</p>
+<h2 class="anchor anchorTargetHideOnScrollNavbar_vjPI" id="deep-pagination-is-capped-at-page-2500">Deep pagination is capped at page 2,500<a href="https://docs.trefle.io/blog/2-6-0-released#deep-pagination-is-capped-at-page-2500" class="hash-link" aria-label="Direct link to Deep pagination is capped at page 2,500" title="Direct link to Deep pagination is capped at page 2,500" translate="no">​</a></h2>
+<p><strong>This one can change what your client sees.</strong> Requests past <strong>page 2,500</strong> (an offset of 50,000 rows) now return a documented <strong>400</strong> instead of an increasingly slow answer.</p>
+<p>Postgres has to walk and discard every row before a deep offset, so these requests were degrading quietly: offset 49,980 measured at 26.8ms, offset 200,000 at 109.5ms and climbing. Failing fast with a clear error beats serving a page that takes longer every time you go further.</p>
+<p>If you are paging that deep to enumerate the database, that is what the cap is telling you: filter the collection down instead. Proper cursor pagination is the real answer and it is coming, but it replaces page-number links with an opaque cursor — a change to the public pagination contract that deserves its own release rather than being slipped into this one.</p>
+<h2 class="anchor anchorTargetHideOnScrollNavbar_vjPI" id="searching-by-name-got-about-3500-faster">Searching by name got about 3,500× faster<a href="https://docs.trefle.io/blog/2-6-0-released#searching-by-name-got-about-3500-faster" class="hash-link" aria-label="Direct link to Searching by name got about 3,500× faster" title="Direct link to Searching by name got about 3,500× faster" translate="no">​</a></h2>
+<p>Looking a species up by scientific name could not use the index on that column, because the lookup lowercases it and the index was on the raw value. Every name lookup was a sequential scan over 489,358 rows.</p>
+<p>Measured on a full production-size restore: <strong>464.9ms before, 0.131ms after.</strong></p>
+<p>Two more query fixes landed with it. Rendering a single plant was making six separate queries for the same rows, one per taxonomic rank; it now makes one. And the species menu in the explore section was making one query per linked source, doubled by the check deciding whether to show the section at all — those three paths alone accounted for 7,654 grouped error-tracking events since October 2025.</p>
+<h2 class="anchor anchorTargetHideOnScrollNavbar_vjPI" id="an-upload-endpoint-for-a-feature-that-does-not-exist">An upload endpoint for a feature that does not exist<a href="https://docs.trefle.io/blog/2-6-0-released#an-upload-endpoint-for-a-feature-that-does-not-exist" class="hash-link" aria-label="Direct link to An upload endpoint for a feature that does not exist" title="Direct link to An upload endpoint for a feature that does not exist" translate="no">​</a></h2>
+<p>ActiveStorage was mounted and configured, but its tables had never been created and nothing in the application used it. The result was a public, unauthenticated write endpoint — <code>POST /rails/active_storage/direct_uploads</code> — that failed on every call.</p>
+<p>It is removed rather than repaired. When photo uploads are actually built, reinstating it is one command; nothing should stay mounted and broken to reserve a feature nobody has started. That route now returns 404.</p>
+<p>Three other malformed-request cases that reached the Rack layer and produced a 500 — before the application could give a useful answer — now return 400 with the problem named.</p>
+<h2 class="anchor anchorTargetHideOnScrollNavbar_vjPI" id="smaller-things">Smaller things<a href="https://docs.trefle.io/blog/2-6-0-released#smaller-things" class="hash-link" aria-label="Direct link to Smaller things" title="Direct link to Smaller things" translate="no">​</a></h2>
+<p>Error reporting is now restricted to production, so a developer running a console locally no longer reports into the production project. Twenty-nine leftover debug statements were removed from the request path, several of which were writing personal data — user email addresses, client IP addresses — to standard output on every API call. Where the output was still worth keeping it logs a user id and nothing more.</p>]]></content:encoded>
+            <category>releases</category>
+        </item>
         <item>
             <title><![CDATA[2.5.1]]></title>
             <link>https://docs.trefle.io/blog/2-5-1-released</link>
