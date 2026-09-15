@@ -19,7 +19,8 @@ Different sources answer different questions. None of them answers all of them.
 | **[GBIF](https://www.gbif.org/)** | Occurrence records, common names, an indication of how often a species is observed | ~360 000 records |
 | **[IPNI](https://www.ipni.org/)** | Where and when a name was first published | ~316 000 records |
 | **[Pl@ntNet](https://plantnet.org/)** | Photographs, common names | ~31 000 records |
-| **Baseflor / Catminat** (Philippe Julve) | Ecological indicators — light, humidity, soil | ~6 400 species, western Europe |
+| **[TRY](https://www.try-db.org)** | Plant traits from published measurements — life form, lifespan, flower and fruit characters, leaf texture, root depth | Import built, not yet run |
+| **Baseflor / Catminat** (Philippe Julve) | Ecological indicators — light, humidity, soil | ~3 500 species per indicator, western Europe |
 | **USDA PLANTS** | Agronomic ratings for North American species | Historical; largely retired from the API |
 | **Regional floras** | Measured descriptions, peer-reviewed | Added by curation, species by species |
 | **Wikipedia** | Descriptions and common names — **never numbers** | Text only |
@@ -51,14 +52,17 @@ Some fields are less self-explanatory than their names suggest.
 
 ### Ecological indicators are about habitat, not tolerance
 
-`light`, `atmospheric_humidity`, `soil_humidity`, `soil_nutriments` and `soil_salinity` are scored from 0 to 10. They come from the Baseflor database and follow the Ellenberg tradition: the number says **where the species is normally found growing in the wild**, along an environmental gradient.
+`light`, `atmospheric_humidity`, `soil_humidity`, `soil_nutriments` and `soil_salinity` carry an Ellenberg-style class number: the value says **where the species is normally found growing in the wild**, along an environmental gradient. They come from the Baseflor database, and you receive the class unchanged.
+
+Each indicator has its own range, and none of them runs 0–10. Light, nutrients and atmospheric humidity run **1–9**; salinity runs **0–9**, where 0 is a real reading; soil humidity runs **1–12**, because Ellenberg extended that one scale to cover standing water. [The field reference](/docs/advanced/plants-fields#ecological-indicator-values-light-humidity-soil) gives the full table and the citations.
 
 They do **not** say what an individual plant will survive in a garden or a field. That is a different question, and other databases — the USDA in particular — answer it with their own rating scales. The two disagree routinely and both can be right. A salt-marsh plant scores high as a habitat indicator while its cultivated salt tolerance may be rated low.
 
 Two consequences worth remembering:
 
 - These indicators were calibrated for the **temperate European flora**. Outside that range they are usually absent, and should be treated with caution when present.
-- **`0` is a real value** on these scales — it places the species at the bottom of the gradient. Missing data is `null`, never `0`.
+- **`0` is a real value** where a scale starts at 0 — it places the species at the bottom of the gradient. Missing data is `null`, never `0`.
+- Ellenberg's reaction (R) and temperature (T) indicators are deliberately **not** published as fields. Putting an ordinal rank into `ph_minimum` / `ph_maximum` would leave those fields unable to say which of their numbers were measured. The reasoning is in [the field reference](/docs/advanced/plants-fields#what-is-deliberately-not-here).
 
 ### Heights
 
@@ -93,4 +97,4 @@ Two things make a real difference:
 - **Report a value that looks wrong.** See [reporting errors](/docs/guides/reporting-errors). A report backed by a reference — a flora, a paper, a DOI — is the strongest source we have, and outranks every automated import.
 - **Tell us which fields matter to you.** Priorities are currently set by how often a species is looked up. If a field is critical to your work and consistently empty, that is worth knowing.
 
-Every value ingested from now on records where it came from. You can always ask the API [what its sources are](/docs/advanced/data-provenance), and decide for yourself whether to trust it.
+Every value ingested from now on records where it came from. You can always ask the API [what its sources are](/docs/advanced/data-provenance), look a source up in [the register](/docs/advanced/data-sources), and decide for yourself whether to trust it.
