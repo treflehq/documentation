@@ -22,11 +22,11 @@ The rank decides who wins when two sources claim the same field. It runs stronge
 | 8 | **[POWO](https://powo.science.kew.org/)** (Kew) | Accepted names, authorship, synonymy, native range. The nomenclatural backbone | 1 242 348 |
 | 9 | **[World Flora Online](https://www.worldfloraonline.org/)** | Accepted names, including groups Kew does not cover | 360 940 |
 | 10 | **[IPNI](https://www.ipni.org/)** | Where and when a name was first published | 316 686 |
-| 12 | **[GBIF](https://www.gbif.org/)** | Occurrence records, common names, how often a species is observed | 360 318 |
-| 13 | **USDA PLANTS** | Agronomic ratings for the North American flora | Historical — see below |
-| 16 | **Baseflor / Catminat** (Philippe Julve) | Ecological indicator values, flowering period, flower colour, fruit type | ~3 500 species per indicator |
-| 19 | **[Pl@ntNet](https://plantnet.org/)** | Photographs, common names | 31 547 |
-| 22 | **Wikipedia** | Descriptions and common names — never numbers | Text only |
+| 11 | **[GBIF](https://www.gbif.org/)** | Occurrence records, common names, how often a species is observed | 360 318 |
+| 12 | **USDA PLANTS** | Agronomic ratings for the North American flora | Historical — see below |
+| 15 | **Baseflor / Catminat** (Philippe Julve) | Ecological indicator values, flowering period, flower colour, fruit type | ~3 500 species per indicator |
+| 18 | **[Pl@ntNet](https://plantnet.org/)** | Photographs, common names | 31 547 |
+| 21 | **Wikipedia** | Descriptions and common names — never numbers | Text only |
 
 **WCVP** (Kew's World Checklist of Vascular Plants) is used as a bulk dataset rather than a ranked source: it supplies the genus-to-family table and the synonymy that names are reconciled against, upstream of arbitration.
 
@@ -42,12 +42,12 @@ These hold a place in the arbitration order so that connecting them later does n
 |---:|---|---|
 | 2 | IUCN | Conservation status |
 | 4–7 | Flora Iberica, Flora of North America, Flora of China, Flora Europaea | Measured, peer-reviewed descriptions, authoritative for the flora they cover |
-| 14 | Tropicos | Nomenclature |
-| 15 | Tela Botanica | French flora |
-| 17 | Trees and Shrubs Online | Dendrological descriptions |
-| 18 | EOL | Aggregated descriptions |
-| 20 | Plants For A Future | Edibility and uses |
-| 21 | OpenFarm | Cultivation guidance |
+| 13 | Tropicos | Nomenclature |
+| 14 | Tela Botanica | French flora |
+| 16 | Trees and Shrubs Online | Dendrological descriptions |
+| 17 | EOL | Aggregated descriptions |
+| 19 | Plants For A Future | Edibility and uses |
+| 20 | OpenFarm | Cultivation guidance |
 
 The four regional floras sit above every global aggregator on purpose: within the flora they cover, a specialist description outranks a database that mostly relays.
 
