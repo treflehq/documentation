@@ -117,6 +117,8 @@ Flower related fields (the reproductive structure found in flowering plants)
 |------------------------------|------------------------|
 | **color** (array of strings) | The flower color(s)    |
 | **conspicuous** (boolean)    | Is the flower visible? |
+| **sexuality** (string) | Sexual system of the flowers<br />Can be: `hermaphrodite`, `monoecious`, `dioecious`, `andromonoecious`, `androdioecious`, `gynomonoecious`, `gynodioecious`, `polygamodioecious`, `trioecious`, and `trimonoecious`. |
+| **inflorescence_type** (string) | How the flowers are arranged<br />Can be: `solitary`, `raceme`, `spike`, `head`, `umbel`, `cyme`, `panicle`, and `fascicle`. |
 
 ### foliage
 
@@ -138,7 +140,7 @@ Fruit or seed related fields
 |--------------------------------|------------------------------------------------------------------------------|
 | **conspicuous** (boolean)      | Is the fruit visible?                                                        |
 | **color** (array of strings)   | The fruit color(s)                                                           |
-| **shape** (string)             | Fruit shape                                                                  |
+| **shape** (string)             | Fruit type<br />Can be: `achene`, `berry`, `capsule`, `caryopsis`, `drupe`, `follicle`, `legume`, `mericarp`, `nut`, `pome`, `samara`, `schizocarp`, `silique`, `strobilus`, `syconium`, and `utricle`. |
 | **seed_persistence** (boolean) | Are the fruit or seed generally recognized as being persistent on the plant? |
 
 ### specifications
@@ -149,6 +151,7 @@ Species's main characteristics
 | field                              | description                                                                                                                                                                                                  |
 |------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **ligneous_type** (string)         | The ligneous type of the woody plant<br />Can be: `liana`, `subshrub`, `shrub`, `tree`, and `parasite`.                                                                                                      |
+| **biological_type** (string) | Raunkiaer life form: where the plant keeps its buds through the unfavourable season<br />Can be: `phanerophyte`, `megaphanerophyte`, `macrophanerophyte`, `nanophanerophyte`, `hemiphanerophyte`, `pseudophanerophyte`, `chamaephyte`, `hemicryptophyte`, `cryptophyte`, `geophyte`, `helophyte`, `hydrophyte`, `therophyte`, and `epiphyte`. |
 | **growth_form** (string)           | The primary growth form on the landscape in relation to soil stabilization on slopes and streamsides? Each plant species is assigned the single growth form that most enhances its ability to stabilize soil |
 | **growth_habit** (string)          | The general appearance, growth form, or architecture of the plant                                                                                                                                            |
 | **growth_rate** (string)           | The relative growth speed of the plant                                                                                                                                                                       |
