@@ -60,8 +60,6 @@ curl -g 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[common_n
 <TabItem value="node">
 
 ```js
-const fetch = require('node-fetch');
-
 (async () => {
   const response = await fetch('https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[common_name]=beach%20strawberry');
   const json = await response.json();
@@ -80,31 +78,40 @@ And we got:
 {
     "data": [
         {
-            "author": "(L.) Mill.",
-            "bibliography": "Gard. Dict. ed. 8 : n.° 4 (1768)",
-            "common_name": "beach strawberry",
-            "complete_data": true,
-            "family_common_name": "Rose family",
-            "genus_id": 2585,
-            "id": 131974,
-            "image_url": null,
-            "links": {
-                "genus": "/api/v1/genus/fragaria",
-                "self": "/api/v1/plants/fragaria-chiloensis",
-                "species": "/api/v1/plants/fragaria-chiloensis/species"
-            },
-            "scientific_name": "Fragaria chiloensis",
+            "id": 263319,
+            "common_name": "Beach strawberry",
             "slug": "fragaria-chiloensis",
-            "year": 1768
+            "scientific_name": "Fragaria chiloensis",
+            "year": 1768,
+            "bibliography": "Gard. Dict. ed. 8 : n.° 4 (1768)",
+            "author": "(L.) Mill.",
+            "status": "accepted",
+            "rank": "species",
+            "family_common_name": "Rose family",
+            "genus_id": 12147,
+            "synonyms_count": 2,
+            "completion_ratio": 39,
+            "complete_data": false,
+            "image_url": "https://bs.plantnet.org/image/o/8ee87e6f94833055db1c7df5fc07761852b7b1eb",
+            "genus": "Fragaria",
+            "family": "Rosaceae",
+            "links": {
+                "self": "/api/v1/species/fragaria-chiloensis",
+                "plant": "/api/v1/plants/fragaria-chiloensis",
+                "genus": "/api/v1/genus/fragaria",
+                "synonyms": "/api/v1/species/fragaria-chiloensis/synonyms"
+            }
         }
     ],
     "links": {
+        "self": "/api/v1/plants?filter%5Bcommon_name%5D=beach+strawberry",
         "first": "/api/v1/plants?filter%5Bcommon_name%5D=beach+strawberry&page=1",
-        "last": "/api/v1/plants?filter%5Bcommon_name%5D=beach+strawberry&page=1",
-        "self": "/api/v1/plants?filter%5Bcommon_name%5D=beach+strawberry"
+        "last": "/api/v1/plants?filter%5Bcommon_name%5D=beach+strawberry&page=1"
     },
     "meta": {
-        "total": 1
+        "total": 1,
+        "page": 1,
+        "per_page": 20
     }
 }
 ```
@@ -157,8 +164,6 @@ curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[edible_
 <TabItem value="node">
 
 ```js
-const fetch = require('node-fetch');
-
 (async () => {
   const response = await fetch('https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[edible_part]=roots,leaves');
   const json = await response.json();
@@ -189,21 +194,14 @@ And we got:
             "links": {
                 "genus": "/api/v1/genus/chenopodium",
                 "plant": "/api/v1/plants/chenopodium-album",
-                "self": "/api/v1/species/chenopodium-album"
+                "self": "/api/v1/species/chenopodium-album",
+                "synonyms": "/api/v1/species/chenopodium-album/synonyms"
             },
-            "plant_id": 114228,
             "rank": "species",
             "scientific_name": "Chenopodium album",
             "slug": "chenopodium-album",
             "status": "accepted",
-            "synonyms": [
-                "Chenopodium album var. viride",
-                "Chenopodium album var. candicans",
-                "Chenopodium album var. album",
-                "Chenopodium paucidentatum",
-                "Chenopodium pedunculare",
-                "Chenopodium album var. polymorphum"
-            ],
+            "synonyms_count": 6,
             "year": 1753
         },
         {
@@ -219,19 +217,14 @@ And we got:
             "links": {
                 "genus": "/api/v1/genus/cichorium",
                 "plant": "/api/v1/plants/cichorium-intybus",
-                "self": "/api/v1/species/cichorium-intybus"
+                "self": "/api/v1/species/cichorium-intybus",
+                "synonyms": "/api/v1/species/cichorium-intybus/synonyms"
             },
-            "plant_id": 114913,
             "rank": "species",
             "scientific_name": "Cichorium intybus",
             "slug": "cichorium-intybus",
             "status": "accepted",
-            "synonyms": [
-                "Cichorium divaricatum",
-                "Cichorium cicorea",
-                "Cichorium byzantinum",
-                "Huernia verekeri var. stenensonii"
-            ],
+            "synonyms_count": 4,
             "year": 1753
         },
         // ... 28 more items...
@@ -271,16 +264,17 @@ https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&range[maximum_height_cm
 Either bound can be left out:
 
 - `/api/v1/species?range[maximum_height_cm]=5` returns species whose maximum height is at least 5 cm
-- `/api/v1/species?range[maximum_height_cm]=,5` returns species whose maximum height is under 5 cm
+- `/api/v1/species?range[maximum_height_cm]=,5` returns species whose maximum height is 5 cm or less
 :::
 
-:::caution How the bounds are read today
-The two kinds of endpoint do not treat the bounds the same way.
+:::note How the bounds are read
+Since 2.9.7, every endpoint that takes `range[…]` (the collections, the nested lists such as `/api/v1/distributions/:zone/species`, and the search endpoints) reads the bounds the same way:
 
-- On the database collections (`/api/v1/species`, `/api/v1/plants` and the nested lists such as `/api/v1/distributions/:zone/species`), the lower bound is **included** and the upper bound is **excluded**: `range[maximum_height_cm]=5,20` means *5 ≤ height &lt; 20*. Both bounds are read as integers, so `2.5` is read as `2`.
-- On the search endpoints (`/api/v1/species/search`, `/api/v1/plants/search`), both bounds are **included**: `5,20` means *5 ≤ height ≤ 20*.
-
-To include the upper value on a database collection, add one to it (`5,21`), or leave the bound open when the value you want is the top of the scale. Inclusive bounds, decimal values and open sides on every endpoint are merged (trefle-api #445) and ship with the next release; this page will be updated then.
+- **Both bounds are included**: `range[maximum_height_cm]=5,20` means *5 ≤ height ≤ 20*.
+- **Decimals and negatives are accepted**: `range[ph_minimum]=5.5,6.5`, `range[minimum_temperature_deg_c]=,-15`.
+- **Either side can be left open**, as shown above.
+- On a field that holds whole numbers (`light`, `maximum_height_cm`…), a decimal bound is rounded towards the inside of the range: `range[light]=6.5,` keeps classes 7 and up.
+- A bound that is not a number answers `400`. From 2.9.8, so does a range whose lower bound is greater than its upper bound (`range[ph_minimum]=7,5`); before, it returned an empty page.
 :::
 
 <Tabs
@@ -311,8 +305,6 @@ curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&range[maximum_
 <TabItem value="node">
 
 ```js
-const fetch = require('node-fetch');
-
 (async () => {
   const response = await fetch('https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&range[maximum_height_cm]=5,20');
   const json = await response.json();
@@ -343,17 +335,14 @@ And we got:
             "links": {
                 "genus": "/api/v1/genus/trifolium",
                 "plant": "/api/v1/plants/trifolium-repens",
-                "self": "/api/v1/species/trifolium-repens"
+                "self": "/api/v1/species/trifolium-repens",
+                "synonyms": "/api/v1/species/trifolium-repens/synonyms"
             },
-            "plant_id": 183906,
             "rank": "species",
             "scientific_name": "Trifolium repens",
             "slug": "trifolium-repens",
             "status": "accepted",
-            "synonyms": [
-                "Trifolium repens var. atropurpureum",
-                "Amoria repens"
-            ],
+            "synonyms_count": 2,
             "year": 1753
         },
         {
@@ -369,19 +358,14 @@ And we got:
             "links": {
                 "genus": "/api/v1/genus/plantago",
                 "plant": "/api/v1/plants/plantago-major",
-                "self": "/api/v1/species/plantago-major"
+                "self": "/api/v1/species/plantago-major",
+                "synonyms": "/api/v1/species/plantago-major/synonyms"
             },
-            "plant_id": 162259,
             "rank": "species",
             "scientific_name": "Plantago major",
             "slug": "plantago-major",
             "status": "accepted",
-            "synonyms": [
-                "Plantago major var. pilgeri",
-                "Plantago major var. pachyphylla",
-                "Plantago minima",
-                "Plantago major var. scopulorum"
-            ],
+            "synonyms_count": 4,
             "year": 1753
         },
         // ... 28 more items...
@@ -411,7 +395,7 @@ And we got:
 Filters, ranges and the distribution lists combine freely, so one request can answer a practical question. Say you want the species recorded in France that grow in full sun and stay under one metre tall.
 
 - The zone comes from the path. Distribution zones use the [WGSRPD](/docs/advanced/distributions) codes as slugs, lowercased: `fra` is France, `grb` Great Britain, `spa` Spain, `ger` Germany. `/api/v1/distributions/fra/species` lists every species recorded there.
-- Full sun is `light` class 7 to 9 ([an Ellenberg class](/docs/advanced/plants-fields#ecological-indicator-values-light-humidity-soil), not a measurement). Since 9 is the top of the scale, `range[light]=7` says "7 or more" and avoids the excluded upper bound described above.
+- Full sun is `light` class 7 to 9 ([an Ellenberg class](/docs/advanced/plants-fields#ecological-indicator-values-light-humidity-soil), not a measurement). `range[light]=7` leaves the upper side open and means "7 or more", the same as `range[light]=7,9`.
 - Under one metre is `range[maximum_height_cm]=,100`.
 - Add `filter[establishment]=native` to keep only species native to the zone, and drop it to include introduced ones.
 
@@ -420,8 +404,6 @@ curl -g 'https://trefle.io/api/v1/distributions/fra/species?token=YOUR_TREFLE_TO
 ```
 
 ```js
-const fetch = require('node-fetch');
-
 (async () => {
   const url = new URL('https://trefle.io/api/v1/distributions/fra/species');
   url.searchParams.set('token', 'YOUR_TREFLE_TOKEN');
@@ -450,6 +432,68 @@ print(r.json()['meta']['total'])
 ```
 
 A range only matches species that have a value for the field, so species with no light class or no recorded height are left out. That is a sizeable share of the database: the ecological indicators were calibrated on the European flora, which is also why this example works best for a European zone. Switch `/species` for `/plants` to get one entry per plant instead of every subspecies and variety.
+
+### Accepted values and errors
+
+The [reference](/reference) lists every filter key with the values it accepts. In short:
+
+| Filter keys | Accepted values |
+| --- | --- |
+| `status` | `accepted`, `unknown`, `rejected`, `doubtful` |
+| `rank` | `species`, `ssp`, `var`, `form`, `hybrid`, `subvar` |
+| `establishment` (distribution lists) | `native`, `introduced`, `doubtful`, `absent`, `extinct` |
+| `duration` | `annual`, `biennial`, `perennial` |
+| `edible_part` | `roots`, `stem`, `leaves`, `flowers`, `fruits`, `seeds`, `tubers` |
+| `flower_color`, `foliage_color`, `fruit_color` | `white`, `red`, `brown`, `orange`, `yellow`, `lime`, `green`, `cyan`, `blue`, `purple`, `magenta`, `grey`, `black` |
+| `bloom_months`, `growth_months`, `fruit_months` | `jan`, `feb`, `mar`, `apr`, `may`, `jun`, `jul`, `aug`, `sep`, `oct`, `nov`, `dec` |
+| `nitrogen_fixation` | `None`, `Low`, `Medium`, `High` (the data only holds `None` and `High`) |
+| `ligneous_type` | `liana`, `subshrub`, `shrub`, `tree`, `parasite` |
+| `foliage_texture` | `fine`, `medium`, `coarse` |
+| `edible`, `vegetable`, `complete_data`, `leaf_retention`… (booleans) | `true` or `false` (also `yes`/`no`, `1`/`0`) |
+
+`biological_type`, `sexuality`, `fruit_shape`, `inflorescence_type` and `toxicity` also have closed lists, given in the reference. Names (`common_name`, `scientific_name`, `genus_name`, `family_name`…) take free text.
+
+From 2.9.8, a value outside the list answers `400` and names the accepted values. Before 2.9.8 it answered `200` with wrong or empty results: `filter[status]=foobar` returned the species with no status, and `filter[flower_color]=pink` returned nothing.
+
+```bash
+curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[rank]=cultivar'
+```
+
+```json
+{
+  "error": true,
+  "code": "bad_request",
+  "message": "Invalid value for rank: \"cultivar\". Accepted values are: species, ssp, var, form, hybrid, subvar.",
+  "messages": "Invalid value for rank: \"cultivar\". Accepted values are: species, ssp, var, form, hybrid, subvar."
+}
+```
+
+With several comma-separated values, one unknown value is enough for the `400`. The same check applies to `filter_not[…]` and to the search endpoints. Names are matched without regard to case from 2.9.8, so `filter[status]=Accepted` works.
+
+An unknown filter **key** answers `400` too, with the list of valid keys.
+
+#### `filter` or `range`: numeric fields
+
+Numeric fields (heights, temperatures, pH, the [ecological indicators](/docs/advanced/plants-fields#ecological-indicator-values-light-humidity-soil)…) are filtered with `range[…]`, not `filter[…]`. `filter[light]=9` answers `400`; from 2.9.8 the message points to the range. For an exact value, give the same bound twice:
+
+```bash
+curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&range[light]=9,9'
+```
+
+The range keys are listed in the reference. A few use the database column name, which differs from the field in the response:
+
+| Response field | Range key |
+| --- | --- |
+| `growth.soil_humidity` | `ground_humidity` |
+| `specifications.maximum_height.cm` | `maximum_height_cm` |
+| `specifications.average_height.cm` | `average_height_cm` |
+| `growth.minimum_root_depth.cm` | `minimum_root_depth_cm` |
+| `growth.minimum_temperature.deg_c` | `minimum_temperature_deg_c` |
+| `growth.minimum_precipitation.mm` | `minimum_precipitation_mm` |
+| `growth.spread.cm`, `growth.row_spacing.cm` | `planting_spread_cm`, `planting_row_spacing_cm` |
+| `growth.days_to_harvest` | `planting_days_to_harvest` |
+
+So wet-ground species are `range[ground_humidity]=9,`, even though the value comes back as `soil_humidity`.
 
 ### Exclude null values
 

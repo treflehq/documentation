@@ -14,12 +14,24 @@ This documentation is way lighter than the reference, and do not show all the fi
 Collection endpoints (`/api/v1/plants`, `/api/v1/species`, their `/search`
 variants, and nested lists such as `/api/v1/genus/:id/plants`) return a **light**
 version of each record, so a page of results stays small. Plants and species
-lists return the same fields:
+lists return the same shape, the species light shape: a plant list is a list of
+each plant's **main species**. Each row has these fields:
 
 `id`, `common_name`, `slug`, `scientific_name`, `year`, `bibliography`,
 `author`, `status`, `rank`, `family`, `family_common_name`, `genus`,
-`genus_id`, `image_url`, `synonyms`, `links`, `completion_ratio`,
+`genus_id`, `image_url`, `synonyms_count`, `links`, `completion_ratio`,
 `complete_data`
+
+`links` holds `self`, `plant`, `genus` and `synonyms`. The synonym names are
+not embedded in list rows: `synonyms_count` gives their number and
+`links.synonyms` points to the paginated `/api/v1/species/:id/synonyms`. Until
+2.9.8, rows cached before 2.9.7 could still carry the older `synonyms` array
+of names instead.
+
+Because a plant row is its main species, `id` and `links.self` in a
+`/api/v1/plants` row identify the **species** (`links.plant` is the plant).
+The plant-only fields `main_species_id`, `vegetable` and `observations` are
+not in list rows; they appear on the plant detail, `/api/v1/plants/:id`.
 
 Every other field (`edible`, `edible_part`, `duration`, `common_names`,
 `distribution`, `growth`, `specifications`, `images`, `sources`…) is only
@@ -81,6 +93,7 @@ API endpoints to related resources
 | **self** (string)  | API endpoint to the species itself |
 | **genus** (string) | API endpoint to the species genus  |
 | **plant** (string) | API endpoint to the species plant  |
+| **synonyms** (string) | API endpoint listing all the species synonyms, paginated |
 
 ### images
 
@@ -155,7 +168,7 @@ Species's main characteristics
 | **growth_rate** (string)           | The relative growth speed of the plant                                                                                                                                                                       |
 | **average_height** (object)        | The average height of the species, in centimeters                                                                                                                                                            |
 | **maximum_height** (object)        | The maximum height of the species, in centimeters                                                                                                                                                            |
-| **nitrogen_fixation** (string)     | Capability to fix nitrogen in monoculture                                                                                                                                                                    |
+| **nitrogen_fixation** (string)     | Capability to fix nitrogen in monoculture. The data holds only `High` or `None` (or `null`): `None` is a recorded "does not fix nitrogen", not a missing value. `Low` and `Medium` are accepted by the filter but no species carries them |
 | **shape_and_orientation** (string) | The predominant shape of the species                                                                                                                                                                         |
 | **toxicity** (string)              | Relative toxicity of the species for humans or animals<br />Can be: `none`, `low`, `medium`, and `high`.                                                                                                     |
 
@@ -180,13 +193,13 @@ Growing of farming related fields
 | **spread** (object)                  | The average spreading of the plant, in centimeters                                                                                   |
 | **minimum_precipitation** (object)   | Minimum precipitation per year, in milimeters per year                                                                               |
 | **maximum_precipitation** (object)   | Maximum precipitation per year, in milimeters per year                                                                               |
-| **minimum_root_depth** (object)      | Minimum depth of soil required for the species, in centimeters. Plants that do not have roots such as rootless aquatic plants have 0 |
+| **minimum_root_depth** (object)      | Rooting depth of the species, in centimeters: how deep its roots typically go, **not** the soil depth it needs. Despite the field name, it is not a minimum. Values from the TRY plant trait database (trait "Root rooting depth") are the median of the depths measured for the species; older values come from the USDA PLANTS database ("minimum root depth"). The [species facts](/docs/advanced/data-provenance) name the source of each value. Filter with `range[minimum_root_depth_cm]` |
 | **minimum_temperature** (object)     | The minimum tolerable temperature for the species. In celsius or fahrenheit degrees                                                  |
 | **maximum_temperature** (object)     | The maximum tolerable temperature for the species. In celsius or fahrenheit degrees                                                  |
 | **soil_nutriments** (integer)        | Nutrient level of the soil in the species' habitats, from 1 (hyperoligotrophic) to 9 (hypereutrophic). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
 | **soil_salinity** (integer)          | Salinity of the soil in the species' habitats, from 0 (absent from saline soils — a real value, not "unknown") to 9 (hyperhaline). [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
 | **soil_texture** (integer)           | Texture of the soil in the species' habitats, on a scale from 0 (clay) to 10 (rock)                                                  |
-| **soil_humidity** (integer)          | Humidity of the soil in the species' habitats, from 1 (xerophile) to 12 (submerged) — the one indicator with twelve classes. [Ecological indicator](#ecological-indicator-values-light-humidity-soil) |
+| **soil_humidity** (integer)          | Humidity of the soil in the species' habitats, from 1 (xerophile) to 12 (submerged) — the one indicator with twelve classes. [Ecological indicator](#ecological-indicator-values-light-humidity-soil). Filter it with `range[ground_humidity]`: the filter key is the database column name |
 
 #### Ecological indicator values (light, humidity, soil)
 
@@ -224,7 +237,7 @@ Both are recorded internally as evidence with their sources, and promoted to no 
 This matters when you compare Trefle to other sources:
 
 - The USDA PLANTS database rates *tolerance* in agronomic classes (None / Low / Medium / High) defined by measurable thresholds — for salinity, the electrical conductivity of the soil solution. That is a different question, so the two can legitimately disagree. A coastal species such as *Armeria maritima* scores high as a habitat indicator while USDA rates its cultivated salt tolerance low.
-- These indicators are calibrated for the **temperate European flora**. For species outside that range they are often absent, and when present should be treated with caution.
+- These indicators are calibrated for the **temperate European flora** (Germany, then France). They are mostly absent for species that do not grow in Europe, and the tropics in particular have almost none. Where a value exists for a tropical or extra-European species, it describes the species' habitat in Europe, if any, and says little about its native range. A missing indicator therefore says nothing about the plant, and a `range[light]` filter on a non-European zone drops most of its species.
 - A value of `0` is meaningful (it places the species at the bottom of the gradient), it does not mean "unknown". Missing data is `null`.
 
 If you need to know where a specific value came from, the [provenance endpoint](/docs/advanced/data-provenance) tells you which source supplied it, and the [sources register](/docs/advanced/data-sources) says what that source is and how to credit it.
