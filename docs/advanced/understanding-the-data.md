@@ -19,7 +19,7 @@ Different sources answer different questions. None of them answers all of them.
 | **[GBIF](https://www.gbif.org/)** | Occurrence records, common names, an indication of how often a species is observed | ~360 000 records |
 | **[IPNI](https://www.ipni.org/)** | Where and when a name was first published | ~316 000 records |
 | **[Pl@ntNet](https://plantnet.org/)** | Photographs, common names | ~31 000 records |
-| **[TRY](https://www.try-db.org)** | Plant traits from published measurements — life form, lifespan, flower and fruit characters, leaf texture, root depth | Import built, not yet run |
+| **[TRY](https://www.try-db.org)** | Plant traits from published measurements — life form, lifespan, flower and fruit characters, leaf texture, root depth | ~77 000 species, since October 2026 |
 | **Baseflor / Catminat** (Philippe Julve) | Ecological indicators — light, humidity, soil | ~3 500 species per indicator, western Europe |
 | **USDA PLANTS** | Agronomic ratings for North American species | Historical; largely retired from the API |
 | **Regional floras** | Measured descriptions, peer-reviewed | Added by curation, species by species |
@@ -84,7 +84,7 @@ Nomenclature is in good shape: names, authorship, families and synonymy cover th
 
 **Botanical traits are another matter.** Height, life form, phenology, pollination and dispersal are present for a small fraction of species — in some cases a few thousand out of nearly half a million. The database is not *wrong* on these fields; it is *empty*, which is a different problem and, in our view, a more honest one.
 
-This is deliberate. Filling those gaps with plausible-looking estimates would make the API look better and be worth less. The current work is to fill them from sources that can be cited — bulk taxonomic datasets, trait databases built on published measurements, and species-by-species review against regional floras.
+This is deliberate. Filling those gaps with plausible-looking estimates would make the API look better and be worth less. The current work is to fill them from sources that can be cited — bulk taxonomic datasets, trait databases built on published measurements, and species-by-species review against regional floras. The TRY import of October 2026 is the first of those to land: it moved the share of filled trait cells from 4.2 % to 4.5 %. Real progress, and a measure of how far there is to go.
 
 :::note What a low completeness figure means
 Some endpoints expose a completeness indicator. It measures **how much of what we could know about a species we actually know**, counting only fields that make sense for it — a wild oak is not marked incomplete for lacking a sowing guide. A low figure means the botanical literature has not been digitised into our sources yet, not that the record is unreliable.

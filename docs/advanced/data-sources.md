@@ -18,7 +18,7 @@ The rank decides who wins when two sources claim the same field. It runs stronge
 | Rank | Source | What it contributes | Records linked |
 |---:|---|---|---:|
 | 1 | **Community corrections** | Values reviewed and accepted by a maintainer, submitted with a reference | — |
-| 3 | **[TRY](https://www.try-db.org)** | Plant traits from published measurements: life form, lifespan, flower and fruit characters, leaf texture, root depth, leaf C/N, Ellenberg indicators | Import built, not yet run against production |
+| 3 | **[TRY](https://www.try-db.org)** | Plant traits from published measurements: life form, lifespan, flower and fruit characters, leaf texture, root depth, leaf C/N, Ellenberg indicators | 76 665 species (267 289 facts, since October 2026) |
 | 8 | **[POWO](https://powo.science.kew.org/)** (Kew) | Accepted names, authorship, synonymy, native range. The nomenclatural backbone | 1 242 348 |
 | 9 | **[World Flora Online](https://www.worldfloraonline.org/)** | Accepted names, including groups Kew does not cover | 360 940 |
 | 10 | **[IPNI](https://www.ipni.org/)** | Where and when a name was first published | 316 686 |
@@ -27,6 +27,8 @@ The rank decides who wins when two sources claim the same field. It runs stronge
 | 15 | **Baseflor / Catminat** (Philippe Julve) | Ecological indicator values, flowering period, flower colour, fruit type | ~3 500 species per indicator |
 | 18 | **[Pl@ntNet](https://plantnet.org/)** | Photographs, common names | 31 547 |
 | 21 | **Wikipedia** | Descriptions and common names — never numbers | Text only |
+
+TRY has fed the database since October 2026. Its export gave us 267 289 trait claims on 76 665 species, each stored as a fact that names the TRY dataset it comes from. Where the species column was empty, the value was promoted into it: 84 159 columns were filled that way. The other claims sit beside a value held by a stronger source and are readable through the [facts endpoint](/docs/advanced/data-provenance).
 
 **WCVP** (Kew's World Checklist of Vascular Plants) is used as a bulk dataset rather than a ranked source: it supplies the genus-to-family table and the synonymy that names are reconciled against, upstream of arbitration.
 

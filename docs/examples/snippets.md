@@ -83,13 +83,13 @@ The only difference is that `/species` API calls will return matching species, s
 
 <br />
 
-### Get plants in Antartica
+### Get plants recorded in France
 
-> See [Distributions](/docs/advanced/distributions) to learn more about distributions zones.
+> Zone slugs are the lowercased [WGSRPD](/docs/advanced/distributions) codes: `fra` is France. See [Distributions](/docs/advanced/distributions) to learn more about distribution zones.
 
 
 <MultiLanguageSnippet
-  endpoint="/api/v1/distributions/antarctica/plants"
+  endpoint="/api/v1/distributions/fra/plants"
   query={{}}
 />
 
@@ -98,7 +98,7 @@ The only difference is that `/species` API calls will return matching species, s
 ### Get plants introduced in Marion-Prince Edward
 
 <MultiLanguageSnippet
-  endpoint="/api/v1/distributions/marion-prince-edward/plants"
+  endpoint="/api/v1/distributions/mpe/plants"
   query={{
     filter: {establishment: 'introduced'}
   }}
@@ -106,10 +106,10 @@ The only difference is that `/species` API calls will return matching species, s
 
 <br />
 
-### Get plants native from Tibet
+### Get plants native to Tibet
 
 <MultiLanguageSnippet
-  endpoint="/api/v1/distributions/tibet/plants"
+  endpoint="/api/v1/distributions/cht/plants"
   query={{
     filter: {establishment: 'native'}
   }}
@@ -117,9 +117,25 @@ The only difference is that `/species` API calls will return matching species, s
 
 <br />
 
-### Get species with height between 5cm and 20cm
+### Get species with a maximum height between 5 cm and 20 cm
+
+> On this endpoint the upper bound is excluded (5 ≤ height &lt; 20). See [how the bounds are read](/docs/guides/filtering#filter-on-ranges).
 
 <MultiLanguageSnippet endpoint="/api/v1/species" query={{range: {maximum_height_cm: "5,20"}}}/>
+
+<br />
+
+### Get full-sun species under one metre, native to France
+
+> `light` is an Ellenberg class from 1 to 9; `range[light]=7` keeps classes 7 to 9. Explained step by step in the [filtering guide](/docs/guides/filtering#combining-filters-full-sun-species-under-one-metre-found-in-my-country).
+
+<MultiLanguageSnippet
+  endpoint="/api/v1/distributions/fra/species"
+  query={{
+    range: {light: "7", maximum_height_cm: ",100"},
+    filter: {establishment: "native"},
+  }}
+/>
 
 
 <br />

@@ -124,10 +124,13 @@ You now got the second page of the plants.
 ## Changing the page size
 
 Collection endpoints such as `/api/v1/plants` and `/api/v1/species` always return
-20 items per page. The page size is fixed and there is no parameter to change it.
+20 items per page. The page size is fixed and there is no parameter to change it:
+a `per_page` parameter is **not** read today, and a request that carries one gets
+the usual 20 items without an error. A client-controlled page size is being added
+and will be announced here when it ships.
 
 The search endpoints are the exception: `/api/v1/plants/search` and
-`/api/v1/species/search` accept a `limit` parameter, which also defaults to 20.
+`/api/v1/species/search` read a `limit` parameter, which also defaults to 20.
 
 ```bash
 curl -g 'https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut&limit=5'
@@ -163,5 +166,5 @@ page through:
 
 ```bash
 # instead of walking /api/v1/species page by page
-curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[genus]=Abies'
+curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[genus_name]=Abies'
 ```

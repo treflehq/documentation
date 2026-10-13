@@ -265,16 +265,25 @@ And we got:
 
 Now we want to filter on a range of values.
 
-Let's query only species with a minimum height **between** 5 **and** 20 centimeters:
+Let's query only species whose maximum height is **between** 5 **and** 20 centimeters:
 
 https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&range[maximum_height_cm]=5,20
 
-:::tip Minimum and maximum values
+:::tip Open-ended ranges
 
-Filtering on ranges also allow to set only minimum or maximum values. For example:
+Either bound can be left out:
 
-- `/api/v1/species?range[maximum_height_cm]=5` only return species higher than 5 cm
-- `/api/v1/species?range[maximum_height_cm]=,5` only return species lower than 5 cm
+- `/api/v1/species?range[maximum_height_cm]=5` returns species whose maximum height is at least 5 cm
+- `/api/v1/species?range[maximum_height_cm]=,5` returns species whose maximum height is under 5 cm
+:::
+
+:::caution How the bounds are read today
+The two kinds of endpoint do not treat the bounds the same way.
+
+- On the database collections (`/api/v1/species`, `/api/v1/plants` and the nested lists such as `/api/v1/distributions/:zone/species`), the lower bound is **included** and the upper bound is **excluded**: `range[maximum_height_cm]=5,20` means *5 ≤ height &lt; 20*. Both bounds are read as integers, so `2.5` is read as `2`.
+- On the search endpoints (`/api/v1/species/search`, `/api/v1/plants/search`), both bounds are **included**: `5,20` means *5 ≤ height ≤ 20*.
+
+To include the upper value on a database collection, add one to it (`5,21`), or leave the bound open when the value you want is the top of the scale. A change making both bounds inclusive and accepting decimals on every endpoint is being worked on; this page will say so when it is live.
 :::
 
 <Tabs
@@ -364,7 +373,7 @@ And we got:
                 "genus": "/api/v1/genus/plantago",
                 "plant": "/api/v1/plants/plantago-major",
                 "self": "/api/v1/species/plantago-major"
-            },å
+            },
             "plant_id": 162259,
             "rank": "species",
             "scientific_name": "Plantago major",
@@ -399,6 +408,51 @@ And we got:
 
 
 
+
+### Combining filters: full-sun species under one metre, found in my country
+
+Filters, ranges and the distribution lists combine freely, so one request can answer a practical question. Say you want the species recorded in France that grow in full sun and stay under one metre tall.
+
+- The zone comes from the path. Distribution zones use the [WGSRPD](/docs/advanced/distributions) codes as slugs, lowercased: `fra` is France, `grb` Great Britain, `spa` Spain, `ger` Germany. `/api/v1/distributions/fra/species` lists every species recorded there.
+- Full sun is `light` class 7 to 9 ([an Ellenberg class](/docs/advanced/plants-fields#ecological-indicator-values-light-humidity-soil), not a measurement). Since 9 is the top of the scale, `range[light]=7` says "7 or more" and avoids the excluded upper bound described above.
+- Under one metre is `range[maximum_height_cm]=,100`.
+- Add `filter[establishment]=native` to keep only species native to the zone, and drop it to include introduced ones.
+
+```bash
+curl -g 'https://trefle.io/api/v1/distributions/fra/species?token=YOUR_TREFLE_TOKEN&range[light]=7&range[maximum_height_cm]=,100&filter[establishment]=native'
+```
+
+```js
+const fetch = require('node-fetch');
+
+(async () => {
+  const url = new URL('https://trefle.io/api/v1/distributions/fra/species');
+  url.searchParams.set('token', 'YOUR_TREFLE_TOKEN');
+  url.searchParams.set('range[light]', '7');
+  url.searchParams.set('range[maximum_height_cm]', ',100');
+  url.searchParams.set('filter[establishment]', 'native');
+  const response = await fetch(url);
+  const json = await response.json();
+  console.log(json.meta.total, json.data.map((s) => s.scientific_name));
+})();
+```
+
+```python
+import requests
+
+r = requests.get(
+    'https://trefle.io/api/v1/distributions/fra/species',
+    params={
+        'token': 'YOUR_TREFLE_TOKEN',
+        'range[light]': '7',
+        'range[maximum_height_cm]': ',100',
+        'filter[establishment]': 'native',
+    },
+)
+print(r.json()['meta']['total'])
+```
+
+A range only matches species that have a value for the field, so species with no light class or no recorded height are left out. That is a sizeable share of the database: the ecological indicators were calibrated on the European flora, which is also why this example works best for a European zone. Switch `/species` for `/plants` to get one entry per plant instead of every subspecies and variety.
 
 ### Exclude null values
 

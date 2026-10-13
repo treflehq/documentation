@@ -39,7 +39,7 @@ curl 'https://trefle.io/api/v1/species/SPECIES_SLUG/facts?token=YOUR_TREFLE_TOKE
 One row per (field, source) claim.
 
 :::note The trail is being backfilled
-Provenance recording shipped in 2.1.0, so it only covers values written since then. Accepted community corrections and the automated data checks already go through it; the bulk import pipelines are being migrated onto the same path, source by source. Until that is finished, **most species return an empty list**, and an absent fact means "not recorded yet", not "no source".
+Provenance recording shipped in 2.1.0, so it only covers values written since then. Accepted community corrections, the automated data checks, the TRY import (76 665 species, October 2026) and the nomenclature audit of October 2026 all go through it. The older bulk imports do not, so **many species still return an empty list**, and an absent fact means "not recorded yet", not "no source".
 :::
 
 ### evidence_type
