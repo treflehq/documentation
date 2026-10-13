@@ -78,6 +78,8 @@ Where a source gives only a range — *"8 to 12 m, occasionally 15"* — we reco
 
 A number of columns came from the USDA PLANTS database — fibre and forage ratings, tolerance classes, seedling vigour. They only ever applied to the North American flora, and most are no longer exposed by the API. If you meet one, treat it as historical.
 
+The same import brought in a few hundred names written the USDA way, as a full classification: `Lupinus sellulus ssp. sellulus var. lobbii`. Under the botanical Code a name has one infraspecific rank, so that taxon is `Lupinus sellulus var. lobbii`, and that is how we name it now. The longer string stays reachable as a synonym. Details in [the field reference](/docs/advanced/plants-fields#species).
+
 ## How complete is it, honestly
 
 Nomenclature is in good shape: names, authorship, families and synonymy cover the large majority of records. Distribution is available for around three quarters of species, and roughly a third carry at least one photograph.
