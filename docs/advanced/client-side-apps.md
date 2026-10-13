@@ -38,7 +38,7 @@ Read requests (`GET`, `HEAD`) anywhere under `/api`, plus the `POST /api/auth/cl
 In your terminal:
 
 ```bash
-curl -X POST 'https://trefle.io/api/auth/claim?token=YOUR_TREFLE_TOKEN&origin=YOUR-WEBSITE-URL&ip=12.34.56.78"'
+curl -X POST 'https://trefle.io/api/auth/claim?token=YOUR_TREFLE_TOKEN&origin=YOUR-WEBSITE-URL&ip=12.34.56.78'
 ```
 
 </TabItem>

@@ -20,7 +20,7 @@ The payload we will send will be like:
 
 ```json
 {
-  "notes": "The height is wrong",
+  "notes": "The height is wrong"
 }
 ```
 
