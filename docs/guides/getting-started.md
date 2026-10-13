@@ -30,7 +30,7 @@ Your access token will allow you to makes queries on the Trefle API. Keep it pri
 For the first examples, we will give you the choice between:
 - **Using your web browser**, which is the simplest, but will be limited when we'll need to code a bit.
 - **Using your terminal**, with `curl`
-- **Using javascipt**, with NodeJS and the [`node-fetch`](https://github.com/node-fetch/node-fetch) library (install it with `yarn add node-fetch`).
+- **Using JavaScript**, with Node.js 18 or later, whose built-in `fetch` needs no library.
 
 We will first try to list all the plants.
 
@@ -61,11 +61,9 @@ curl 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN'
 </TabItem>
 <TabItem value="node">
 
-With the [node-fetch](https://github.com/node-fetch/node-fetch) library, that will be used in the next examples.
+With the built-in `fetch` of Node.js 18 and later, used in the next examples.
 
 ```js
-const fetch = require('node-fetch');
-
 (async () => {
   const response = await fetch('https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN');
   const json = await response.json();
@@ -79,8 +77,7 @@ const fetch = require('node-fetch');
 ```js
 const https = require('https');
 
-https.get('https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN', (resp)
-  => {
+https.get('https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN', (resp) => {
   let data = '';
 
   // A chunk of data has been recieved.
@@ -121,14 +118,14 @@ It return a big JSON response like this:
             "links": {
                 "genus": "/api/v1/genus/aa",
                 "plant": "/api/v1/plants/aa-achalensis",
-                "self": "/api/v1/species/aa-achalensis"
+                "self": "/api/v1/species/aa-achalensis",
+                "synonyms": "/api/v1/species/aa-achalensis/synonyms"
             },
-            "plant_id": 423071,
             "rank": "species",
             "scientific_name": "Aa achalensis",
             "slug": "aa-achalensis",
             "status": "accepted",
-            "synonyms": [],
+            "synonyms_count": 0,
             "year": 1920
         },
         {
@@ -143,27 +140,27 @@ It return a big JSON response like this:
             "links": {
                 "genus": "/api/v1/genus/aa",
                 "plant": "/api/v1/plants/aa-argyrolepis",
-                "self": "/api/v1/species/aa-argyrolepis"
+                "self": "/api/v1/species/aa-argyrolepis",
+                "synonyms": "/api/v1/species/aa-argyrolepis/synonyms"
             },
-            "plant_id": 423072,
             "rank": "species",
             "scientific_name": "Aa argyrolepis",
             "slug": "aa-argyrolepis",
             "status": "accepted",
-            "synonyms": [
-                "Altensteinia argyrolepis"
-            ],
+            "synonyms_count": 1,
             "year": 1854
-        },  // ... 28 more items
+        },  // ... 18 more items
     ],
     "links": {
-        "first": "/api/v1/species?page=1",
-        "last": "/api/v1/species?page=20865",
-        "next": "/api/v1/species?page=2",
-        "self": "/api/v1/species"
+        "self": "/api/v1/plants",
+        "first": "/api/v1/plants?page=1",
+        "next": "/api/v1/plants?page=2",
+        "last": "/api/v1/plants?page=2500"
     },
     "meta": {
-        "total": 417293
+        "total": 438676,
+        "page": 1,
+        "per_page": 20
     }
 }
 ```
@@ -180,7 +177,17 @@ Every `/api` response carries three headers so you can self-regulate before hitt
 | `RateLimit-Remaining` | The number of requests you have left in the current window. |
 | `RateLimit-Reset` | A unix timestamp for when the current window resets. |
 
-Once you run out, further requests get a `429 Too Many Requests` response (with the same three headers, `RateLimit-Remaining` at `0`) until the window resets.
+Once you run out, further requests get a `429 Too Many Requests` response (with the same three headers, `RateLimit-Remaining` at `0`, and a `Retry-After` header giving the seconds to wait) until the window resets. Browser clients can read all of these headers cross-origin; `Retry-After` joins them in 2.9.8.
+
+The limit applies per account and per IP address. From 2.9.8, the [JWTs you claim for a website](/docs/advanced/client-side-apps) share their account's bucket: claiming more of them does not add quota.
+
+### Compressed responses
+
+From 2.9.8, the API compresses its responses with gzip when the request says it accepts it (`Accept-Encoding: gzip`). JSON shrinks by about 90 %, which matters for the larger records: a species with many synonyms or images can weigh several hundred kilobytes uncompressed. Browsers, Node's `fetch`, Python's `requests` and most HTTP clients send the header and decompress for you. With `curl`, add `--compressed`:
+
+```bash
+curl --compressed 'https://trefle.io/api/v1/species/rosa-canina?token=YOUR_TREFLE_TOKEN'
+```
 
 ### The Trefle structure
 
