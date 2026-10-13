@@ -93,11 +93,8 @@ And we got:
                 "self": "/api/v1/plants/fragaria-chiloensis",
                 "species": "/api/v1/plants/fragaria-chiloensis/species"
             },
-            "main_species_id": 137607,
-            "observations": "Bolivia, C. & S. Chile to S. Argentina",
             "scientific_name": "Fragaria chiloensis",
             "slug": "fragaria-chiloensis",
-            "vegetable": false,
             "year": 1768
         }
     ],
@@ -283,7 +280,7 @@ The two kinds of endpoint do not treat the bounds the same way.
 - On the database collections (`/api/v1/species`, `/api/v1/plants` and the nested lists such as `/api/v1/distributions/:zone/species`), the lower bound is **included** and the upper bound is **excluded**: `range[maximum_height_cm]=5,20` means *5 ≤ height &lt; 20*. Both bounds are read as integers, so `2.5` is read as `2`.
 - On the search endpoints (`/api/v1/species/search`, `/api/v1/plants/search`), both bounds are **included**: `5,20` means *5 ≤ height ≤ 20*.
 
-To include the upper value on a database collection, add one to it (`5,21`), or leave the bound open when the value you want is the top of the scale. A change making both bounds inclusive and accepting decimals on every endpoint is being worked on; this page will say so when it is live.
+To include the upper value on a database collection, add one to it (`5,21`), or leave the bound open when the value you want is the top of the scale. Inclusive bounds, decimal values and open sides on every endpoint are merged (trefle-api #445) and ship with the next release; this page will be updated then.
 :::
 
 <Tabs
