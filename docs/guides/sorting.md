@@ -55,8 +55,6 @@ curl -g 'https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&order[year]=asc
 <TabItem value="node">
 
 ```js
-const fetch = require('node-fetch');
-
 (async () => {
   const response = await fetch('https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&order[year]=asc');
   const json = await response.json();

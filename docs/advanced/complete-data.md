@@ -71,8 +71,6 @@ curl -XPOST -H "Content-type: application/json" \
 <TabItem value="node">
 
 ```js
-const fetch = require('node-fetch');
-
 // The parameters for our POST request
 const params = {
   notes: 'This tree can grows up to 68 meters',
@@ -82,7 +80,7 @@ const params = {
     maximum_height_value: 6800,
     maximum_height_unit: 'cm'
   }
-}
+};
 
 (async () => {
   const response = await fetch(

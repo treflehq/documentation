@@ -48,8 +48,6 @@ curl -X ${method.toString().toUpperCase()} "https://trefle.io${endpoint}?${searc
       case "node": 
         return (<TabItem value="node" key="node">
           <CodeBlock className="js">{`
-const fetch = require('node-fetch');
-
 (async () => {
   const response = await fetch('https://trefle.io${endpoint}?${searchParams.toString()}');
   const json = await response.json();

@@ -47,12 +47,10 @@ curl -XPOST -H "Content-type: application/json" \
 <TabItem value="node">
 
 ```js
-const fetch = require('node-fetch');
-
 // The parameters for our POST request
 const params = {
   notes: 'The height is wrong'
-}
+};
 
 (async () => {
   const response = await fetch(

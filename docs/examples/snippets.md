@@ -10,8 +10,8 @@ Here is some request samples
 :::tip Third party libraries
 The `node`, `ruby` and `python` snippets require third-party libraries:
 
-- **node**: [node-fetch](https://github.com/node-fetch/node-fetch) library.
-- **python**: [request](https://requests.readthedocs.io/en/master/) library.
+- **node**: none, with Node.js 18 or later (built-in `fetch`).
+- **python**: [requests](https://requests.readthedocs.io/) library.
 - **ruby**: [HTTParty](https://github.com/jnunemaker/httparty) library.
 
 :::
