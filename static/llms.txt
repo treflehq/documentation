@@ -9,9 +9,9 @@
 ## Where things are
 
 - Base URL: https://trefle.io/api/v1 (HTTPS only; JSON in and out)
-- OpenAPI 3.0 document: https://trefle.io/api/v1/openapi.json (or .yaml), no token needed.
-  It is generated from the API test suite, so it matches the running version
-  (`info.version`). It lists every endpoint, the allowed filter/order/range
+- OpenAPI 3.0 document: https://trefle.io/swagger/v1/swagger.yaml, no token needed.
+  It is generated from the API test suite and served by the running API, so it
+  matches the deployed version (`info.version`). It lists every endpoint, the allowed filter/order/range
   keys per endpoint, the response schemas and the error envelope.
 - Guides: https://docs.trefle.io (getting started, filtering, sorting,
   pagination, searching, client-side apps, data provenance)
@@ -30,8 +30,8 @@ and copy the token from https://trefle.io/profile. Send it either way:
 A missing or invalid token answers 401. Never ship the account token in a
 browser or mobile app: from your backend, claim a JWT bound to your origin
 with POST https://trefle.io/api/auth/claim (JSON body
-{"origin": "https://your.site", "ip": "optional client IP"}, authenticated
-with the account token). It answers {"token": "<jwt>", "expiration": "..."};
+{"token": "YOUR_TOKEN", "origin": "https://your.site", "ip": "optional client IP"};
+the account token goes in the body, a Bearer header alone answers 422). It answers {"token": "<jwt>", "expiration": "..."};
 the page then sends the JWT as its Bearer token. Read endpoints answer
 cross-origin requests.
 
@@ -48,7 +48,7 @@ cross-origin requests.
     GET /families, /families/{id}, /families/{id}/genus
     GET /kingdoms, /subkingdoms, /divisions, /division_classes, /division_orders (and /{id})
     GET /distributions, /distributions/{id}, /distributions/{id}/species, /distributions/{id}/plants
-                                     WGSRPD geographic zones (TDWG), by slug such as "fra" or "europe"
+                                     WGSRPD geographic zones (TDWG), by slug: the lowercased TDWG code, such as "fra" (France) or "1" (Europe)
     GET /corrections, /corrections/{id}, /corrections/mine
     POST /corrections/{record_type}/{record_id}   submit a data correction (reviewed by hand)
     POST /species/{id}/report        report wrong data on a species, with a note
@@ -79,6 +79,8 @@ unknown key answers 400 with the list of valid keys.
                                  filter[flower_color]=red,pink
     filter_not[field]=null       exclude records where the field is empty (or equals the given values)
     range[field]=min,max         numeric range; leave max empty for an open range: range[maximum_height_cm]=1000,
+                                 on /species, /plants and nested lists min is included, max excluded, both read
+                                 as integers; on /search both are included
     order[field]=asc|desc        sort; several order[...] keys sort on several fields
 
 Boolean fields accept true, yes, 1, on, false, no, 0 and off.
@@ -94,7 +96,7 @@ genus_name, rank, edible, edible_part, vegetable, duration, flower_color,
 foliage_color, fruit_color, growth_habit, growth_form, growth_rate,
 ligneous_type, leaf_retention, bloom_months, fruit_months. Frequent range
 keys: year, average_height_cm, maximum_height_cm, light,
-atmospheric_humidity, ground_humidity, ph_minimum, ph_maximum,
+atmospheric_humidity, ground_humidity (returned as soil_humidity), ph_minimum, ph_maximum,
 minimum_temperature_deg_c, maximum_temperature_deg_c, soil_texture,
 soil_salinity, soil_nutriments, images_count, sources_count.
 
@@ -103,8 +105,9 @@ soil_salinity, soil_nutriments, images_count, sources_count.
 Collections return 20 items per page. page=N selects a page; prefer following
 links.next. /species and /plants refuse page > 2500 (400): narrow the results
 with filters or ranges instead. The search endpoints take limit=N for the
-page size. A per_page parameter on every collection is planned, not yet
-honoured.
+page size. A per_page parameter (1 to 100) on every collection, and inclusive
+decimal ranges, are merged and ship with the next release (trefle-api #449,
+#445).
 
 ## Rate limits and caching
 
