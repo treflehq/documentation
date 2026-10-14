@@ -115,7 +115,7 @@ A JWT cannot claim another JWT: send your account token, or the call answers `40
 
 A JWT is a bearer token valid for **24 hours**. Whoever holds it can use it until it expires.
 
-- **The origin check only applies when the browser sends an `Origin` header.** Browsers add it to cross-origin requests, so a JWT copied into another website is refused. A script, a mobile app or `curl` sends no `Origin`, and the API accepts the JWT from them. Binding an `ip` at claim time narrows that down: the JWT is then refused from any other address.
+- **The origin check only applies when the browser sends an `Origin` header.** Browsers add it to cross-origin requests, so a JWT copied into another website is refused. A script, a mobile app or `curl` sends no `Origin`, and the API accepts the JWT from them. Binding an `ip` at claim time narrows that down: the JWT is then refused from any other address. This is deliberate and will stay so: refusing every request without an `Origin` would also refuse server-side rendering and the clients that already rely on it, while the JWT expires within 24 hours and spends its owner's quota.
 - **Never embed your account token** in a web page, a browser extension or a mobile app. Unlike a JWT it does not expire, and anyone who extracts it can claim JWTs of their own.
 - **Mobile apps** send no `Origin`, so an origin-bound JWT protects nothing there. Have the app call your own backend, and let the backend call Trefle with the account token.
 - **Rate limit.** Since 2.9.8, requests made with a JWT count against the account that claimed it: the account token and every JWT it claimed share one bucket per IP address. Claiming more JWTs does not raise your quota. See [Rate limiting](/docs/guides/getting-started#rate-limiting).
