@@ -60,7 +60,7 @@ They do **not** say what an individual plant will survive in a garden or a field
 
 Two consequences worth remembering:
 
-- These indicators were calibrated for the **temperate European flora**. Outside that range they are usually absent, and should be treated with caution when present.
+- These indicators were calibrated for the **temperate European flora**. Outside Europe they are mostly absent, and the tropics have almost none, so a missing value says nothing about the plant. When a value is present for a non-European species, treat it with caution: it describes the species' habitats in Europe, not in its native range.
 - **`0` is a real value** where a scale starts at 0 — it places the species at the bottom of the gradient. Missing data is `null`, never `0`.
 - Ellenberg's reaction (R) and temperature (T) indicators are deliberately **not** published as fields. Putting an ordinal rank into `ph_minimum` / `ph_maximum` would leave those fields unable to say which of their numbers were measured. The reasoning is in [the field reference](/docs/advanced/plants-fields#what-is-deliberately-not-here).
 
@@ -69,6 +69,14 @@ Two consequences worth remembering:
 `maximum_height` is the tallest the species is recorded to reach. `average_height` is a typical mature height.
 
 Where a source gives only a range — *"8 to 12 m, occasionally 15"* — we record the maximum and leave the average empty rather than compute a midpoint. A midpoint would be our arithmetic, not anyone's observation.
+
+### Root depth
+
+`minimum_root_depth` is a **rooting depth**: how deep the roots of the species typically go. It is not the soil depth the species needs, whatever its name suggests. Values from TRY are the median of the depths measured for the species; older values come from the USDA PLANTS database. The [facts endpoint](/docs/advanced/data-provenance) tells you which applies to a given species.
+
+### Nitrogen fixation
+
+`nitrogen_fixation` holds only `High` or `None`. `None` is a recorded value (the species does not fix nitrogen); a species we know nothing about has `null`.
 
 ### Months
 
