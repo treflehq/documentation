@@ -124,10 +124,13 @@ You now got the second page of the plants.
 ## Changing the page size
 
 Collection endpoints such as `/api/v1/plants` and `/api/v1/species` always return
-20 items per page. The page size is fixed and there is no parameter to change it.
+20 items per page. The page size is fixed and there is no parameter to change it:
+a `per_page` parameter is **not** read today, and a request that carries one gets
+the usual 20 items without an error. A `per_page` parameter (1 to 100) is merged
+(trefle-api #449) and ships with the next release; this page will be updated then.
 
 The search endpoints are the exception: `/api/v1/plants/search` and
-`/api/v1/species/search` accept a `limit` parameter, which also defaults to 20.
+`/api/v1/species/search` read a `limit` parameter, which also defaults to 20.
 
 ```bash
 curl -g 'https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut&limit=5'
@@ -135,7 +138,7 @@ curl -g 'https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconu
 
 ## How deep you can page
 
-Requests past **page 2,500** return a `400`:
+On `/api/v1/plants`, `/api/v1/species` and their nested lists, requests past **page 2,500** return a `400`:
 
 ```bash
 curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&page=3000'
@@ -144,7 +147,9 @@ curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&page=3000'
 ```json
 {
   "error": true,
-  "message": "page must be 2500 or lower. Narrow the results with a filter or range instead of paging deep into the full collection. See https://docs.trefle.io"
+  "code": "bad_request",
+  "message": "page must be 2500 or lower. Narrow the results with a filter or range instead of paging deep into the full collection. See https://docs.trefle.io",
+  "messages": "page must be 2500 or lower. Narrow the results with a filter or range instead of paging deep into the full collection. See https://docs.trefle.io"
 }
 ```
 
@@ -163,5 +168,5 @@ page through:
 
 ```bash
 # instead of walking /api/v1/species page by page
-curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[genus]=Abies'
+curl -g 'https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&filter[genus_name]=Abies'
 ```

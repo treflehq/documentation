@@ -139,7 +139,7 @@ To avoid that, you can exclude null values ([see Filtering](filtering#exclude-nu
 # -> with tree ligneous type (filter[ligneous_type]=tree)
 # -> ordered by maximum height descending (highest first) (order[maximum_height_cm]=desc)
 # -> and without plants having a null maximum height (filter_not[maximum_height_cm]=null)
-curl -g "https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[ligneous_type]=tree&order[maximum_height_cm]=desc&&filter_not[maximum_height_cm]=null"
+curl -g "https://trefle.io/api/v1/plants?token=YOUR_TREFLE_TOKEN&filter[ligneous_type]=tree&order[maximum_height_cm]=desc&filter_not[maximum_height_cm]=null"
 ```
 
 

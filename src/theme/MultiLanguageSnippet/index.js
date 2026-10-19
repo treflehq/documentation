@@ -65,7 +65,7 @@ const fetch = require('node-fetch');
 import requests
 
 r = requests.${method.toString().toLowerCase()}('https://trefle.io${endpoint}?${searchParams.toString()}')
-r.json
+r.json()
 `}</CodeBlock>
 
         </TabItem>)
