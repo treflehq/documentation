@@ -9,6 +9,8 @@ module.exports = {
         'guides/pagination',
         'guides/filtering',
         'guides/sorting',
+        'guides/fields',
+        'guides/languages',
         'guides/searching',
         'guides/reporting-errors',
       ],
