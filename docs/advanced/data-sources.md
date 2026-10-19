@@ -70,9 +70,48 @@ Several sources are published under licences that require attribution. If you re
 | **POWO / IPNI** | IPNI, published on the Internet at ipni.org; and the World Checklist of Selected Plant Families, Royal Botanic Gardens, Kew |
 | **Wikipedia** | Wikipedia, CC BY-SA |
 
-:::caution The register is incomplete
-Trefle stores a citation template per source, and several are still empty: GBIF, USDA, Tropicos, IPNI, World Flora Online, Tela Botanica, Pl@ntNet and OpenFarm currently have none recorded. Their own sites state their terms, and you should follow those rather than assume our silence means no obligation. Filling these in is open work.
+:::tip The citation page
+[trefle.io/citation](https://trefle.io/citation) gives the reference text of every source records are actually served from, in plain text, APA, BibTeX and RIS, next to the citation of Trefle itself. It is built from the data: a source appears once records come from it.
 :::
+
+### Images
+
+Each image carries its own terms. From 2.9.8, an image in the API has `licence`, `licence_url`, `author` and `commercial_use_allowed` beside its `copyright` line (see [images](/docs/advanced/plants-fields#images)). Pl@ntNet photographs are mostly CC BY-SA, some CC BY-NC or all rights reserved; Kew images are all rights reserved. Credit the author named in `copyright`, and check `commercial_use_allowed` before showing an image in a commercial product.
+
+## Citing Trefle
+
+Trefle's data is published under CC BY 4.0. To cite it, use the formats on [the citation page](https://trefle.io/citation) and give two things with it: the **data version** and the **date you accessed** the data.
+
+The data version is the date of the last data operation run on the database (an import, a purge, a migration), written `YYYY.MM.DD`, with a `.2`, `.3`… suffix when several ran the same day. A published version never changes meaning. From 2.9.8, every response states it:
+
+- in `meta.dataset_version` on lists and details,
+- in the `X-Trefle-Data-Version` header of every `/api/v1` response, errors included (readable by browser clients),
+- in `GET /api/v1`, with its release date, the licence and links to the citation and the changelog:
+
+```bash
+curl 'https://trefle.io/api/v1'
+```
+
+```json
+{
+  "plants_count": 450047,
+  "detailed_plants_count": 494847,
+  "dataset_version": "2026.10.13",
+  "dataset": {
+    "version": "2026.10.13",
+    "released_at": "2026-10-13T06:41:55.445Z",
+    "licence": "CC-BY-4.0",
+    "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+    "citation_url": "https://trefle.io/citation",
+    "changelog_url": "https://trefle.io/api/v1/changelog"
+  }
+}
+```
+
+`GET /api/v1/changelog` lists the latest 100 versions: what kind of operation produced each one, whether it completed, when it ran, and the change it measured in the row counts (`species`, `species_facts`, `common_names`…). Rows updated in place do not show there. Neither endpoint needs a token.
+
+Community corrections are accepted one by one between data operations and do not move the version: the access date is what pins them. If your queries spanned several days, give the range, and keep the `dataset_version` of the responses you stored. Trefle has no DOI yet.
+
 
 ## Where a field's shape is decided
 

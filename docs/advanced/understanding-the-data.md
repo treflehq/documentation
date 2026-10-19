@@ -88,6 +88,14 @@ A number of columns came from the USDA PLANTS database — fibre and forage rati
 
 The same import brought in 236 names written the USDA way, as a full classification: `Lupinus sellulus ssp. sellulus var. lobbii`. Under the botanical Code a name has one infraspecific rank, so that taxon is `Lupinus sellulus var. lobbii`, and that is how we name it now. The longer string stays reachable as a synonym. Details in [the field reference](/docs/advanced/plants-fields#species).
 
+## What is not listed
+
+Trefle covers the plant kingdom, but its name authority, Kew's checklist, only covers vascular plants. Mosses, liverworts and hornworts (about 35 000 records from the 2022 import) have no reference to arbitrate their names yet: many are synonyms served as accepted names, and none has a place in the hierarchy. Extinct taxa known from fossils are out of scope.
+
+From 2.9.9, these records are **hidden**: left out of `/api/v1/species` and `/api/v1/plants` and their nested lists, of the search, and of the counts shown on trefle.io. They are not deleted. `GET /api/v1/species/:slug` still answers, with `hidden_reason` set to `bryophyte` or `fossil`, so an existing link keeps working and a client can tell a hidden record from a deleted one. Bryophytes will be listed again once reconciled against World Flora Online.
+
+Genera and families whose species are all hidden still appear in their own lists, with no listed species.
+
 ## How complete is it, honestly
 
 Nomenclature is in good shape: names, authorship, families and synonymy cover the large majority of records. Distribution is available for around three quarters of species, and roughly a third carry at least one photograph.
